@@ -1,0 +1,24 @@
+.header_box {
+	&__container {
+		&_logo {
+		}
+		&_nav {
+			&_left {
+				&_home {
+				}
+				&_catalog {
+				}
+				&_newsession {
+				}
+				&_contacts {
+				}
+			}
+			&_right {
+				&_favorites {
+				}
+				&_cart {
+				}
+			}
+		}
+	}
+}
