@@ -1,0 +1,14 @@
+query Category {
+  category {
+    getAllCategory {
+      ... on CategoryGetAllOk {
+        category {
+          id
+        }
+      }
+      ... on InternalErrorProblem {
+        message
+      }
+    }
+  }
+}
