@@ -1,6 +1,8 @@
-import styles from '../../../shared/styles/NotFound.module.scss';
+import styles from '~/shared/styles/NotFound.module.scss';
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { Button } from '~/shared/ui/button'
+
 export const metadata: Metadata = {
 	title: 'Спасибо',
 	description: 'Thanks for your order',
@@ -16,7 +18,7 @@ export default function Page() {
 				</span>
 
 				<Link href={'/catalog'} className={styles.notfound_box_link}>
-					Назад в каталог
+					<Button className="w-full">Назад в каталог</Button>
 				</Link>
 			</div>
 		</div>

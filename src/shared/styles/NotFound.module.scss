@@ -1,7 +1,6 @@
 .notfound_box {
 	&_container {
 		display: flex;
-		background: #ffffff;
 		margin: auto;
 		flex-direction: column;
 		align-items: center;
@@ -25,7 +24,6 @@
 		padding-bottom: clamp(10px, 1vw, 32px);
 	}
 	&_link {
-		max-width: 165px;
 		padding: 8px 16px;
 		border-radius: 4px;
 		font-size: 16px;
