@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
 	"name": "candles_front",
 	"version": "0.1.0",
 	"private": true,
@@ -25,3 +26,42 @@
 		"typescript": "^5"
 	}
 }
+=======
+  "name": "candles_front",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "gen": "graphql-codegen --config codegen.ts"
+  },
+  "dependencies": {
+    "@radix-ui/react-slot": "^1.1.0",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
+    "graphql": "^16.9.0",
+    "lucide-react": "^0.436.0",
+    "next": "14.2.7",
+    "react": "^18",
+    "react-dom": "^18",
+    "tailwind-merge": "^2.5.2",
+    "tailwindcss-animate": "^1.0.7"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "5.0.2",
+    "@graphql-codegen/client-preset": "4.3.3",
+    "@graphql-typed-document-node/core": "^3.2.0",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.7",
+    "postcss": "^8",
+    "prettier": "^3.3.3",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.5.4"
+  }
+}
+>>>>>>> ac7388da5b81dac95bc9d56ed202d40a19af5530
