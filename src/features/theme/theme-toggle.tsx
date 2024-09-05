@@ -1,4 +1,4 @@
-/* eslint-disable max-len */
+
 'use client'
 
 import { useTheme } from 'next-themes'
@@ -15,7 +15,6 @@ import { Button } from '~/shared/ui/button'
 
 export const ToggleTheme: FC = () => {
 	const { setTheme } = useTheme()
-
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>

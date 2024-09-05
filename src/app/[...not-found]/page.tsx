@@ -1,5 +1,6 @@
-import styles from "~/shared/styles/NotFound.module.scss";
-import { Button } from '~/shared/ui/button'
+import { Button } from "~/shared/ui/button";
+import styles from "../../shared/styles/NotFound.module.scss";
+
 import Link from "next/link";
 export default function Custom404() {
 	return (
@@ -10,7 +11,7 @@ export default function Custom404() {
 					Ой, что-то пошло не так...
 				</span>
 				<Link href="/" className={styles.notfound_box_link}>
-					<Button className='w-full'>Продолжить покупки</Button>
+					<Button>sad</Button>
 				</Link>
 			</div>
 		</div>
