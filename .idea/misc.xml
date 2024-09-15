@@ -5,8 +5,4 @@
     <option name="applyUnsafeFixesOnSave" value="true" />
     <option name="formatOnSave" value="true" />
   </component>
-  <component name="GraphQLSettings">
-    <option name="enableFederationSupport" value="true" />
-    <option name="enableRelayModernFrameworkSupport" value="true" />
-  </component>
 </project>

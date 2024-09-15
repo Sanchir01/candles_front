@@ -1,9 +1,10 @@
-query Category {
+query AllCategory {
   category {
     getAllCategory {
       ... on CategoryGetAllOk {
         category {
           id
+          name
         }
       }
       ... on InternalErrorProblem {

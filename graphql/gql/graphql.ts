@@ -36,6 +36,7 @@ export type Candles = {
   category_id: Scalars['Uuid']['output'];
   created_at: Scalars['DateTime']['output'];
   id: Scalars['Uuid']['output'];
+  images: Array<Scalars['String']['output']>;
   slug: Scalars['String']['output'];
   title: Scalars['String']['output'];
   updated_at: Scalars['DateTime']['output'];
@@ -105,6 +106,7 @@ export type CategoryQuery = {
 
 export type CreateCandleInput = {
   category_id: Scalars['Uuid']['input'];
+  images: Array<Scalars['String']['input']>;
   title: Scalars['String']['input'];
 };
 
@@ -163,10 +165,10 @@ export type VersionMismatchProblem = ProblemInterface & {
   message: Scalars['String']['output'];
 };
 
-export type CategoryQueryVariables = Exact<{ [key: string]: never; }>;
+export type AllCategoryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CategoryQuery = { __typename?: 'Query', category?: { __typename?: 'CategoryQuery', getAllCategory: { __typename?: 'CategoryGetAllOk', category: Array<{ __typename?: 'Category', id: any }> } | { __typename?: 'InternalErrorProblem', message: string } } | null };
+export type AllCategoryQuery = { __typename?: 'Query', category?: { __typename?: 'CategoryQuery', getAllCategory: { __typename?: 'CategoryGetAllOk', category: Array<{ __typename?: 'Category', id: any, name: string }> } | { __typename?: 'InternalErrorProblem', message: string } } | null };
 
 
-export const CategoryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Category"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"category"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getAllCategory"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CategoryGetAllOk"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"category"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"InternalErrorProblem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"message"}}]}}]}}]}}]}}]} as unknown as DocumentNode<CategoryQuery, CategoryQueryVariables>;
+export const AllCategoryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"AllCategory"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"category"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getAllCategory"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CategoryGetAllOk"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"category"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"InternalErrorProblem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"message"}}]}}]}}]}}]}}]} as unknown as DocumentNode<AllCategoryQuery, AllCategoryQueryVariables>;

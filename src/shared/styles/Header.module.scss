@@ -1,0 +1,36 @@
+.header {
+	border-bottom: 2px solid #9191919f;
+	height: 60px;
+	padding: 10px;
+	&_wrapper {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	&_logo{
+
+	}
+	&_nav {
+		display: flex;
+		justify-content: center;
+		gap: 50px;
+		font-size: 20px;
+		font-weight: 400;
+		&_home {
+		}
+		&_catalog {
+		}
+		&_newsession {
+		}
+		&_contacts {
+		}
+	}
+	&_actions {
+		display: flex;
+		gap: 20px;
+		&_favorites {
+		}
+		&_cart {
+		}
+	}
+}

@@ -1,0 +1,33 @@
+.notfound_box {
+	&_container {
+		display: flex;
+		margin: auto;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 5px;
+
+		height: 100dvh;
+	}
+
+	&_title {
+		font-size: clamp(100px, 25vw, 140px);
+		font-weight: 200;
+		line-height: normal;
+		margin: 0;
+	}
+
+	&_description {
+		font-size: clamp(13px, 2vw, 24px);
+		font-weight: 400;
+		line-height: 160%;
+		padding-bottom: clamp(10px, 1vw, 32px);
+	}
+	&_link {
+		padding: 8px 16px;
+		border-radius: 4px;
+		font-size: 16px;
+		font-weight: 700;
+		line-height: 24px;
+	}
+}
