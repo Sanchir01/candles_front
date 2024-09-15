@@ -60,9 +60,6 @@
 }
 
 @layer base {
-	* {
-		@apply border;
-	}
 	body {
 		@apply text-foreground;
 	}
