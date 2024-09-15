@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import { Provider } from '~/Providers/Provider'
 import { Toaster } from 'react-hot-toast'
+import { Header } from '~/widgets/Header/Header'
 
 export const metadata: Metadata = {
 	icons: {
@@ -27,6 +28,7 @@ export default function RootLayout({
 						}
 					}}
 				/>
+				<Header />
 				<Provider>
 					<div className='wrapper'>{children}</div>
 				</Provider>
