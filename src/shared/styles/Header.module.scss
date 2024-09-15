@@ -1,0 +1,41 @@
+.header_box {
+	border-bottom: 2px solid #9191919f;
+	&_container {
+		display: flex;
+		justify-content: space-between;
+		height: 60px;
+		align-items: center;
+
+		margin-left: 40px;
+		margin-right: 40px;
+
+		&_logo {
+		}
+		&_nav {
+			&_left {
+				display: flex;
+				justify-content: center;
+				gap: 50px;
+				font-size: 20px;
+				font-weight: 400;
+
+				&_home {
+				}
+				&_catalog {
+				}
+				&_newsession {
+				}
+				&_contacts {
+				}
+			}
+			&_right {
+				display: flex;
+				gap: 20px;
+				&_favorites {
+				}
+				&_cart {
+				}
+			}
+		}
+	}
+}
