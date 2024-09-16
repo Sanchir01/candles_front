@@ -5,16 +5,16 @@ import React from 'react'
 export const HeaderNav = () => {
 	return (
 		<div className={style.header_nav}>
-			<Link href='/' className={style.header_nav_left_home}>
+			<Link href='/' className={style.header_nav_home}>
 				Главная
 			</Link>
-			<Link href='/' className={style.header_nav_left_catalog}>
+			<Link href='/' className={style.header_nav_catalog}>
 				Каталог
 			</Link>
-			<Link href='/' className={style.header_nav_left_newsession}>
+			<Link href='/' className={style.header_nav_newsession}>
 				Сезонные новинки
 			</Link>
-			<Link href='/' className={style.header_nav_left_contacts}>
+			<Link href='/' className={style.header_nav_contacts}>
 				Контакты
 			</Link>
 		</div>
