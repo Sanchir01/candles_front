@@ -4,6 +4,7 @@ import './globals.css'
 import { Provider } from '~/Providers/Provider'
 import { Toaster } from 'react-hot-toast'
 import { Header } from '~/widgets/Header/Header'
+import { Footer } from '~/widgets/Footer/Footer'	
 
 export const metadata: Metadata = {
 	icons: {
@@ -32,6 +33,7 @@ export default function RootLayout({
 				<Provider>
 					<div className='wrapper'>{children}</div>
 				</Provider>
+				<Footer />
 			</body>
 		</html>
 	)

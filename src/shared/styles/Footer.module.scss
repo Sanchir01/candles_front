@@ -1,0 +1,44 @@
+.footer {
+	display: flex;
+	color: rgb(251, 250, 248);
+	background-color: #000000;
+	max-height: 500px;
+	padding: 10px;
+	&_wrapper {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+
+		padding-top: 65px;
+		padding-bottom: 65px;
+		font-size: 20px;
+		font-weight: 400;
+		gap: 70px;
+	}
+	&_nav {
+		display: flex;
+		justify-content: space-between;
+		gap: 20px;
+
+		&_link {
+		}
+	}
+	&_phone {
+	}
+	&_info {
+		display: flex;
+		justify-content: space-between;
+
+		align-items: center;
+
+		&_map {
+			width: 400px;
+			height: 200px;
+			background-color: #ffffff;
+		}
+		&_networks {
+			display: flex;
+			gap: 15px;
+		}
+	}
+}
