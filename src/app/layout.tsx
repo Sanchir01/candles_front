@@ -4,7 +4,7 @@ import './globals.css'
 import { Provider } from '~/Providers/Provider'
 import { Toaster } from 'react-hot-toast'
 import { Header } from '~/widgets/Header/Header'
-import { Footer } from '~/widgets/Footer/Footer'	
+import { Footer } from '~/widgets/Footer/Footer'
 
 export const metadata: Metadata = {
 	icons: {
