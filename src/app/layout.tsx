@@ -3,8 +3,8 @@ import type { Metadata } from 'next'
 import './globals.css'
 import { Provider } from '~/Providers/Provider'
 import { Toaster } from 'react-hot-toast'
-import { Header } from '~/widgets/Header/Header'
-import { Footer } from '~/widgets/Footer/Footer'
+import { Header } from '~/widgets/header/Header'
+import { Footer } from '~/widgets/footer/Footer'
 
 export const metadata: Metadata = {
 	icons: {
