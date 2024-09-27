@@ -1,7 +1,4 @@
 import style from '~/shared/styles/Header.module.scss'
-import { HeaderLogo } from '~/widgets/header/ui/HeaderLogo'
-import { HeaderNav } from '~/widgets/header/ui/HeaderNav'
-import { HeaderActions } from '~/widgets/header/ui/HeaderActions'
 import React from 'react'
 export interface HeaderLayoutProps {
 	nav: React.ReactNode
