@@ -17,7 +17,7 @@ export const Footer: React.FC = () => {
 						<Link href='/catalog' className={style.footer_nav_link}>
 							Каталог
 						</Link>
-						<Link href='/' className={style.footer_nav_link}>
+						<Link href='/' className={style.footer_nav_logo}>
 							ЛОГОТИПЕЕ
 						</Link>
 						<Link href='/about' className={style.footer_nav_link}>
@@ -43,13 +43,19 @@ export const Footer: React.FC = () => {
 								href='https://www.youtube.com/watch?v=9f5zD7ZSNpQ&list=RDGMEM6CZm14o9sc-Q22TIneLI8g&index=5'
 								className={style.footer_nav_link}
 							>
-								<Instagram style={{ strokeWidth: 2 }} size={40} />
+								<Instagram
+									style={{ strokeWidth: 2 }}
+									size={`clamp(1.25rem, 1rem + 1.25vw, 2.5rem)`}
+								/>
 							</Link>
 							<Link
 								href='https://www.youtube.com/watch?v=vx6aZprDBEc'
 								className={style.footer_nav_link}
 							>
-								<AtSign style={{ strokeWidth: 2 }} size={40} />
+								<AtSign
+									style={{ strokeWidth: 2 }}
+									size={`clamp(1.25rem, 1rem + 1.25vw, 2.5rem)`}
+								/>
 							</Link>
 						</div>
 					</div>
