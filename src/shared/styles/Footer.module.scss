@@ -1,8 +1,10 @@
 .footer {
+	position: absolute;
+	bottom: 0;
 	color: rgb(251, 250, 248);
 	background-color: #000000;
 	max-height: 500px;
-	width: 100dvh;
+	width: 100dvw;
 
 	&_wrapper {
 		display: flex;
@@ -20,8 +22,7 @@
 		justify-content: space-between;
 		gap: clamp(0.625rem, 0.375rem + 1.25vw, 1.875rem); //20px
 
-		&_link{
-
+		&_link {
 		}
 	}
 	&_phone {
@@ -46,15 +47,9 @@
 
 @media screen and (max-width: 768px) {
 	.footer {
-		&_wrapper {
-		}
 		&_top {
-			display: flex;
-			flex-direction: column;
-
-			&_logo {
-				display: none;
-			}
+			// display: flex;
+			// flex-direction: column;
 		}
 		&_bottom {
 			display: flex;

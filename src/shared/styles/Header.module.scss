@@ -6,15 +6,16 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		gap: 10px;
 	}
-	&_logo{
-
+	&_logo {
+		font-size: clamp(0.438rem, 0.142rem + 1.48vw, 1.25rem); // 20px;
 	}
 	&_nav {
 		display: flex;
 		justify-content: center;
-		gap: 50px;
-		font-size: 20px;
+		gap: clamp(0.938rem, 0.142rem + 3.98vw, 3.125rem); //50px;
+		font-size: clamp(0.438rem, 0.142rem + 1.48vw, 1.25rem); // 20px;
 		font-weight: 400;
 
 		&_home {
@@ -28,10 +29,25 @@
 	}
 	&_actions {
 		display: flex;
-		gap: 20px;
+		gap: clamp(0.438rem, 0.142rem + 1.48vw, 1.25rem); // 20px;
 		&_favorites {
 		}
 		&_cart {
 		}
 	}
 }
+
+// /* Мобильные устройства */
+// @media screen and (max-width: 767px) {
+// 	/* стили для мобильных устройств */
+// }
+
+// /* Планшеты */
+// @media screen and (min-width: 768px) and (max-width: 1023px) {
+// 	/* стили для планшетов */
+// }
+
+// /* Десктопы */
+// @media screen and (min-width: 1024px) {
+// 	/* стили для десктопов */
+// }
