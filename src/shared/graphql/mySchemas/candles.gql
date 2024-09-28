@@ -1,0 +1,22 @@
+query Candles {
+    candles {
+        allCandles {
+            ... on AllCandlesOk {
+                candles {
+                    id
+                    images
+                    slug
+                    title
+                    version
+                    category_id
+                }
+            }
+            ... on VersionMismatchProblem {
+                message
+            }
+            ... on InternalErrorProblem {
+                message
+            }
+        }
+    }
+}
