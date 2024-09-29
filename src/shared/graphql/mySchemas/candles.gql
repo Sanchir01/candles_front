@@ -1,6 +1,7 @@
-query Candles {
+query allCandles {
     candles {
         allCandles {
+            __typename
             ... on AllCandlesOk {
                 candles {
                     id
@@ -16,6 +17,26 @@ query Candles {
             }
             ... on InternalErrorProblem {
                 message
+            }
+        }
+    }
+}
+
+query CandleById($input: CandlesByIdInput!) {
+    candles {
+        candleById(input: $input) {
+            __typename
+            ... on VersionMismatchProblem {
+                message
+            }
+            ... on InternalErrorProblem {
+                message
+            }
+            ... on CandlesByIdOk {
+                candle {
+                    id
+                    images
+                }
             }
         }
     }

@@ -6,8 +6,8 @@ export const EntityProductCart = ({
 	children: React.ReactNode
 }) => {
 	return (
-		<div>
-			<div className=''>{children}</div>
+		<div className={'w-[200px] h-[300px]'}>
+			<div className='flex flex-col'>{children}</div>
 		</div>
 	)
 }

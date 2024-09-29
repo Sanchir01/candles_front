@@ -1,10 +1,12 @@
-query AllCategory {
+query allCategory {
   category {
     getAllCategory {
+      __typename
       ... on CategoryGetAllOk {
         category {
           id
-          name
+          title
+          slug
         }
       }
       ... on InternalErrorProblem {

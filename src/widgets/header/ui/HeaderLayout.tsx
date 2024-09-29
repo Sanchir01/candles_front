@@ -7,15 +7,22 @@ export interface HeaderLayoutProps {
 	nav: React.ReactNode
 	actions: React.ReactNode
 	logo: React.ReactNode
+	profile: React.ReactNode
 }
 
-export const HeaderLayout = ({ nav, actions, logo }: HeaderLayoutProps) => {
+export const HeaderLayout = ({
+	nav,
+	actions,
+	logo,
+	profile
+}: HeaderLayoutProps) => {
 	return (
 		<header className={style.header}>
 			<div className='container'>
 				<div className={style.header_wrapper}>
 					{logo}
 					{nav}
+					{profile}
 					{actions}
 				</div>
 			</div>

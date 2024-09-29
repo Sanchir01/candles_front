@@ -1,0 +1,39 @@
+mutation Login($input: LoginInput!) {
+    auth {
+        login(input: $input) {
+            __typename
+            ... on LoginOk {
+                id
+                phone
+                role
+                verify_code
+
+            }
+            ... on InternalErrorProblem {
+                message
+            }
+            ... on VersionMismatchProblem {
+                message
+            }
+        }
+    }
+}
+
+mutation Registrations($input: RegistrationsInput!) {
+    auth {
+        registrations(input: $input) {
+            __typename
+            ... on RegistrationsOk {
+                id
+                verify_code
+                phone
+            }
+            ... on InternalErrorProblem {
+                message
+            }
+            ... on VersionMismatchProblem {
+                message
+            }
+        }
+    }
+}
