@@ -8,7 +8,7 @@ export const HeaderNav = () => {
 			<Link href='/' className={style.header_nav_home}>
 				Главная
 			</Link>
-			<Link href='/' className={style.header_nav_catalog}>
+			<Link href='/catalog' className={style.header_nav_left_catalog}>
 				Каталог
 			</Link>
 			<Link href='/' className={style.header_nav_newsession}>

@@ -1,20 +1,26 @@
 .header {
-	border-bottom: 2px solid #9191919f;
+	position: sticky;
+	top: 0;
+
+	//border-bottom: 2px solid #9191919f;
 	height: 60px;
 	padding: 10px;
+	@apply shadow-lg shadow-black/5 z-10;
+
 	&_wrapper {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 		gap: 10px;
 	}
+
 	&_logo {
 		font-size: clamp(0.438rem, 0.142rem + 1.48vw, 1.25rem); // 20px;
 	}
 	&_nav {
 		display: flex;
 		justify-content: center;
-		gap: clamp(0.938rem, 0.142rem + 3.98vw, 3.125rem); //50px;
+		gap: clamp(0.313rem, -0.438rem + 3.75vw, 4.063rem); //65px;
 		font-size: clamp(0.438rem, 0.142rem + 1.48vw, 1.25rem); // 20px;
 		font-weight: 400;
 
@@ -34,6 +40,49 @@
 		}
 		&_cart {
 		}
+	}
+}
+
+.menu {
+	color: white;
+	position: fixed;
+	width: 100vw;
+	height: 100dvh;
+	top: 50px;
+	left: 0;
+	z-index: 20;
+	transform: translateX(-130%);
+	transition: 0.4s ease-in;
+	&__active {
+		transform: translateX(0);
+	}
+
+	&__content {
+		width: 100%;
+		height: calc(100% - 100px);
+		background: rgba(0, 0, 0, 0.9);
+		transition: 0.4s ease-in;
+	}
+	&__text {
+		@apply flex flex-col gap-5 text-xl pt-20 pl-4;
+	}
+	&__footer {
+		@apply h-[50px] bg-black mt-auto block flex-1 content-end;
+	}
+}
+
+@media (max-width: 1024px) {
+	.header {
+		@apply h-[50px] py-2;
+		&_nav {
+			@apply hidden;
+		}
+	}
+}
+
+@media (max-width: (768px)) {
+	.menu__content {
+		@apply w-full;
 	}
 }
 

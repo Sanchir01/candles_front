@@ -34,8 +34,6 @@ export const Footer: React.FC = () => {
 							<iframe
 								className={style.footer_bottom_map}
 								src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d88161.27047344427!2d44.18846387403443!3d46.32890599526273!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4101d18d723fcdcf%3A0xc89feef7b5786df5!2z0K3Qu9C40YHRgtCwLCDQoNC10YHQvy4g0JrQsNC70LzRi9C60LjRjw!5e0!3m2!1sru!2sru!4v1726753884896!5m2!1sru!2sru'
-								width='600'
-								height='450'
 								loading='lazy'
 							></iframe>
 						</span>

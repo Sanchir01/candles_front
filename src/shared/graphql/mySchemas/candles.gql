@@ -1,0 +1,42 @@
+query allCandles {
+	candles {
+		allCandles {
+			__typename
+			... on AllCandlesOk {
+				candles {
+					id
+					images
+					slug
+					title
+					version
+					category_id
+				}
+			}
+			... on VersionMismatchProblem {
+				message
+			}
+			... on InternalErrorProblem {
+				message
+			}
+		}
+	}
+}
+
+mutation CreateCandle($input: CreateCandleInput!) {
+	candles {
+		createCandle(input: $input) {
+			... on CandlesCreateOk {
+				id
+			}
+			... on InternalErrorProblem {
+				message
+			}
+			... on UnauthorizedProblem {
+				message
+			}
+			... on VersionMismatchProblem {
+				message
+			}
+		}
+	}
+}
