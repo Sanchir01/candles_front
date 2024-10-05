@@ -22,7 +22,7 @@ export const HeaderLayout = ({
 				<div className={style.header_wrapper}>
 					{logo}
 					{nav}
-					<div className='flex gap-5'>
+					<div className='flex gap-5 items-center'>
 						{profile}
 						{actions}
 					</div>

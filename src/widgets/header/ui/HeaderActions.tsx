@@ -5,7 +5,7 @@ import React from 'react'
 
 export const HeaderActions = () => {
 	return (
-		<div className={style.header_actions}>
+		<>
 			<Link
 				href='/favorites'
 				className={style.header_box_container_nav_right_favorites}
@@ -15,6 +15,6 @@ export const HeaderActions = () => {
 			<Link href='/cart' className={style.header_box_container_nav_right_cart}>
 				<ShoppingBasket style={{ strokeWidth: 1 }} />
 			</Link>
-		</div>
+		</>
 	)
 }
