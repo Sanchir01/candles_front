@@ -1,15 +1,15 @@
 import { Header } from '~/widgets/header'
 
 export default function RootLayout({
-	children
+   children
 }: {
-	children: React.ReactNode
+   children: React.ReactNode
 }) {
-	return (
-		<>
-			<Header />
-			<main>{children}</main>
-			<div className=''>tes</div>
-		</>
-	)
+   return (
+      <>
+         <Header />
+         <main>{children}</main>
+         <div className=''>tes</div>
+      </>
+   )
 }

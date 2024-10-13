@@ -1,3 +1,3 @@
 export const ProductCartTitle = ({ title }: { title: string }) => {
-	return <h5>{title}</h5>
+   return <h5>{title}</h5>
 }

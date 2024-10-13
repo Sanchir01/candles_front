@@ -1,43 +1,43 @@
-query allCandles {
-    candles {
-        allCandles {
-            __typename
-            ... on AllCandlesOk {
-                candles {
-                    id
-                    images
-                    slug
-                    title
-                    version
-                    category_id
-                }
+query AllCandles($sort: CandlesSortEnum) {
+   candles {
+      allCandles(sort: $sort) {
+         __typename
+         ... on VersionMismatchProblem {
+            message
+         }
+         ... on InternalErrorProblem {
+            message
+         }
+         ... on AllCandlesOk {
+            candles {
+               id
+               title
+
+               images
+               price
+               slug
             }
-            ... on VersionMismatchProblem {
-                message
-            }
-            ... on InternalErrorProblem {
-                message
-            }
-        }
-    }
+         }
+      }
+   }
 }
 
 query CandleById($input: CandlesByIdInput!) {
-    candles {
-        candleById(input: $input) {
-            __typename
-            ... on VersionMismatchProblem {
-                message
+   candles {
+      candleById(input: $input) {
+         __typename
+         ... on VersionMismatchProblem {
+            message
+         }
+         ... on InternalErrorProblem {
+            message
+         }
+         ... on CandlesByIdOk {
+            candle {
+               id
+               images
             }
-            ... on InternalErrorProblem {
-                message
-            }
-            ... on CandlesByIdOk {
-                candle {
-                    id
-                    images
-                }
-            }
-        }
-    }
+         }
+      }
+   }
 }

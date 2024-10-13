@@ -1,17 +1,17 @@
 query allCategory {
-  category {
-    getAllCategory {
-      __typename
-      ... on CategoryGetAllOk {
-        category {
-          id
-          title
-          slug
-        }
+   category {
+      getAllCategory {
+         __typename
+         ... on CategoryGetAllOk {
+            category {
+               id
+               title
+               slug
+            }
+         }
+         ... on InternalErrorProblem {
+            message
+         }
       }
-      ... on InternalErrorProblem {
-        message
-      }
-    }
-  }
+   }
 }

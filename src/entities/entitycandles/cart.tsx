@@ -1,13 +1,13 @@
 import React from 'react'
 
 export const EntityProductCart = ({
-	children
+   children
 }: {
-	children: React.ReactNode
+   children: React.ReactNode
 }) => {
-	return (
-		<div className={'w-[200px] h-[300px]'}>
-			<div className='flex flex-col'>{children}</div>
-		</div>
-	)
+   return (
+      <div className={'w-[200px] h-[300px]'}>
+         <div className='flex flex-col'>{children}</div>
+      </div>
+   )
 }
