@@ -1,23 +1,28 @@
-import { gqlRequest } from '~/shared/service/index'
 import {
    LoginDocument,
    RegistrationsDocument
 } from '~/shared/graphql/gql/graphql'
+import { gqlRequest } from '~/shared/service/index'
 
 export const authService = {
-   async login(email: string) {
+   async login({ email, password }: { email: string; password: string }) {
       return gqlRequest.request({
          document: LoginDocument,
          variables: {
-            input: { email: email }
+            input: { email, password }
          }
       })
    },
-   async registration(phone: string, role: string, title: string) {
+   async registration({
+      phone,
+      password,
+      title,
+      email
+   }: { phone: string; password: string; title: string; email: string }) {
       return gqlRequest.request({
          document: RegistrationsDocument,
          variables: {
-            input: { phone: phone, role: role, title: title }
+            input: { phone: phone, password: password, title: title, email }
          }
       })
    }

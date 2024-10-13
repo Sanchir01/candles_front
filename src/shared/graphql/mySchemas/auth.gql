@@ -24,8 +24,9 @@ mutation Registrations($input: RegistrationsInput!) {
          __typename
          ... on RegistrationsOk {
             id
+            email
+            role
             verify_code
-            phone
          }
          ... on InternalErrorProblem {
             message
