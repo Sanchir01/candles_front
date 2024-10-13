@@ -3,7 +3,12 @@ import {
    RegistrationsDocument
 } from '~/shared/graphql/gql/graphql'
 import { gqlRequest } from '~/shared/service/index'
-
+export type RegistrationsType = {
+   phone: string
+   password: string
+   title: string
+   email: string
+}
 export const authService = {
    async login({ email, password }: { email: string; password: string }) {
       return gqlRequest.request({
@@ -13,12 +18,7 @@ export const authService = {
          }
       })
    },
-   async registration({
-      phone,
-      password,
-      title,
-      email
-   }: { phone: string; password: string; title: string; email: string }) {
+   async registration({ phone, password, title, email }: RegistrationsType) {
       return gqlRequest.request({
          document: RegistrationsDocument,
          variables: {

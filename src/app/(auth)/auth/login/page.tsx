@@ -23,6 +23,7 @@ import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import InputMask from 'react-input-mask'
+import { useRegistrations } from '~/shared/hooks/useRegistrations'
 
 export default function LoginPage() {
    const form = useForm<IInputLogin>({
@@ -33,11 +34,7 @@ export default function LoginPage() {
       }
    })
    const { replace } = useRouter()
-   const { mutateAsync, isPending } = useMutation({
-      mutationFn: ({ password, phone }: { password: string; phone: string }) =>
-         authService.login({ password, phone })
-   })
-
+  const {mutateAsync,isPending} = useRegistrations()
    const userStorage = useUser(state => state.setUser)
    const onSubmit = async (data: IInputLogin) => {
       try {
