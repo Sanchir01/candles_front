@@ -29,3 +29,4 @@ export {
    useFormField
 } from './form'
 export { Loader } from './loader'
+export { PasswordInput } from './passwordInput'

@@ -30,7 +30,6 @@ export default function RootLayout({
                      }
                   }}
                />
-
                <Provider>
                   <div className='wrapper'>{children}</div>
                </Provider>

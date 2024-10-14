@@ -5,7 +5,7 @@ export const useRegistrations = () => {
    const { mutateAsync, data, isPending } = useMutation({
       mutationFn: ({ email, password, phone, title }: RegistrationsType) =>
          authService.registration({ email, password, phone, title }),
-      mutationKey: ['login']
+      mutationKey: ['registrations']
    })
    return { mutateAsync, data, isPending }
 }

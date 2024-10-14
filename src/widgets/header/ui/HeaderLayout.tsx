@@ -1,20 +1,19 @@
+import type React from 'react'
 import style from '~/shared/styles/Header.module.scss'
-import { HeaderLogo } from '~/widgets/header/ui/HeaderLogo'
-import { HeaderNav } from '~/widgets/header/ui/HeaderNav'
-import { HeaderActions } from '~/widgets/header/ui/HeaderActions'
-import React from 'react'
 export interface HeaderLayoutProps {
-   nav: React.ReactNode
-   actions: React.ReactNode
-   logo: React.ReactNode
-   profile: React.ReactNode
+   nav?: React.ReactNode
+   actions?: React.ReactNode
+   logo?: React.ReactNode
+   profile?: React.ReactNode
+   admin?: React.ReactNode
 }
 
 export const HeaderLayout = ({
    nav,
    actions,
    logo,
-   profile
+   profile,
+   admin
 }: HeaderLayoutProps) => {
    return (
       <header className={style.header}>
@@ -22,9 +21,10 @@ export const HeaderLayout = ({
             <div className={style.header_wrapper}>
                {logo}
                {nav}
-               <div className='flex gap-5 items-center'>
-                  {profile}
+               <div className='max-[998px]:hidden flex gap-2 items-center'>
                   {actions}
+                  {profile}
+                  {admin}
                </div>
             </div>
          </div>

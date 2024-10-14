@@ -3,10 +3,10 @@ mutation Login($input: LoginInput!) {
       login(input: $input) {
          __typename
          ... on LoginOk {
-            id
+            email
             phone
             role
-            verify_code
+            title
          }
          ... on InternalErrorProblem {
             message
@@ -23,10 +23,10 @@ mutation Registrations($input: RegistrationsInput!) {
       registrations(input: $input) {
          __typename
          ... on RegistrationsOk {
-            id
             email
+            phone
             role
-            verify_code
+            title
          }
          ... on InternalErrorProblem {
             message

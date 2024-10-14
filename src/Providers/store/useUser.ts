@@ -1,10 +1,11 @@
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
+import type { Role } from '~/shared/graphql/gql/graphql'
 export interface IUser {
-   id: string
    phone: string
    email: string
-   role: string
+   title: string
+   role: Role
 }
 export interface IUserStore {
    user: IUser | null

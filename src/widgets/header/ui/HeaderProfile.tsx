@@ -1,39 +1,37 @@
 'use client'
-
+/* biome-ignore lint/style/noCommaOperator: <explanation> */
+import { UsersRound } from 'lucide-react'
+import { useRouter } from 'next/navigation'
+import type { FC } from 'react'
+import { useUser } from '~/Providers/store/useUser'
+import { useStoreZustand } from '~/shared/hooks/useStoreZustand'
 import { Button } from '~/shared/ui'
 import {
    DropdownMenu,
    DropdownMenuContent,
+   DropdownMenuGroup,
    DropdownMenuItem,
    DropdownMenuLabel,
-   DropdownMenuTrigger,
-   DropdownMenuGroup
+   DropdownMenuTrigger
 } from '~/shared/ui/dropdown-menu'
-import { UsersRound } from 'lucide-react'
-import { useRouter } from 'next/navigation'
-import type { FC } from 'react'
 
 export const HeaderProfile: FC = () => {
-   const isExistUser = false
-   const { push, refresh } = useRouter()
-   // const useProfile = useStoreZustand(useUser, state => state.user)
-   // const logout = useUser(state => state.logout)
-   const repoloadPage = () => {
-      push('/catalog')
-   }
-
+   const { push } = useRouter()
+   const userProfile = useStoreZustand(useUser, state => state.user)
+   const logout = useUser(state => state.logout)
    return (
       <DropdownMenu>
          <DropdownMenuTrigger asChild>
             <UsersRound className='cursor-pointer' />
          </DropdownMenuTrigger>
-         {true ? (
+         {userProfile ? (
             <DropdownMenuContent className='mt-3'>
-               <DropdownMenuLabel>Ваш профиль</DropdownMenuLabel>
+               <DropdownMenuLabel>{userProfile.title}</DropdownMenuLabel>
                <DropdownMenuGroup>
-                  <DropdownMenuItem>email</DropdownMenuItem>
+                  <DropdownMenuItem>{userProfile.email}</DropdownMenuItem>
                   <DropdownMenuItem>
-                     <Button onClick={() => repoloadPage()}>
+                     {}
+                     <Button onClick={() => (logout(), push('/catalog'))}>
                         Выйти из аккаунта
                      </Button>
                   </DropdownMenuItem>
@@ -41,7 +39,7 @@ export const HeaderProfile: FC = () => {
             </DropdownMenuContent>
          ) : (
             <DropdownMenuContent className='w-full'>
-               <Button onClick={() => repoloadPage()}>Войти</Button>
+               <Button onClick={() => push('/auth/login')}>Войти</Button>
             </DropdownMenuContent>
          )}
       </DropdownMenu>
