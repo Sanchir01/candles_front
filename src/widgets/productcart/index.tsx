@@ -1,6 +1,6 @@
-import { ProductCartLayout } from '~/widgets/productcart/ui/ProductCartLayout'
-import { ProductCartImage } from '~/widgets/productcart/ui/Image'
 import { ProductCartActions } from '~/widgets/productcart/ui/Actions'
+import { ProductCartImage } from '~/widgets/productcart/ui/Image'
+import { ProductCartLayout } from '~/widgets/productcart/ui/ProductCartLayout'
 
 export interface ProductCartProps {
    id: string

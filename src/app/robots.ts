@@ -4,7 +4,7 @@ export default function Robots(): MetadataRoute.Robots {
    return {
       rules: {
          userAgent: '*',
-         allow: '/',
+         allow: '/*',
          disallow: ['/admin', '/auth/*', '/order']
       },
       host: 'sandjma.ru',

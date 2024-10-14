@@ -1,3 +1,4 @@
+import { HeaderProfileEnum } from '~/shared/constants/headerprofile'
 import { Header } from '~/widgets/header'
 
 export default function RootLayout({
@@ -7,7 +8,7 @@ export default function RootLayout({
 }) {
    return (
       <>
-         <Header />
+         <Header variant={HeaderProfileEnum.AUTH} />
          <main>
             <div className='flex items-center justify-center min-w-screen min-h-screen'>
                {children}

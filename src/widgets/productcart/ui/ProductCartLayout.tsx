@@ -1,4 +1,4 @@
-import React from 'react'
+import type React from 'react'
 import { EntityProductCart } from '~/entities/entitycandles/cart'
 
 export interface ProductCartLayoutProps {
