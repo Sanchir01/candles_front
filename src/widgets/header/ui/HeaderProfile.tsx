@@ -31,7 +31,10 @@ export const HeaderProfile: FC = () => {
                   <DropdownMenuItem>{userProfile.email}</DropdownMenuItem>
                   <DropdownMenuItem>
                      {userProfile.role === 'admin' && 'Администратор'}
-                     <Button onClick={() => (logout(), push('/catalog'))}>
+                     <Button
+                        onClick={() => (logout(), push('/catalog'))}
+                        className='w-full'
+                     >
                         Выйти из аккаунта
                      </Button>
                   </DropdownMenuItem>

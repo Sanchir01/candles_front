@@ -1,3 +1,4 @@
+import { ShoppingCart } from 'lucide-react'
 import React from 'react'
 import { ToggleTheme } from '~/features/theme/theme-toggle'
 import { HeaderProfileEnum } from '~/shared/constants/headerprofile'
@@ -13,6 +14,7 @@ export const Header = ({ variant }: { variant: HeaderProfileEnum }) => (
       nav={<HeaderNav />}
       actions={<HeaderActions />}
       profile={variant === HeaderProfileEnum.AUTH ? <></> : <HeaderProfile />}
+      cart={<ShoppingCart />}
       theme={<ToggleTheme />}
       logo={<HeaderLogo />}
       admin={<HeaderAdmin />}
