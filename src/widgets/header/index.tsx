@@ -14,7 +14,6 @@ export const Header = ({ variant }: { variant: HeaderProfileEnum }) => (
       nav={<HeaderNav />}
       actions={<HeaderActions />}
       profile={variant === HeaderProfileEnum.AUTH ? <></> : <HeaderProfile />}
-      cart={<ShoppingCart />}
       theme={<ToggleTheme />}
       logo={<HeaderLogo />}
       admin={<HeaderAdmin />}

@@ -3,17 +3,18 @@ import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
 import { IColors, ISize } from '~/shared/types/Slider.type'
 import { ProductCardPropsType } from '~/widgets/productcart'
-export interface ICart extends ProductCardPropsType {
-  quantityItems: number;
+export interface ICart extends Omit<ProductCardPropsType, 'images'> {
+   images: string
+   quantityItems: number;
 } 
   
 
 export interface IUseCartStore {
-   cart: ProductCardPropsType[] | null
+   cart: ICart[] | null
    totalPrice: number
-   toggleCartItem: (item: ProductCardPropsType) => void
-   minus: (id: UUID, size: UUID, color: UUID) => void
-   plus: (id: UUID, size: UUID, color: UUID) => void
+   toggleCartItem: (item: ICart) => void
+   minus: (id: UUID, colorId: UUID, categoryId: UUID) => void
+   plus: (id: UUID, colorId: UUID, categoryId: UUID) => void
    resetCart: () => void
 }
 

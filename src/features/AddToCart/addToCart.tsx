@@ -17,13 +17,15 @@ const AddToCart = ({
             toggleCart({
                id: cart.id,
                image: cart.image,
-               name: cart.name,
+               title: cart.title,
                price: cart.price,
-               size: cart.size,
-               color: cart.color,
+               categoryId: cart.categoryId,
+               colorId: cart.colorId,
                slug: cart.slug,
                quantity: cart.quantity,
-               productColorId: cart.productColorId
+               version: cart.version,
+               images: cart.images[0],
+               quantityItems: 1
             })
          }
       >
