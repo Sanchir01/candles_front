@@ -624,6 +624,9 @@ export type AllCandlesQuery = {
                  __typename?: 'Candles'
                  id: any
                  title: string
+                 version: any
+                 color_id: any
+                 category_id: any
                  images: Array<string>
                  price: number
                  slug: string
@@ -1166,6 +1169,27 @@ export const AllCandlesDocument = {
                                                       name: {
                                                          kind: 'Name',
                                                          value: 'title'
+                                                      }
+                                                   },
+                                                   {
+                                                      kind: 'Field',
+                                                      name: {
+                                                         kind: 'Name',
+                                                         value: 'version'
+                                                      }
+                                                   },
+                                                   {
+                                                      kind: 'Field',
+                                                      name: {
+                                                         kind: 'Name',
+                                                         value: 'color_id'
+                                                      }
+                                                   },
+                                                   {
+                                                      kind: 'Field',
+                                                      name: {
+                                                         kind: 'Name',
+                                                         value: 'category_id'
                                                       }
                                                    },
                                                    {

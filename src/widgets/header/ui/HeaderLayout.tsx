@@ -7,7 +7,6 @@ export interface HeaderLayoutProps {
    profile?: React.ReactNode
    admin?: React.ReactNode
    theme?: React.ReactNode
-   
 }
 
 export const HeaderLayout = ({
@@ -16,7 +15,7 @@ export const HeaderLayout = ({
    logo,
    profile,
    admin,
-   
+
    theme
 }: HeaderLayoutProps) => {
    return (
@@ -30,7 +29,6 @@ export const HeaderLayout = ({
                   {profile}
                   {theme}
                   {admin}
-                  
                </div>
             </div>
          </div>

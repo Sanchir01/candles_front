@@ -1,35 +1,39 @@
 import { create } from 'zustand'
-import { createJSONStorage, persist } from 'zustand/middleware'
+import { createJSONStorage, devtools, persist } from 'zustand/middleware'
 import { ICart } from './useCart'
 
-export interface IFavoritesItem extends Omit<ICart, 'quantity' | 'size'> {}
+export interface IFavoritesItems extends Omit<ICart, 'quantity'> {}
 
 export interface IFavoritesStore {
-   favorites: IFavoritesItem[]
-   setFavorites: (favorites: IFavoritesItem) => void
+   favorites: IFavoritesItems[]
+   setFavorites: (favorites: IFavoritesItems) => void
 }
 
 export const useFavorites = create<IFavoritesStore>()(
    persist(
-      set => ({
-         favorites: [] as ICart[],
-         setFavorites: item =>
-            set(state => {
-               const index = state.favorites?.findIndex(
+      devtools(
+         (set, get) => ({
+            favorites: [],
+            setFavorites: item => {
+               const fav = get().favorites
+               const index = fav?.findIndex(
                   cartItem =>
                      cartItem.id === item.id &&
-                     cartItem.color.id === item.color.id
+                     cartItem.categoryId === item.categoryId &&
+                     cartItem.colorId === item.colorId
                )
-
                if (index === -1) {
-                  state.favorites?.push(item)
+                  set({ favorites: [...fav, item] })
                } else {
-                  state.favorites?.splice(index, 1)
+                  fav.splice(index, 1)
+                  set({ favorites: [...fav] })
                }
-
-               return { favorites: [...state.favorites] }
-            })
-      }),
+            }
+         }),
+         {
+            name: 'cart store'
+         }
+      ),
       {
          name: 'favorites',
          version: 0,

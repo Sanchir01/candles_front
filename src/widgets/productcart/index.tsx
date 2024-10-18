@@ -5,9 +5,7 @@ import { ProductCartImage } from '~/widgets/productcart/ui/Image'
 import { ProductCartLayout } from '~/widgets/productcart/ui/ProductCartLayout'
 
 export type ProductCardPropsType = {
-   quantity: boolean
    id: UUID
-   image: string
    title: string
    price: number
    version: number
@@ -17,7 +15,6 @@ export type ProductCardPropsType = {
    categoryId: UUID
 }
 export const ProductCart = ({
-   image,
    title,
    id,
    categoryId,
@@ -29,25 +26,20 @@ export const ProductCart = ({
 }: ProductCardPropsType) => {
    return (
       <ProductCartLayout
-         image={<ProductCartImage image={image} id={id} />}
+         image={<ProductCartImage image={images[0]} id={id} />}
          children={<></>}
          title={title}
          actions={
             <>
-               <ProductCartActions />
-               <AddToCart
-                  cart={{
-                     id,
-                     image,
-                     title,
-                     price,
-                     categoryId,
-                     slug,
-                     colorId,
-                     quantity: 1,
-                     productColorId: 0
-                  }}
-                  text={''}
+               <ProductCartActions
+                  id={id}
+                  title={title}
+                  price={price}
+                  version={version}
+                  slug={slug}
+                  images={images}
+                  colorId={colorId}
+                  categoryId={categoryId}
                />
             </>
          }

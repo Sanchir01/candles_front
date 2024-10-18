@@ -16,14 +16,30 @@ export default function () {
                {isLoading
                   ? 'loading'
                   : isSuccess && data?.__typename === 'AllCandlesOk'
-                    ? data.candles.map(({ title, images, id }) => (
-                         <ProductCart
-                            key={id}
-                            image={images[0]}
-                            title={title}
-                            id={id}
-                         />
-                      ))
+                    ? data.candles.map(
+                         ({
+                            title,
+                            images,
+                            id,
+                            slug,
+                            price,
+                            color_id,
+                            category_id,
+                            version
+                         }) => (
+                            <ProductCart
+                               key={id}
+                               images={images}
+                               title={title}
+                               id={id}
+                               price={price}
+                               version={version}
+                               slug={slug}
+                               colorId={color_id}
+                               categoryId={category_id}
+                            />
+                         )
+                      )
                     : 'ошибка при загрузке данных'}
             </div>
          </Container>

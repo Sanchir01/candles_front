@@ -30,3 +30,15 @@ export {
 } from './form'
 export { Loader } from './loader'
 export { PasswordInput } from './passwordInput'
+export {
+   Sheet,
+   SheetClose,
+   SheetContent,
+   SheetDescription,
+   SheetFooter,
+   SheetHeader,
+   SheetTitle,
+   SheetTrigger,
+   SheetOverlay,
+   SheetPortal
+} from './sheet'

@@ -16,16 +16,14 @@ const AddToCart = ({
          onClick={() =>
             toggleCart({
                id: cart.id,
-               image: cart.image,
+               images: cart.images[0],
                title: cart.title,
                price: cart.price,
                categoryId: cart.categoryId,
                colorId: cart.colorId,
                slug: cart.slug,
                quantity: cart.quantity,
-               version: cart.version,
-               images: cart.images[0],
-               quantityItems: 1
+               version: cart.version
             })
          }
       >

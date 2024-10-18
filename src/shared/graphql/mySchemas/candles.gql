@@ -12,7 +12,9 @@ query AllCandles($sort: CandlesSortEnum) {
             candles {
                id
                title
-
+               version
+               color_id
+               category_id
                images
                price
                slug
