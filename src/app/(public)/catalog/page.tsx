@@ -1,24 +1,26 @@
-import { Metadata } from 'next'
+import { Metadata, NextPage } from 'next'
 import type React from 'react'
 import { CandlesSortEnum } from '~/shared/graphql/gql/graphql'
-import { gqlRequest } from '~/shared/service'
 import { candlesService } from '~/shared/service/candles'
 import st from '~/shared/styles/Catalog.module.scss'
-import { Container, Title } from '~/shared/ui'
+import { Container } from '~/shared/ui'
 import Catalog from '~/widgets/catalog'
+
 export const metadata: Metadata = {
    title: 'Mahakala | Catalog'
 }
-export const revalidate = 36000
-export async function SSGDataCandles() {
+
+export const SSGDataCandles = async () => {
    const data = await candlesService.allCandles({
       sort: CandlesSortEnum.PriceDesc
    })
-   return data ?? []
+   data.candles?.allCandles.__typename === 'AllCandlesOk' ? data : []
+   return data
 }
 
-export default async function CatalogPage() {
+const CatalogPage: NextPage = async () => {
    const data = await SSGDataCandles()
+
    return (
       <div className={st.catalog}>
          <Container>
@@ -27,3 +29,5 @@ export default async function CatalogPage() {
       </div>
    )
 }
+
+export default CatalogPage

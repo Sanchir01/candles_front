@@ -5,6 +5,7 @@ export const gqlRequest = new GraphQLClient(
       ? process.env.SERVER_GRAPHQL
       : 'http://localhost:5000',
    {
-      credentials: 'include'
+      credentials: 'include',
+      next: { revalidate: 1000 }
    }
 )
