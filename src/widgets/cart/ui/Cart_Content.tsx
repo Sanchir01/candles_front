@@ -2,7 +2,7 @@
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 import { FC } from 'react'
 import useCartStore from '~/Providers/store/useCart'
-import { EntityProductCart } from '~/entities/entitycandles/cart'
+import { EntityProductCart } from '~/entities/entitycandles/Carts'
 import { useStoreZustand } from '~/shared/hooks/useStoreZustand'
 const CartContent: FC = () => {
    const cartContetn = useStoreZustand(useCartStore, state => state.cart)

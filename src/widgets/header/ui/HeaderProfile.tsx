@@ -1,5 +1,5 @@
 'use client'
-/* biome-ignore lint/style/noCommaOperator: <explanation> */
+
 import { UsersRound } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import type { FC } from 'react'

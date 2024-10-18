@@ -1,15 +1,15 @@
 import {
    AllCandlesDocument,
-   CandleByIdDocument,
-   CandlesSortEnum
+   CandleByIdDocument
 } from '~/shared/graphql/gql/graphql'
 import { gqlRequest } from '~/shared/service/index'
+import { CandlesSortEnum } from './../graphql/gql/graphql'
 
 export const candlesService = {
-   async allCandles() {
+   async allCandles({ sort }: { sort: CandlesSortEnum }) {
       return gqlRequest.request({
          document: AllCandlesDocument,
-         variables: { sort: CandlesSortEnum.PriceAsc }
+         variables: { sort }
       })
    },
    async candleById(id: string) {

@@ -1,7 +1,8 @@
 import { UUID } from 'crypto'
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
-import { ProductCardPropsType } from '~/widgets/productcart'
+import { ProductCardPropsType } from '~/shared/types/Catalog.types'
+
 export interface ICart extends Omit<ProductCardPropsType, 'images'> {
    images: string
    quantity: number

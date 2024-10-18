@@ -42,3 +42,5 @@ export {
    SheetOverlay,
    SheetPortal
 } from './sheet'
+
+export { Skeleton } from './skeleton'

@@ -22,7 +22,7 @@ import toast from 'react-hot-toast'
 
 import type { FormEvent } from 'react'
 import { useLogin } from '~/shared/hooks/userLogin'
-import { type IInputLogin, loginSchema } from '~/shared/types/auth'
+import { type IInputLogin, loginSchema } from '~/shared/types/Auth.types'
 
 export default function LoginPage() {
    const form = useForm<IInputLogin>({

@@ -35,5 +35,12 @@
          "attributePosition": "auto",
          "bracketSpacing": true
       }
+   },
+   "graphql": {
+      "formatter": {
+         "quoteStyle": "single",
+         "bracketSpacing": true,
+         "enabled": true
+      }
    }
 }

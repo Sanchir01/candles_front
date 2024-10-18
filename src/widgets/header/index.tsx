@@ -1,4 +1,3 @@
-import { ShoppingCart } from 'lucide-react'
 import React from 'react'
 import { ToggleTheme } from '~/features/theme/theme-toggle'
 import { HeaderProfileEnum } from '~/shared/constants/headerprofile'

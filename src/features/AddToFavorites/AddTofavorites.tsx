@@ -6,8 +6,8 @@ import { FC } from 'react'
 import { useMediaQuery } from '~/shared/hooks/useMediaQuery'
 import { useStoreZustand } from '~/shared/hooks/useStoreZustand'
 
+import { ProductCardPropsType } from '~/shared/types/Catalog.types'
 import { Button } from '~/shared/ui'
-import { ProductCardPropsType } from '~/widgets/productcart'
 
 export interface IToggleFavoritesFeature
    extends Omit<ProductCardPropsType, ''> {}

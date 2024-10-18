@@ -5,7 +5,6 @@ import { Button } from '~/shared/ui'
 
 import { ShieldCheck } from 'lucide-react'
 import { useRouter } from 'next/navigation'
-import { FC } from 'react'
 import { Role } from '~/shared/graphql/gql/graphql'
 const HeaderAdmin = () => {
    const user = useStoreZustand(useUser, state => state.user)

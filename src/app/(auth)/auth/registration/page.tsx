@@ -9,7 +9,7 @@ import toast from 'react-hot-toast'
 import InputMask from 'react-input-mask'
 import { useUser } from '~/Providers/store/useUser'
 import { useRegistrations } from '~/shared/hooks/useRegistrations'
-import { type IInputRegister, registerSchema } from '~/shared/types/auth'
+import { type IInputRegister, registerSchema } from '~/shared/types/Auth.types'
 import {
    Button,
    Card,
