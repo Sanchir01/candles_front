@@ -1,0 +1,19 @@
+query UserId {
+   user {
+      profile {
+         __typename
+         ... on InternalErrorProblem {
+            message
+         }
+         ... on VersionMismatchProblem {
+            message
+         }
+         ... on UserProfileOk {
+            profile {
+               id
+               role
+            }
+         }
+      }
+   }
+}

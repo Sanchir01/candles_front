@@ -77,6 +77,7 @@ export type AllOrdersResult =
 export type AuthMutations = {
    __typename?: 'AuthMutations'
    login: LoginResult
+   newTokens: NewTokensResult
    registrations: RegistrationsResult
 }
 
@@ -417,6 +418,13 @@ export type Mutation = {
    orders: OrderMutations
 }
 
+export type NewTokensOk = {
+   __typename?: 'NewTokensOk'
+   token: Scalars['String']['output']
+}
+
+export type NewTokensResult = InternalErrorProblem | NewTokensOk
+
 export type OrderItems = {
    __typename?: 'OrderItems'
    createdAt: Scalars['DateTime']['output']
@@ -537,7 +545,6 @@ export type User = {
    password: Scalars['String']['output']
    phone: Scalars['String']['output']
    role: Role
-   slug: Scalars['String']['output']
    title: Scalars['String']['output']
    updatedAt: Scalars['DateTime']['output']
    version: Scalars['UInt']['output']
@@ -606,6 +613,18 @@ export type RegistrationsMutation = {
               title: string
            }
          | { __typename: 'VersionMismatchProblem'; message: string }
+   }
+}
+
+export type NewTokenMutationVariables = Exact<{ [key: string]: never }>
+
+export type NewTokenMutation = {
+   __typename?: 'Mutation'
+   auth: {
+      __typename?: 'AuthMutations'
+      newTokens:
+         | { __typename: 'InternalErrorProblem'; message: string }
+         | { __typename: 'NewTokensOk'; token: string }
    }
 }
 
@@ -741,6 +760,22 @@ export type MutationMutation = {
          | { __typename: 'InternalErrorProblem'; message: string }
          | { __typename: 'UnauthorizedProblem'; message: string }
    }
+}
+
+export type UserIdQueryVariables = Exact<{ [key: string]: never }>
+
+export type UserIdQuery = {
+   __typename?: 'Query'
+   user?: {
+      __typename?: 'UserQuery'
+      profile:
+         | { __typename: 'InternalErrorProblem'; message: string }
+         | {
+              __typename: 'UserProfileOk'
+              profile: { __typename?: 'User'; id: any; role: Role }
+           }
+         | { __typename: 'VersionMismatchProblem'; message: string }
+   } | null
 }
 
 export const LoginDocument = {
@@ -1043,6 +1078,87 @@ export const RegistrationsDocument = {
    RegistrationsMutation,
    RegistrationsMutationVariables
 >
+export const NewTokenDocument = {
+   kind: 'Document',
+   definitions: [
+      {
+         kind: 'OperationDefinition',
+         operation: 'mutation',
+         name: { kind: 'Name', value: 'NewToken' },
+         selectionSet: {
+            kind: 'SelectionSet',
+            selections: [
+               {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'auth' },
+                  selectionSet: {
+                     kind: 'SelectionSet',
+                     selections: [
+                        {
+                           kind: 'Field',
+                           name: { kind: 'Name', value: 'newTokens' },
+                           selectionSet: {
+                              kind: 'SelectionSet',
+                              selections: [
+                                 {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: '__typename' }
+                                 },
+                                 {
+                                    kind: 'InlineFragment',
+                                    typeCondition: {
+                                       kind: 'NamedType',
+                                       name: {
+                                          kind: 'Name',
+                                          value: 'InternalErrorProblem'
+                                       }
+                                    },
+                                    selectionSet: {
+                                       kind: 'SelectionSet',
+                                       selections: [
+                                          {
+                                             kind: 'Field',
+                                             name: {
+                                                kind: 'Name',
+                                                value: 'message'
+                                             }
+                                          }
+                                       ]
+                                    }
+                                 },
+                                 {
+                                    kind: 'InlineFragment',
+                                    typeCondition: {
+                                       kind: 'NamedType',
+                                       name: {
+                                          kind: 'Name',
+                                          value: 'NewTokensOk'
+                                       }
+                                    },
+                                    selectionSet: {
+                                       kind: 'SelectionSet',
+                                       selections: [
+                                          {
+                                             kind: 'Field',
+                                             name: {
+                                                kind: 'Name',
+                                                value: 'token'
+                                             }
+                                          }
+                                       ]
+                                    }
+                                 }
+                              ]
+                           }
+                        }
+                     ]
+                  }
+               }
+            ]
+         }
+      }
+   ]
+} as unknown as DocumentNode<NewTokenMutation, NewTokenMutationVariables>
 export const AllCandlesDocument = {
    kind: 'Document',
    definitions: [
@@ -1999,3 +2115,125 @@ export const MutationDocument = {
       }
    ]
 } as unknown as DocumentNode<MutationMutation, MutationMutationVariables>
+export const UserIdDocument = {
+   kind: 'Document',
+   definitions: [
+      {
+         kind: 'OperationDefinition',
+         operation: 'query',
+         name: { kind: 'Name', value: 'UserId' },
+         selectionSet: {
+            kind: 'SelectionSet',
+            selections: [
+               {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'user' },
+                  selectionSet: {
+                     kind: 'SelectionSet',
+                     selections: [
+                        {
+                           kind: 'Field',
+                           name: { kind: 'Name', value: 'profile' },
+                           selectionSet: {
+                              kind: 'SelectionSet',
+                              selections: [
+                                 {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: '__typename' }
+                                 },
+                                 {
+                                    kind: 'InlineFragment',
+                                    typeCondition: {
+                                       kind: 'NamedType',
+                                       name: {
+                                          kind: 'Name',
+                                          value: 'InternalErrorProblem'
+                                       }
+                                    },
+                                    selectionSet: {
+                                       kind: 'SelectionSet',
+                                       selections: [
+                                          {
+                                             kind: 'Field',
+                                             name: {
+                                                kind: 'Name',
+                                                value: 'message'
+                                             }
+                                          }
+                                       ]
+                                    }
+                                 },
+                                 {
+                                    kind: 'InlineFragment',
+                                    typeCondition: {
+                                       kind: 'NamedType',
+                                       name: {
+                                          kind: 'Name',
+                                          value: 'VersionMismatchProblem'
+                                       }
+                                    },
+                                    selectionSet: {
+                                       kind: 'SelectionSet',
+                                       selections: [
+                                          {
+                                             kind: 'Field',
+                                             name: {
+                                                kind: 'Name',
+                                                value: 'message'
+                                             }
+                                          }
+                                       ]
+                                    }
+                                 },
+                                 {
+                                    kind: 'InlineFragment',
+                                    typeCondition: {
+                                       kind: 'NamedType',
+                                       name: {
+                                          kind: 'Name',
+                                          value: 'UserProfileOk'
+                                       }
+                                    },
+                                    selectionSet: {
+                                       kind: 'SelectionSet',
+                                       selections: [
+                                          {
+                                             kind: 'Field',
+                                             name: {
+                                                kind: 'Name',
+                                                value: 'profile'
+                                             },
+                                             selectionSet: {
+                                                kind: 'SelectionSet',
+                                                selections: [
+                                                   {
+                                                      kind: 'Field',
+                                                      name: {
+                                                         kind: 'Name',
+                                                         value: 'id'
+                                                      }
+                                                   },
+                                                   {
+                                                      kind: 'Field',
+                                                      name: {
+                                                         kind: 'Name',
+                                                         value: 'role'
+                                                      }
+                                                   }
+                                                ]
+                                             }
+                                          }
+                                       ]
+                                    }
+                                 }
+                              ]
+                           }
+                        }
+                     ]
+                  }
+               }
+            ]
+         }
+      }
+   ]
+} as unknown as DocumentNode<UserIdQuery, UserIdQueryVariables>

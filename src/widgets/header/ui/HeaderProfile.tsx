@@ -1,5 +1,4 @@
 'use client'
-
 import { UsersRound } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import type { FC } from 'react'
@@ -42,7 +41,15 @@ export const HeaderProfile: FC = () => {
             </DropdownMenuContent>
          ) : (
             <DropdownMenuContent className='w-full'>
-               <Button onClick={() => push('/auth/login')}>Войти</Button>
+               <DropdownMenuItem>
+                  {' '}
+                  <Button
+                     className='w-full'
+                     onClick={() => push('/auth/login')}
+                  >
+                     Войти
+                  </Button>
+               </DropdownMenuItem>
             </DropdownMenuContent>
          )}
       </DropdownMenu>

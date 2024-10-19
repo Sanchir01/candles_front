@@ -1,5 +1,6 @@
 'use client'
 
+import { log } from 'console'
 import { zodResolver } from '@hookform/resolvers/zod'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -31,12 +32,13 @@ export default function RegisterPage() {
    const form = useForm<IInputRegister>({
       resolver: zodResolver(registerSchema),
       defaultValues: {
-         phone: '+7 (***) ***-**-**'
+         phone: '+7'
       }
    })
    const { replace } = useRouter()
    const userStore = useUser(state => state.setUser)
    const onSubmit = async (data: IInputRegister) => {
+      console.log(data)
       try {
          const { auth } = await mutateAsync({
             email: data.email,
@@ -47,8 +49,10 @@ export default function RegisterPage() {
 
          if (auth.registrations.__typename === 'RegistrationsOk') {
             userStore(auth.registrations)
-            replace('/auth/login')
+            replace('/catalog')
          }
+         auth.registrations.__typename === 'InternalErrorProblem' &&
+            console.log(auth.registrations.message)
          // biome-ignore lint/suspicious/noExplicitAny: <explanation>
       } catch (e: any) {
          toast.error(e.target?.elements[0]?.value ?? e.message)
@@ -88,11 +92,7 @@ export default function RegisterPage() {
                         <FormItem className='flex flex-col gap-2'>
                            <FormLabel>Ваше имя</FormLabel>
                            <FormControl>
-                              <Input
-                                 placeholder='Введите Имя'
-                                 {...field}
-                                 type='text'
-                              />
+                              <Input placeholder='Введите Имя' {...field} />
                            </FormControl>
                            <FormMessage />
                         </FormItem>

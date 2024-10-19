@@ -1,9 +1,14 @@
+import {
+   AllCandlesDocument,
+   CandlesSortEnum
+} from '~/shared/graphql/gql/graphql'
 import { gqlRequest } from '~/shared/service'
-import { AllCandlesDocument } from '~/shared/graphql/gql/graphql'
 import { candlesService } from '~/shared/service/candles'
 
 export async function generateStaticParams() {
-   const posts = await gqlRequest.request(AllCandlesDocument)
+   const posts = await gqlRequest.request(AllCandlesDocument, {
+      sort: CandlesSortEnum.PriceDesc
+   })
 
    return posts.candles?.allCandles.__typename == 'AllCandlesOk'
       ? posts.candles.allCandles.candles.map(item => ({

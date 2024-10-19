@@ -35,7 +35,7 @@ export default function LoginPage() {
    const { replace } = useRouter()
 
    const userStorage = useUser(state => state.setUser)
-   const { mutateAsync, loginData, isPending } = useLogin()
+   const { mutateAsync, isPending } = useLogin()
    const onSubmit = async (data: IInputLogin) => {
       try {
          const { auth } = await mutateAsync({

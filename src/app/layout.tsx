@@ -16,24 +16,22 @@ export default function RootLayout({
    children: React.ReactNode
 }>) {
    return (
-      <CSPostHogProvider>
-         <html lang='ru' suppressHydrationWarning>
-            <body>
-               <Toaster
-                  position='top-center'
-                  reverseOrder={false}
-                  toastOptions={{
-                     className: 'dark:bg-[#333] dark:text-white',
-                     style: {
-                        borderRadius: '10px'
-                     }
-                  }}
-               />
-               <Provider>
-                  <div className='wrapper'>{children}</div>
-               </Provider>
-            </body>
-         </html>
-      </CSPostHogProvider>
+      <html lang='ru' suppressHydrationWarning>
+         <body>
+            <Toaster
+               position='top-center'
+               reverseOrder={false}
+               toastOptions={{
+                  className: 'dark:bg-[#333] dark:text-white',
+                  style: {
+                     borderRadius: '10px'
+                  }
+               }}
+            />
+            <Provider>
+               <div className='wrapper'>{children}</div>
+            </Provider>
+         </body>
+      </html>
    )
 }

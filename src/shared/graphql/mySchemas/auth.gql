@@ -37,3 +37,17 @@ mutation Registrations($input: RegistrationsInput!) {
       }
    }
 }
+
+mutation NewToken {
+   auth {
+      newTokens {
+         __typename
+         ... on InternalErrorProblem {
+            message
+         }
+         ... on NewTokensOk {
+            token
+         }
+      }
+   }
+}
