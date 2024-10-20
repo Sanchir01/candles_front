@@ -1,8 +1,9 @@
+import { gqlRequest } from '~/shared/api/api-instance'
 import {
    AllCandlesDocument,
    CandlesSortEnum
 } from '~/shared/graphql/gql/graphql'
-import { gqlRequest } from '~/shared/service'
+
 import { candlesService } from '~/shared/service/candles'
 
 export async function generateStaticParams() {

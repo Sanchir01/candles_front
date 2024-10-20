@@ -1,8 +1,9 @@
+import { gqlRequest } from '~/shared/api/api-instance'
 import {
    LoginDocument,
    RegistrationsDocument
 } from '~/shared/graphql/gql/graphql'
-import { gqlRequest } from '~/shared/service/index'
+
 export type RegistrationsType = {
    phone: string
    password: string
@@ -18,6 +19,7 @@ export const authService = {
          }
       })
    },
+
    async registration({ phone, password, title, email }: RegistrationsType) {
       return gqlRequest.request({
          document: RegistrationsDocument,

@@ -50,6 +50,7 @@ export default function RegisterPage() {
          if (auth.registrations.__typename === 'RegistrationsOk') {
             userStore(auth.registrations)
             replace('/catalog')
+            toast.success('Удачная регистрация')
          }
          auth.registrations.__typename === 'InternalErrorProblem' &&
             console.log(auth.registrations.message)

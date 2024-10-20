@@ -7,7 +7,7 @@ import { CSPostHogProvider } from '~/app/_analytics/page'
 
 export const metadata: Metadata = {
    icons: {
-      icon: './candle.ico'
+      icon: './favicon.ico'
    }
 }
 export default function RootLayout({

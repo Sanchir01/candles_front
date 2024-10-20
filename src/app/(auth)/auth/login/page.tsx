@@ -46,6 +46,7 @@ export default function LoginPage() {
             userStorage(auth.login)
 
             replace('/catalog')
+            toast.success('Вы вошли в аккаунт')
          }
          // biome-ignore lint/suspicious/noExplicitAny: <explanation>
       } catch (e: any) {

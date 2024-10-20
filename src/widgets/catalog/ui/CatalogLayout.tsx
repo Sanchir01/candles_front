@@ -1,8 +1,7 @@
 'use client'
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 import React, { FC } from 'react'
-import { CandlesSortEnum } from '~/shared/graphql/gql/graphql'
-import { useAllCandles } from '~/shared/hooks/useAllCandles'
-
+import st from '~/shared/styles/Catalog.module.scss'
 export interface ICatalogLayout {
    grid?: React.ReactNode
    title?: React.ReactNode
@@ -10,6 +9,7 @@ export interface ICatalogLayout {
    sorting?: React.ReactNode
 }
 const CatalogLayout = ({ grid, title, filters, sorting }: ICatalogLayout) => {
+   const [parent] = useAutoAnimate({ easing: 'ease-in-out', duration: 500 })
    return (
       <div className='flex flex-col '>
          {title}
@@ -17,7 +17,9 @@ const CatalogLayout = ({ grid, title, filters, sorting }: ICatalogLayout) => {
             {filters}
             {sorting}
          </div>
-         {grid}
+         <div className={st.catalog__content} ref={parent}>
+            {grid}
+         </div>
       </div>
    )
 }
