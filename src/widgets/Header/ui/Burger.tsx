@@ -4,9 +4,9 @@ import React from 'react'
 
 import style from '~/shared/styles/Header.module.scss'
 
-import { useBurger } from '../../../Providers/store/useBurger'
+import { useBurger } from '~/Providers/store/useBurger'
 
-import { header } from '../../../shared/constants/header'
+import { header } from '~/shared/constants/header'
 
 // import FavoritesLogo from '@/shared/icons/Favorites/FavoritesLogo'
 import cn from 'clsx'
