@@ -1,6 +1,1 @@
-
-
-
-export const colorService = {
-    
-}
+export const colorService = {}
