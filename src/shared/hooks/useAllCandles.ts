@@ -1,10 +1,5 @@
 'use client'
 import { useQuery } from '@tanstack/react-query'
-import Image from 'next/image'
-import { EntityProductCart } from '~/entities/entitycandles/Carts'
-import { SkeletonCart } from '~/entities/entitycandles/SkeletenCart'
-import { AddToCart } from '~/features/AddToCart/AddToItemCart'
-import { AddToFavorites } from '~/features/AddToFavorites/AddTofavorites'
 import { candlesService } from '~/shared/service/candles'
 import { AllCandlesQuery, CandlesSortEnum } from '../graphql/gql/graphql'
 export interface IAllCandles {
@@ -12,9 +7,9 @@ export interface IAllCandles {
    initialdata: AllCandlesQuery
 }
 export const useAllCandles = ({ sort, initialdata }: IAllCandles) => {
-   const { data, isPending, isSuccess } = useQuery({
+   const { data, isPending, isLoading, isSuccess, isFetching } = useQuery({
       ...candlesService.AllCandlesQueryOptions({ sort, initialdata })
    })
 
-   return { data, isPending, isSuccess }
+   return { data, isPending, isSuccess, isLoading, isFetching }
 }

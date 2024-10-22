@@ -1,5 +1,4 @@
 'use client'
-import { useAutoAnimate } from '@formkit/auto-animate/react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { EntityProductCart } from '~/entities/entitycandles/Carts'
@@ -10,12 +9,12 @@ import { AllCandlesQuery, CandlesSortEnum } from '~/shared/graphql/gql/graphql'
 import { useAllCandles } from '~/shared/hooks/useAllCandles'
 
 const Items = ({ initialdata }: { initialdata: AllCandlesQuery }) => {
-   const { data, isPending, isSuccess } = useAllCandles({
+   const { data, isPending, isLoading, isSuccess, isFetching } = useAllCandles({
       sort: CandlesSortEnum.PriceAsc,
       initialdata
    })
 
-   return isPending
+   return isFetching
       ? [...Array(10)].map((_, i) => <SkeletonCart key={i} />)
       : isSuccess && data?.__typename === 'AllCandlesOk'
         ? data.candles.map(

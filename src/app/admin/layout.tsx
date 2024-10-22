@@ -1,5 +1,4 @@
 'use client'
-import { stat } from 'fs'
 import Cookie from 'js-cookie'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
@@ -25,7 +24,7 @@ export default function RootLayout({
    return (
       <>
          <Header variant={HeaderProfileEnum.PUBLIC} />
-         <main>{children}</main>
+         {children}
          <div className=''>tes</div>
       </>
    )
