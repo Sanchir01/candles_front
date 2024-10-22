@@ -4,7 +4,7 @@ import { useAllCategorys } from '~/shared/hooks/allCategorys'
 import { useAllColor } from '~/shared/hooks/allCandles'
 import { Container, Title } from '~/shared/ui'
 import { ProductCart } from '~/widgets/productcart'
-import { Category } from '~/widgets/category/index'
+import { Category } from '~/widgets/filters/category'
 
 export default function Catalog() {
 	const {

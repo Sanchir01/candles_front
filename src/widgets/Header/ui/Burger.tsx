@@ -13,6 +13,10 @@ import cn from 'clsx'
 import Link from 'next/link'
 import { FC } from 'react'
 import { useShallow } from 'zustand/react/shallow'
+import { HeaderActions } from './HeaderActions'
+import { HeaderProfile } from './HeaderProfile'
+
+import { HeaderLogo } from './HeaderLogo'
 // import HeaderAdmin from './HeaderAdmin'
 // import { HeaderProfile } from './HeaderProfile'
 
@@ -38,6 +42,9 @@ export const BurgerMenu: FC = () => {
 			</div>
 			<div className={style.menu__footer}>
 				<div className='py-2 flex items-center justify-evenly'>
+					<HeaderProfile />
+					<HeaderLogo />
+					<HeaderActions />
 					{/* <FavoritesLogo />
 					
 					<HeaderAdmin />

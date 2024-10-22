@@ -1,4 +1,4 @@
-import { CategoryLayout } from '~/widgets/category/ui/CategoryLayout'
+import { CategoryLayout } from '~/widgets/filters/category/ui/CategoryLayout'
 
 export interface CategoryProps {
 	id: string

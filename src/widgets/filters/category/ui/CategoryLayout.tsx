@@ -1,6 +1,6 @@
 import React from 'react'
-import { EntityCategory } from '~/entities/entitycategory/category'
-import { CategoryTitle } from '~/widgets/category/ui/Title'
+import { EntityCategory } from '~/entities/entityfilters/category'
+
 export interface CategoryLayoutProps {
 	title: React.ReactNode
 }

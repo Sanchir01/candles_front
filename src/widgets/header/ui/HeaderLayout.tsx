@@ -6,11 +6,11 @@ import { useBurger } from '~/Providers/store/useBurger'
 import { Button } from '~/shared/ui/button'
 import { Menu } from 'lucide-react'
 export interface HeaderLayoutProps {
-	nav: React.ReactNode
-	actions: React.ReactNode
-	logo: React.ReactNode
-	profile: React.ReactNode
-	burger: React.ReactNode
+	nav?: React.ReactNode
+	actions?: React.ReactNode
+	logo?: React.ReactNode
+	profile?: React.ReactNode
+	burger?: React.ReactNode
 }
 
 export const HeaderLayout = ({
