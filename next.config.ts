@@ -1,6 +1,6 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-   swcMinify: true,
+import type { NextConfig } from 'next'
+
+const nextConfig: NextConfig = {
    images: {
       remotePatterns: [
          {
@@ -9,9 +9,7 @@ const nextConfig = {
          }
       ]
    },
-   typescript: {
-      ignoreBuildErrors: true
-   }
+   
 }
 
 export default nextConfig

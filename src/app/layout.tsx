@@ -3,7 +3,6 @@ import type { Metadata } from 'next'
 import './globals.css'
 import { Toaster } from 'react-hot-toast'
 import { Provider } from '~/Providers/Provider'
-import { CSPostHogProvider } from '~/app/_analytics/page'
 
 export const metadata: Metadata = {
    icons: {

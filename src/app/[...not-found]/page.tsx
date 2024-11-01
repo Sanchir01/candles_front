@@ -10,8 +10,8 @@ export default function Custom404() {
             <span className={styles.notfound_box_description}>
                Ой, что-то пошло не так...
             </span>
-            <Link href='/' className={styles.notfound_box_link}>
-               <Button>sad</Button>
+            <Link href='/catalog' className={styles.notfound_box_link}>
+               <Button>В каталог</Button>
             </Link>
          </div>
       </div>

@@ -11,6 +11,8 @@ export type RegistrationsType = {
    email: string
 }
 export const authService = {
+   loginKey: 'login',
+   registerKey: 'register',
    async login({ email, password }: { email: string; password: string }) {
       return gqlRequest.request({
          document: LoginDocument,
