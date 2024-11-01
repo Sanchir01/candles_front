@@ -7,18 +7,30 @@ import {
 import { candlesService } from '~/shared/service/candles'
 
 export async function generateStaticParams() {
-   const posts = await gqlRequest.request(AllCandlesDocument, {
+   const candles = await gqlRequest.request(AllCandlesDocument, {
       sort: CandlesSortEnum.PriceDesc
    })
 
-   return posts.candles?.allCandles.__typename == 'AllCandlesOk'
-      ? posts.candles.allCandles.candles.map(item => ({
+   return candles.candles?.allCandles.__typename == 'AllCandlesOk'
+      ? candles.candles.allCandles.candles.map(item => ({
            id: item.id
         }))
       : []
 }
-
-export default async function Page({ params }: { params: { id: string } }) {
+export async function generateMetadata(props: {
+   params: Promise<{ id: string }>
+}) {
+   const params = await props.params
+   const { candles } = await candlesService.candleById(params.id)
+   if (candles?.candleById.__typename == 'CandlesByIdOk') {
+      return {
+         title: candles.candleById.candle.id
+      }
+   }
+   return
+}
+export default async function Page(props: { params: Promise<{ id: string }> }) {
+   const params = await props.params
    const { candles } = await candlesService.candleById(params.id)
 
    return (

@@ -21,6 +21,7 @@ query AllColor {
 mutation CreateColor($input: CreateColorInput!) {
    color {
       createColor(input: $input) {
+         __typename
          ... on ColorCreateOk {
             id
          }

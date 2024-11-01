@@ -3,7 +3,7 @@
    "version": "0.1.0",
    "private": true,
    "scripts": {
-      "dev": "graphql-codegen --config codegen.ts && pnpm format && next dev --turbo",
+      "dev": "graphql-codegen --config codegen.ts && pnpm format && next dev --turbopack",
       "build": "next build",
       "start": "next start",
       "gen": "graphql-codegen --config codegen.ts",
@@ -34,7 +34,7 @@
       "husky": "^9.1.5",
       "js-cookie": "^3.0.5",
       "lucide-react": "^0.436.0",
-      "next": "14.2.15",
+      "next": "15.0.2",
       "next-themes": "^0.2.1",
       "posthog-js": "^1.165.0",
       "react": "^18",
@@ -48,7 +48,7 @@
       "tailwindcss-animate": "^1.0.7",
       "validator": "^13.12.0",
       "zod": "^3.23.8",
-      "zustand": "~5.0.0"
+      "zustand": "~5.0.1"
    },
    "devDependencies": {
       "@biomejs/biome": "1.9.3",
@@ -66,17 +66,23 @@
       "@tanstack/react-query-devtools": "^5.58.0",
       "@types/js-cookie": "^3.0.6",
       "@types/node": "^20",
-      "@types/react": "^18",
-      "@types/react-dom": "^18",
+      "@types/react": "npm:types-react@19.0.0-rc.1",
+      "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1",
       "@types/react-input-mask": "^3.0.5",
       "@types/validator": "^13.12.2",
       "eslint": "^8",
-      "eslint-config-next": "14.2.7",
+      "eslint-config-next": "15.0.2",
       "eslint-plugin-storybook": "^0.9.0",
       "postcss": "^8",
       "prettier": "^3.3.3",
       "storybook": "8.3.5",
       "tailwindcss": "^3.4.1",
       "typescript": "^5.6.3"
+   },
+   "pnpm": {
+      "overrides": {
+         "@types/react": "npm:types-react@19.0.0-rc.1",
+         "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1"
+      }
    }
 }

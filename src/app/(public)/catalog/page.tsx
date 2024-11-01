@@ -1,5 +1,4 @@
 import { Metadata, NextPage } from 'next'
-import type React from 'react'
 import { CandlesSortEnum } from '~/shared/graphql/gql/graphql'
 import { candlesService } from '~/shared/service/candles'
 import st from '~/shared/styles/Catalog.module.scss'
@@ -14,7 +13,7 @@ export const SSGDataCandles = async () => {
    const data = await candlesService.allCandles({
       sort: CandlesSortEnum.PriceDesc
    })
-   data.candles?.allCandles.__typename === 'AllCandlesOk' ? data : []
+
    return data
 }
 
