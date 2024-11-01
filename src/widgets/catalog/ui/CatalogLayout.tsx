@@ -1,7 +1,9 @@
 'use client'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 import React, { FC } from 'react'
+import { SkeletonCart } from '~/entities/entitycandles/SkeletenCart'
 import st from '~/shared/styles/Catalog.module.scss'
+import { Skeleton } from '~/shared/ui'
 export interface ICatalogLayout {
    grid?: React.ReactNode
    title?: React.ReactNode
