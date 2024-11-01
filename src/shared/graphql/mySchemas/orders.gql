@@ -1,0 +1,35 @@
+query AllOrders {
+   orders {
+      allOrders {
+         __typename
+         ... on InternalErrorProblem {
+            message
+         }
+         ... on UnauthorizedProblem {
+            message
+         }
+         ... on AllOrdersOk {
+            orders {
+               id
+            }
+         }
+      }
+   }
+}
+
+mutation Mutation($input: CreateOrderInput!) {
+   orders {
+      createOrder(input: $input) {
+         __typename
+         ... on InternalErrorProblem {
+            message
+         }
+         ... on UnauthorizedProblem {
+            message
+         }
+         ... on CreateOrderOk {
+            ok
+         }
+      }
+   }
+}

@@ -1,48 +1,88 @@
 {
-  "name": "candles_front",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "gen": "graphql-codegen --config codegen.ts",
-    "lint": "next lint"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint"
-    }
-  },
-  "dependencies": {
-    "@radix-ui/react-dropdown-menu": "^2.1.1",
-    "@radix-ui/react-slot": "^1.1.0",
-    "class-variance-authority": "^0.7.0",
-    "clsx": "^2.1.1",
-    "graphql": "^16.9.0",
-    "husky": "^9.1.5",
-    "lucide-react": "^0.436.0",
-    "next": "14.2.7",
-    "next-themes": "^0.2.1",
-    "react": "^18",
-    "react-dom": "^18",
-    "react-hot-toast": "^2.4.1",
-    "sass": "^1.78.0",
-    "tailwind-merge": "^2.5.2",
-    "tailwindcss-animate": "^1.0.7"
-  },
-  "devDependencies": {
-    "@graphql-codegen/cli": "5.0.2",
-    "@graphql-codegen/client-preset": "4.3.3",
-    "@graphql-typed-document-node/core": "^3.2.0",
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.7",
-    "postcss": "^8",
-    "prettier": "^3.3.3",
-    "tailwindcss": "^3.4.1",
-    "typescript": "^5.5.4"
-  }
+   "name": "candles_front",
+   "version": "0.1.0",
+   "private": true,
+   "scripts": {
+      "dev": "graphql-codegen --config codegen.ts && pnpm format && next dev --turbopack",
+      "build": "next build",
+      "start": "next start",
+      "gen": "graphql-codegen --config codegen.ts",
+      "lint": "next lint",
+      "format": "pnpm biome format --write ./src",
+      "storybook": "storybook dev -p 6006",
+      "build-storybook": "storybook build"
+   },
+   "husky": {
+      "hooks": {
+         "pre-commit": "format",
+         "pre-push": "lint"
+      }
+   },
+   "dependencies": {
+      "@formkit/auto-animate": "^0.8.2",
+      "@hookform/resolvers": "^3.9.0",
+      "@radix-ui/react-dialog": "^1.1.2",
+      "@radix-ui/react-dropdown-menu": "^2.1.1",
+      "@radix-ui/react-label": "^2.1.0",
+      "@radix-ui/react-slot": "^1.1.0",
+      "@storybook/react": "^8.3.5",
+      "@tanstack/react-query": "^5.56.2",
+      "class-variance-authority": "^0.7.0",
+      "clsx": "^2.1.1",
+      "graphql": "^16.9.0",
+      "graphql-request": "^7.1.0",
+      "husky": "^9.1.5",
+      "js-cookie": "^3.0.5",
+      "lucide-react": "^0.436.0",
+      "next": "15.0.2",
+      "next-themes": "^0.2.1",
+      "posthog-js": "^1.165.0",
+      "react": "^18",
+      "react-dom": "^18",
+      "react-hook-form": "^7.53.0",
+      "react-hot-toast": "^2.4.1",
+      "react-input-mask": "^2.0.4",
+      "react-use": "^17.5.1",
+      "sass": "^1.78.0",
+      "tailwind-merge": "^2.5.2",
+      "tailwindcss-animate": "^1.0.7",
+      "validator": "^13.12.0",
+      "zod": "^3.23.8",
+      "zustand": "~5.0.1"
+   },
+   "devDependencies": {
+      "@biomejs/biome": "1.9.3",
+      "@chromatic-com/storybook": "1.9.0",
+      "@graphql-codegen/cli": "5.0.2",
+      "@graphql-codegen/client-preset": "4.3.3",
+      "@graphql-typed-document-node/core": "^3.2.0",
+      "@storybook/addon-essentials": "8.3.5",
+      "@storybook/addon-interactions": "8.3.5",
+      "@storybook/addon-links": "8.3.5",
+      "@storybook/addon-onboarding": "8.3.5",
+      "@storybook/blocks": "8.3.5",
+      "@storybook/nextjs": "8.3.5",
+      "@storybook/test": "8.3.5",
+      "@tanstack/react-query-devtools": "^5.58.0",
+      "@types/js-cookie": "^3.0.6",
+      "@types/node": "^20",
+      "@types/react": "npm:types-react@19.0.0-rc.1",
+      "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1",
+      "@types/react-input-mask": "^3.0.5",
+      "@types/validator": "^13.12.2",
+      "eslint": "^8",
+      "eslint-config-next": "15.0.2",
+      "eslint-plugin-storybook": "^0.9.0",
+      "postcss": "^8",
+      "prettier": "^3.3.3",
+      "storybook": "8.3.5",
+      "tailwindcss": "^3.4.1",
+      "typescript": "^5.6.3"
+   },
+   "pnpm": {
+      "overrides": {
+         "@types/react": "npm:types-react@19.0.0-rc.1",
+         "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1"
+      }
+   }
 }

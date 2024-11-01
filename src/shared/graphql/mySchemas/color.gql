@@ -1,0 +1,39 @@
+query AllColor {
+   color {
+      allColor {
+         __typename
+         ... on AllColorOk {
+            colors {
+               id
+               title
+               slug
+            }
+         }
+         ... on VersionMismatchProblem {
+            message
+         }
+         ... on InternalErrorProblem {
+            message
+         }
+      }
+   }
+}
+mutation CreateColor($input: CreateColorInput!) {
+   color {
+      createColor(input: $input) {
+         __typename
+         ... on ColorCreateOk {
+            id
+         }
+         ... on InternalErrorProblem {
+            message
+         }
+         ... on UnauthorizedProblem {
+            message
+         }
+         ... on VersionMismatchProblem {
+            message
+         }
+      }
+   }
+}

@@ -1,0 +1,51 @@
+query AllCandles($sort: CandlesSortEnum) {
+   candles {
+      allCandles(sort: $sort) {
+         __typename
+         ... on VersionMismatchProblem {
+            message
+         }
+         ... on InternalErrorProblem {
+            message
+         }
+         ... on AllCandlesOk {
+            candles {
+               id
+               title
+               version
+               color_id
+               category_id
+               images
+               price
+               slug
+            }
+         }
+      }
+   }
+}
+
+query CandleById($input: CandlesByIdInput!) {
+   candles {
+      candleById(input: $input) {
+         __typename
+         ... on VersionMismatchProblem {
+            message
+         }
+         ... on InternalErrorProblem {
+            message
+         }
+         ... on CandlesByIdOk {
+            candle {
+               id
+               title
+               version
+               color_id
+               category_id
+               images
+               price
+               slug
+            }
+         }
+      }
+   }
+}
