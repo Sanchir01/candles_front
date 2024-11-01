@@ -1,6 +1,5 @@
 'use client'
 
-import { log } from 'console'
 import { zodResolver } from '@hookform/resolvers/zod'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -38,7 +37,6 @@ export default function RegisterPage() {
    const { replace } = useRouter()
    const userStore = useUser(state => state.setUser)
    const onSubmit = async (data: IInputRegister) => {
-      console.log(data)
       try {
          const { auth } = await mutateAsync({
             email: data.email,
@@ -52,8 +50,7 @@ export default function RegisterPage() {
             replace('/catalog')
             toast.success('Удачная регистрация')
          }
-         auth.registrations.__typename === 'InternalErrorProblem' &&
-            console.log(auth.registrations.message)
+         auth.registrations.__typename === 'InternalErrorProblem' && toast.error('не удалось зарегистрироваться')
          // biome-ignore lint/suspicious/noExplicitAny: <explanation>
       } catch (e: any) {
          toast.error(e.target?.elements[0]?.value ?? e.message)
