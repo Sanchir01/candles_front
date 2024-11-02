@@ -16,6 +16,12 @@ export const candlesService = {
          variables: { sort }
       })
    },
+   async candleById(id: string) {
+      return gqlRequest.request({
+         document: CandleByIdDocument,
+         variables: { input: { id: id } }
+      })
+   },
    AllCandlesQueryOptions: ({ sort, initialdata }: IAllCandles) => {
       return queryOptions({
          queryFn: meta => candlesService.allCandles({ sort }),
@@ -32,13 +38,8 @@ export const candlesService = {
          queryKey: [candlesService.candlesByIdKey, id],
          queryFn: () => candlesService.candleById(id),
          select: data => data.candles?.candleById,
-         enabled: !!id
-      })
-   },
-   async candleById(id: string) {
-      return gqlRequest.request({
-         document: CandleByIdDocument,
-         variables: { input: { id: id } }
+         enabled: !!id,
+         placeholderData: keepPreviousData
       })
    }
 }

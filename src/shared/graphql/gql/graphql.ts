@@ -704,6 +704,22 @@ export type AllCategoryQuery = {
    } | null
 }
 
+export type AddCategoryMutationVariables = Exact<{
+   input?: InputMaybe<CreateCategoryInput>
+}>
+
+export type AddCategoryMutation = {
+   __typename?: 'Mutation'
+   category: {
+      __typename?: 'CategoryMutation'
+      createCategory:
+         | { __typename: 'CategoryCreateOk'; id: any }
+         | { __typename: 'InternalErrorProblem'; message: string }
+         | { __typename: 'UnauthorizedProblem'; message: string }
+         | { __typename: 'VersionMismatchProblem' }
+   }
+}
+
 export type AllColorQueryVariables = Exact<{ [key: string]: never }>
 
 export type AllColorQuery = {
@@ -725,11 +741,11 @@ export type AllColorQuery = {
    }
 }
 
-export type CreateColorMutationVariables = Exact<{
+export type AddToColorMutationVariables = Exact<{
    input: CreateColorInput
 }>
 
-export type CreateColorMutation = {
+export type AddToColorMutation = {
    __typename?: 'Mutation'
    color: {
       __typename?: 'ColorMutation'
@@ -1653,6 +1669,129 @@ export const AllCategoryDocument = {
       }
    ]
 } as unknown as DocumentNode<AllCategoryQuery, AllCategoryQueryVariables>
+export const AddCategoryDocument = {
+   kind: 'Document',
+   definitions: [
+      {
+         kind: 'OperationDefinition',
+         operation: 'mutation',
+         name: { kind: 'Name', value: 'AddCategory' },
+         variableDefinitions: [
+            {
+               kind: 'VariableDefinition',
+               variable: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'input' }
+               },
+               type: {
+                  kind: 'NamedType',
+                  name: { kind: 'Name', value: 'CreateCategoryInput' }
+               }
+            }
+         ],
+         selectionSet: {
+            kind: 'SelectionSet',
+            selections: [
+               {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'category' },
+                  selectionSet: {
+                     kind: 'SelectionSet',
+                     selections: [
+                        {
+                           kind: 'Field',
+                           name: { kind: 'Name', value: 'createCategory' },
+                           arguments: [
+                              {
+                                 kind: 'Argument',
+                                 name: { kind: 'Name', value: 'input' },
+                                 value: {
+                                    kind: 'Variable',
+                                    name: { kind: 'Name', value: 'input' }
+                                 }
+                              }
+                           ],
+                           selectionSet: {
+                              kind: 'SelectionSet',
+                              selections: [
+                                 {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: '__typename' }
+                                 },
+                                 {
+                                    kind: 'InlineFragment',
+                                    typeCondition: {
+                                       kind: 'NamedType',
+                                       name: {
+                                          kind: 'Name',
+                                          value: 'CategoryCreateOk'
+                                       }
+                                    },
+                                    selectionSet: {
+                                       kind: 'SelectionSet',
+                                       selections: [
+                                          {
+                                             kind: 'Field',
+                                             name: { kind: 'Name', value: 'id' }
+                                          }
+                                       ]
+                                    }
+                                 },
+                                 {
+                                    kind: 'InlineFragment',
+                                    typeCondition: {
+                                       kind: 'NamedType',
+                                       name: {
+                                          kind: 'Name',
+                                          value: 'InternalErrorProblem'
+                                       }
+                                    },
+                                    selectionSet: {
+                                       kind: 'SelectionSet',
+                                       selections: [
+                                          {
+                                             kind: 'Field',
+                                             name: {
+                                                kind: 'Name',
+                                                value: 'message'
+                                             }
+                                          }
+                                       ]
+                                    }
+                                 },
+                                 {
+                                    kind: 'InlineFragment',
+                                    typeCondition: {
+                                       kind: 'NamedType',
+                                       name: {
+                                          kind: 'Name',
+                                          value: 'UnauthorizedProblem'
+                                       }
+                                    },
+                                    selectionSet: {
+                                       kind: 'SelectionSet',
+                                       selections: [
+                                          {
+                                             kind: 'Field',
+                                             name: {
+                                                kind: 'Name',
+                                                value: 'message'
+                                             }
+                                          }
+                                       ]
+                                    }
+                                 }
+                              ]
+                           }
+                        }
+                     ]
+                  }
+               }
+            ]
+         }
+      }
+   ]
+} as unknown as DocumentNode<AddCategoryMutation, AddCategoryMutationVariables>
 export const AllColorDocument = {
    kind: 'Document',
    definitions: [
@@ -1782,13 +1921,13 @@ export const AllColorDocument = {
       }
    ]
 } as unknown as DocumentNode<AllColorQuery, AllColorQueryVariables>
-export const CreateColorDocument = {
+export const AddToColorDocument = {
    kind: 'Document',
    definitions: [
       {
          kind: 'OperationDefinition',
          operation: 'mutation',
-         name: { kind: 'Name', value: 'CreateColor' },
+         name: { kind: 'Name', value: 'AddToColor' },
          variableDefinitions: [
             {
                kind: 'VariableDefinition',
@@ -1929,7 +2068,7 @@ export const CreateColorDocument = {
          }
       }
    ]
-} as unknown as DocumentNode<CreateColorMutation, CreateColorMutationVariables>
+} as unknown as DocumentNode<AddToColorMutation, AddToColorMutationVariables>
 export const AllOrdersDocument = {
    kind: 'Document',
    definitions: [

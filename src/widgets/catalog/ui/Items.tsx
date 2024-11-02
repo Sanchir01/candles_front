@@ -3,10 +3,21 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { EntityProductCart } from '~/entities/entitycandles/Carts'
 import { SkeletonCart } from '~/entities/entitycandles/SkeletenCart'
-import { AddToCart } from '~/features/AddToCart/AddToItemCart'
-import { AddToFavorites } from '~/features/AddToFavorites/AddTofavorites'
+import { AddToCart } from '~/features/AddToCart'
+import { AddToFavorites } from '~/features/AddToFavorites'
 import { AllCandlesQuery, CandlesSortEnum } from '~/shared/graphql/gql/graphql'
 import { useAllCandles } from '~/shared/hooks/useAllCandles'
+
+export type itemsGridType = {
+   title: string
+   images: string[]
+   id: string
+   slug: string
+   price: number
+   color_id: string
+   category_id: string
+   version: number
+}[]
 
 const Items = ({ initialdata }: { initialdata: AllCandlesQuery }) => {
    const { data, isPending, isLoading, isSuccess, isFetching } = useAllCandles({

@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import {
    NewTokenMutation,
-   UserIdQuery,
-   Role
+   Role,
+   UserIdQuery
 } from './shared/graphql/gql/graphql'
 
 enum EnumTokens {
@@ -18,7 +18,6 @@ export async function middleware(request: NextRequest) {
    const accessToken = cookies.get(EnumTokens.ACCESS_TOKEN)
    const refreshToken = cookies.get(EnumTokens.REFRESH_TOKEN)
 
-   console.log('this cookie', refreshToken, accessToken)
    const loginPage = url.includes('/auth/login')
    const registerPage = url.includes('/auth/register')
    const adminPanel = url.includes('/admin')
@@ -121,7 +120,7 @@ export async function middleware(request: NextRequest) {
       ).then(res => res.json())
    ).data as UserIdQuery
 
-   if (orderPage && user === undefined)
+   if ((orderPage && user === undefined) || (adminPanel && user === undefined))
       return NextResponse.redirect(new URL('/auth/login', url))
 
    if (

@@ -5,6 +5,7 @@ import {
 } from '~/shared/graphql/gql/graphql'
 
 import { candlesService } from '~/shared/service/candles'
+import { Loader } from '~/shared/ui'
 
 export async function generateStaticParams() {
    const candles = await gqlRequest.request(AllCandlesDocument, {
@@ -20,17 +21,25 @@ export async function generateStaticParams() {
 export async function generateMetadata(props: {
    params: Promise<{ id: string }>
 }) {
-   const params = await props.params
-   const { candles } = await candlesService.candleById(params.id)
-   if (candles?.candleById.__typename == 'CandlesByIdOk') {
+   try {
+      const params = await props.params
+      const { candles } = await candlesService.candleById(params.id)
+      if (candles?.candleById.__typename == 'CandlesByIdOk') {
+         return {
+            title: candles.candleById.candle.id
+         }
+      }
+   } catch (error) {
       return {
-         title: candles.candleById.candle.id
+         title: 'Product Not Found'
       }
    }
-   return
 }
 export default async function Page(props: { params: Promise<{ id: string }> }) {
    const params = await props.params
+   if (params.id === 'favicon.ico') {
+      return <Loader />
+   }
    const { candles } = await candlesService.candleById(params.id)
 
    return (

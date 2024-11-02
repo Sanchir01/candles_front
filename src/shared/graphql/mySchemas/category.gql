@@ -15,3 +15,20 @@ query allCategory {
       }
    }
 }
+
+mutation AddCategory($input: CreateCategoryInput) {
+   category {
+      createCategory(input: $input) {
+         __typename
+         ... on CategoryCreateOk {
+            id
+         }
+         ... on InternalErrorProblem {
+            message
+         }
+         ... on UnauthorizedProblem {
+            message
+         }
+      }
+   }
+}
