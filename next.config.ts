@@ -9,7 +9,10 @@ const nextConfig: NextConfig = {
          }
       ]
    },
-   
+   sassOptions: {
+      silenceDeprecations: ['legacy-js-api']
+   },
+   compress: true
 }
 
 export default nextConfig

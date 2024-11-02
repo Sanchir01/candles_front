@@ -1,18 +1,24 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { EnumTokens } from '~/shared/lib/Tokens.service'
 import {
    NewTokenMutation,
-   Role,
-   UserIdQuery
+   UserIdQuery,
+   Role
 } from './shared/graphql/gql/graphql'
 
+enum EnumTokens {
+   ACCESS_TOKEN = 'accessToken',
+   REFRESH_TOKEN = 'refreshToken'
+}
 export async function middleware(request: NextRequest) {
-   const { cookies, url } = request
+   const cookies = request.cookies
+
+   const url = request.url
    const response = new NextResponse()
 
-   const accessToken = cookies.get(EnumTokens.ACCESS_TOKEN)?.value
-   const refreshToken = cookies.get(EnumTokens.REFRESH_TOKEN)?.value
+   const accessToken = cookies.get(EnumTokens.ACCESS_TOKEN)
+   const refreshToken = cookies.get(EnumTokens.REFRESH_TOKEN)
 
+   console.log('this cookie', refreshToken, accessToken)
    const loginPage = url.includes('/auth/login')
    const registerPage = url.includes('/auth/register')
    const adminPanel = url.includes('/admin')
@@ -30,18 +36,18 @@ export async function middleware(request: NextRequest) {
    }
    if (accessToken === undefined) {
       const GetNewToken = `mutation NewTokens {
-  auth {
-    newTokens {
-      __typename
-      ... on InternalErrorProblem {
-        message
-      }
-      ... on NewTokensOk {
-        token
-      }
-    }
-  }
-}`
+     auth {
+       newTokens {
+         __typename
+         ... on InternalErrorProblem {
+           message
+         }
+         ... on NewTokensOk {
+           token
+         }
+       }
+     }
+   }`
       const { auth } = (
          await fetch(
             process.env.NODE_ENV === 'production'
@@ -55,7 +61,7 @@ export async function middleware(request: NextRequest) {
                method: 'POST',
                headers: {
                   'Content-Type': 'application/json',
-                  Cookie: `${EnumTokens.REFRESH_TOKEN}=${refreshToken}`
+                  Cookie: `${EnumTokens.REFRESH_TOKEN}=${refreshToken.value}`
                }
             }
          ).then(res => res.json())
@@ -78,24 +84,24 @@ export async function middleware(request: NextRequest) {
       }
    }
    const profileQuery = `query User {
-  user {
-    profile {
-      __typename
-      ... on InternalErrorProblem {
-        message
-      }
-      ... on VersionMismatchProblem {
-        message
-      }
-      ... on UserProfileOk {
-        profile {
-          id
-          role
-        }
-      }
-    }
-  }
-}`
+     user {
+       profile {
+         __typename
+         ... on InternalErrorProblem {
+           message
+         }
+         ... on VersionMismatchProblem {
+           message
+         }
+         ... on UserProfileOk {
+           profile {
+             id
+             role
+           }
+         }
+       }
+     }
+   }`
    const { user } = (
       await fetch(
          process.env.NODE_ENV === 'production'
@@ -109,7 +115,7 @@ export async function middleware(request: NextRequest) {
             method: 'POST',
             headers: {
                'Content-Type': 'application/json',
-               Cookie: `${EnumTokens.REFRESH_TOKEN}=${refreshToken}`
+               Cookie: `${EnumTokens.REFRESH_TOKEN}=${refreshToken.value}`
             }
          }
       ).then(res => res.json())

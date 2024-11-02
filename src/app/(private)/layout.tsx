@@ -1,12 +1,9 @@
 'use client'
-import { stat } from 'fs'
 import Cookie from 'js-cookie'
 import { useRouter } from 'next/navigation'
-import { useEffect } from 'react'
+import { useLayoutEffect } from 'react'
 import { useUser } from '~/Providers/store/useUser'
-import { HeaderProfileEnum } from '~/shared/constants/headerprofile'
 import { EnumTokens } from '~/shared/lib/Tokens.service'
-import { Header } from '~/widgets/header'
 export default function RootLayout({
    children
 }: {
@@ -16,17 +13,11 @@ export default function RootLayout({
    const router = useRouter()
    const logout = useUser(state => state.logout)
 
-   useEffect(() => {
+   useLayoutEffect(() => {
       if (!accessToken) {
          logout(), router.replace('/auth/login')
       }
    }, [accessToken, logout, router])
 
-   return (
-      <>
-         <Header variant={HeaderProfileEnum.PUBLIC} />
-         <main>{children}</main>
-         <div className=''>tes</div>
-      </>
-   )
+   return <>{children}</>
 }

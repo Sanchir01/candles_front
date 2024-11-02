@@ -1,40 +1,39 @@
-import type { Metadata } from "next"
+import type { Metadata } from 'next'
 
-import "./globals.css"
-import { Toaster } from "react-hot-toast"
-import { Provider } from "~/Providers/Provider"
-import CSPostHogProvider from './_analytics'
-
+import './globals.css'
+import { Toaster } from 'react-hot-toast'
+import { Provider } from '~/Providers/Provider'
+import { CSPostHogProvider } from '~/app/_analytics'
 
 export const metadata: Metadata = {
-  icons: {
-    icon: "./favicon.ico",
-  },
-};
+   icons: {
+      icon: './favicon.ico'
+   }
+}
 export default function RootLayout({
-  children,
+   children
 }: Readonly<{
-  children: React.ReactNode;
+   children: React.ReactNode
 }>) {
-  return (
-    <CSPostHogProvider>
-      <html lang="ru" suppressHydrationWarning>
-        <body>
-          <Toaster
-            position="top-center"
-            reverseOrder={false}
-            toastOptions={{
-              className: "dark:bg-[#333] dark:text-white",
-              style: {
-                borderRadius: "10px",
-              },
-            }}
-          />
-          <Provider>
-            <div className="wrapper">{children}</div>
-          </Provider>
-        </body>
+   return (
+      <html lang='ru' suppressHydrationWarning>
+         <CSPostHogProvider>
+            <body>
+               <Toaster
+                  position='top-center'
+                  reverseOrder={false}
+                  toastOptions={{
+                     className: 'dark:bg-[#333] dark:text-white',
+                     style: {
+                        borderRadius: '10px'
+                     }
+                  }}
+               />
+               <Provider>
+                  <div className='wrapper'>{children}</div>
+               </Provider>
+            </body>
+         </CSPostHogProvider>
       </html>
-    </CSPostHogProvider>
-  );
+   )
 }

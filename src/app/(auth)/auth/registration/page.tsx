@@ -50,7 +50,8 @@ export default function RegisterPage() {
             replace('/catalog')
             toast.success('Удачная регистрация')
          }
-         auth.registrations.__typename === 'InternalErrorProblem' && toast.error('не удалось зарегистрироваться')
+         auth.registrations.__typename === 'InternalErrorProblem' &&
+            toast.error('не удалось зарегистрироваться')
          // biome-ignore lint/suspicious/noExplicitAny: <explanation>
       } catch (e: any) {
          toast.error(e.target?.elements[0]?.value ?? e.message)

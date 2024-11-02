@@ -1,7 +1,7 @@
 import { FC } from 'react'
 
-const page: FC = () => {
+const OrderPage: FC = () => {
    return <div>page</div>
 }
 
-export default page
+export default OrderPage
