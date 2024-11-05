@@ -1,9 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import {
-   NewTokenMutation,
-   Role,
-   UserIdQuery
-} from './shared/graphql/gql/graphql'
+import { NewTokenMutation, UserIdQuery } from '~/shared/graphql/gql/graphql'
 
 enum EnumTokens {
    ACCESS_TOKEN = 'accessToken',
@@ -15,9 +11,8 @@ export async function middleware(request: NextRequest) {
    const url = request.url
    const response = new NextResponse()
 
-   const accessToken = cookies.get(EnumTokens.ACCESS_TOKEN)
-   const refreshToken = cookies.get(EnumTokens.REFRESH_TOKEN)
-
+   const accessToken = cookies.get(EnumTokens.ACCESS_TOKEN)?.value
+   const refreshToken = cookies.get(EnumTokens.REFRESH_TOKEN)?.value
    const loginPage = url.includes('/auth/login')
    const registerPage = url.includes('/auth/register')
    const adminPanel = url.includes('/admin')
@@ -49,8 +44,8 @@ export async function middleware(request: NextRequest) {
    }`
       const { auth } = (
          await fetch(
-            process.env.NODE_ENV === 'production'
-               ? (process.env.SERVER_URL as string)
+            process.env.NEXT_PUBLIC_SERVER_URL
+               ? (process.env.NEXT_PUBLIC_SERVER_URL as string)
                : 'http://localhost:5000',
             {
                credentials: 'include',
@@ -60,12 +55,12 @@ export async function middleware(request: NextRequest) {
                method: 'POST',
                headers: {
                   'Content-Type': 'application/json',
-                  Cookie: `${EnumTokens.REFRESH_TOKEN}=${refreshToken.value}`
+                  cookie: `${EnumTokens.REFRESH_TOKEN}=${refreshToken}`
                }
             }
          ).then(res => res.json())
       ).data as NewTokenMutation
-
+      console.log(auth)
       if (auth.newTokens.__typename === 'NewTokensOk') {
          const myDate = new Date()
          myDate.setHours(myDate.getHours() + 4)
@@ -83,52 +78,51 @@ export async function middleware(request: NextRequest) {
       }
    }
    const profileQuery = `query User {
-     user {
-       profile {
-         __typename
-         ... on InternalErrorProblem {
-           message
+  user {
+    profile {
+    __typename
+      ... on InternalErrorProblem {
+        message
+      }
+      ... on VersionMismatchProblem {
+        message
+      }
+      ... on UserProfileOk {
+        profile {
+          id
+          role
+        }
+      }
+    }
+  }
+}`
+   const user = (await fetch(
+      process.env.SERVER_URL
+         ? (process.env.SERVER_URL as string)
+         : 'http://localhost:5000',
+      {
+         credentials: 'include',
+         body: JSON.stringify({
+            query: profileQuery
+         }),
+         method: 'POST',
+         headers: {
+            'Content-Type': 'application/json',
+            Cookie: `${EnumTokens.ACCESS_TOKEN}=${accessToken}`
          }
-         ... on VersionMismatchProblem {
-           message
-         }
-         ... on UserProfileOk {
-           profile {
-             id
-             role
-           }
-         }
-       }
-     }
-   }`
-   const { user } = (
-      await fetch(
-         process.env.NODE_ENV === 'production'
-            ? (process.env.SERVER_URL as string)
-            : 'http://localhost:5000',
-         {
-            credentials: 'include',
-            body: JSON.stringify({
-               query: profileQuery
-            }),
-            method: 'POST',
-            headers: {
-               'Content-Type': 'application/json',
-               Cookie: `${EnumTokens.REFRESH_TOKEN}=${refreshToken.value}`
-            }
-         }
-      ).then(res => res.json())
-   ).data as UserIdQuery
-
-   if ((orderPage && user === undefined) || (adminPanel && user === undefined))
+      }
+   ).then(res => res.json())) as UserIdQuery
+   console.log('user', user)
+   if ((orderPage && user === null) || (adminPanel && user === null))
       return NextResponse.redirect(new URL('/auth/login', url))
 
-   if (
-      adminPanel &&
-      user?.profile.__typename === 'UserProfileOk' &&
-      user.profile.profile.role !== Role.Admin
-   )
-      return NextResponse.redirect(new URL('/auth/login', url))
+   // if (
+   //    adminPanel &&
+   //    user?.profile.__typename === 'UserProfileOk' &&
+   //    user.profile.profile.role !== Role.Admin
+   // ) {
+   //    return NextResponse.redirect(new URL('/catalog', url))
+   // }
 
    return response
 }
