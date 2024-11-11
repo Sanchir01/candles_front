@@ -23,8 +23,8 @@ const documents = {
       types.AllColorDocument,
    'query AllOrders {\n  orders {\n    allOrders {\n      __typename\n      ... on InternalErrorProblem {\n        message\n      }\n      ... on UnauthorizedProblem {\n        message\n      }\n      ... on AllOrdersOk {\n        orders {\n          id\n        }\n      }\n    }\n  }\n}\n\nmutation Mutation($input: CreateOrderInput!) {\n  orders {\n    createOrder(input: $input) {\n      __typename\n      ... on InternalErrorProblem {\n        message\n      }\n      ... on UnauthorizedProblem {\n        message\n      }\n      ... on CreateOrderOk {\n        ok\n      }\n    }\n  }\n}':
       types.AllOrdersDocument,
-   'query UserId {\n  user {\n    profile {\n      __typename\n      ... on InternalErrorProblem {\n        message\n      }\n      ... on VersionMismatchProblem {\n        message\n      }\n      ... on UserProfileOk {\n        profile {\n          id\n          role\n        }\n      }\n    }\n  }\n}':
-      types.UserIdDocument
+   'query UserById {\n  user {\n    profile {\n      __typename\n      ... on InternalErrorProblem {\n        message\n      }\n      ... on VersionMismatchProblem {\n        message\n      }\n      ... on UserProfileOk {\n        profile {\n          id\n          role\n        }\n      }\n    }\n  }\n}':
+      types.UserByIdDocument
 }
 
 /**
@@ -75,8 +75,8 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-   source: 'query UserId {\n  user {\n    profile {\n      __typename\n      ... on InternalErrorProblem {\n        message\n      }\n      ... on VersionMismatchProblem {\n        message\n      }\n      ... on UserProfileOk {\n        profile {\n          id\n          role\n        }\n      }\n    }\n  }\n}'
-): (typeof documents)['query UserId {\n  user {\n    profile {\n      __typename\n      ... on InternalErrorProblem {\n        message\n      }\n      ... on VersionMismatchProblem {\n        message\n      }\n      ... on UserProfileOk {\n        profile {\n          id\n          role\n        }\n      }\n    }\n  }\n}']
+   source: 'query UserById {\n  user {\n    profile {\n      __typename\n      ... on InternalErrorProblem {\n        message\n      }\n      ... on VersionMismatchProblem {\n        message\n      }\n      ... on UserProfileOk {\n        profile {\n          id\n          role\n        }\n      }\n    }\n  }\n}'
+): (typeof documents)['query UserById {\n  user {\n    profile {\n      __typename\n      ... on InternalErrorProblem {\n        message\n      }\n      ... on VersionMismatchProblem {\n        message\n      }\n      ... on UserProfileOk {\n        profile {\n          id\n          role\n        }\n      }\n    }\n  }\n}']
 
 export function graphql(source: string) {
    return (documents as any)[source] ?? {}

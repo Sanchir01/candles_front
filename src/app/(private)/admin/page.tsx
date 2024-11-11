@@ -1,5 +1,11 @@
+'use client'
+import dynamic from 'next/dynamic'
+
+const AdminPageMain = dynamic(() => import('~/widgets/admin/main'), {
+   ssr: false
+})
 const AdminPage = () => {
-   return <div className='text-red-800'>saasdasdsadadadadatest</div>
+   return <AdminPageMain />
 }
 
 export default AdminPage

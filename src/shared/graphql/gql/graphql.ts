@@ -788,9 +788,9 @@ export type MutationMutation = {
    }
 }
 
-export type UserIdQueryVariables = Exact<{ [key: string]: never }>
+export type UserByIdQueryVariables = Exact<{ [key: string]: never }>
 
-export type UserIdQuery = {
+export type UserByIdQuery = {
    __typename?: 'Query'
    user?: {
       __typename?: 'UserQuery'
@@ -2310,13 +2310,13 @@ export const MutationDocument = {
       }
    ]
 } as unknown as DocumentNode<MutationMutation, MutationMutationVariables>
-export const UserIdDocument = {
+export const UserByIdDocument = {
    kind: 'Document',
    definitions: [
       {
          kind: 'OperationDefinition',
          operation: 'query',
-         name: { kind: 'Name', value: 'UserId' },
+         name: { kind: 'Name', value: 'UserById' },
          selectionSet: {
             kind: 'SelectionSet',
             selections: [
@@ -2431,4 +2431,4 @@ export const UserIdDocument = {
          }
       }
    ]
-} as unknown as DocumentNode<UserIdQuery, UserIdQueryVariables>
+} as unknown as DocumentNode<UserByIdQuery, UserByIdQueryVariables>

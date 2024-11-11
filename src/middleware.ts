@@ -1,5 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { NewTokenMutation, UserIdQuery } from '~/shared/graphql/gql/graphql'
+import {
+   NewTokenMutation,
+   Role,
+   UserByIdQuery
+} from '~/shared/graphql/gql/graphql'
 
 enum EnumTokens {
    ACCESS_TOKEN = 'accessToken',
@@ -55,12 +59,11 @@ export async function middleware(request: NextRequest) {
                method: 'POST',
                headers: {
                   'Content-Type': 'application/json',
-                  cookie: `${EnumTokens.REFRESH_TOKEN}=${refreshToken}`
+                  Cookie: `${EnumTokens.REFRESH_TOKEN}=${refreshToken}`
                }
             }
          ).then(res => res.json())
       ).data as NewTokenMutation
-      console.log(auth)
       if (auth.newTokens.__typename === 'NewTokensOk') {
          const myDate = new Date()
          myDate.setHours(myDate.getHours() + 4)
@@ -68,19 +71,20 @@ export async function middleware(request: NextRequest) {
             name: EnumTokens.ACCESS_TOKEN,
             value: auth.newTokens.token,
             expires: myDate,
-            httpOnly: true,
+            httpOnly: false,
             secure: true,
             partitioned: true,
             sameSite: 'none'
          })
 
-         return NextResponse.rewrite(url, response)
+         NextResponse.rewrite(url, response)
       }
    }
-   const profileQuery = `query User {
+   const profileQuery = `
+  query User {
   user {
     profile {
-    __typename
+      __typename
       ... on InternalErrorProblem {
         message
       }
@@ -95,36 +99,39 @@ export async function middleware(request: NextRequest) {
       }
     }
   }
-}`
-   const user = (await fetch(
-      process.env.SERVER_URL
-         ? (process.env.SERVER_URL as string)
-         : 'http://localhost:5000',
-      {
-         credentials: 'include',
-         body: JSON.stringify({
-            query: profileQuery
-         }),
-         method: 'POST',
-         headers: {
-            'Content-Type': 'application/json',
-            Cookie: `${EnumTokens.ACCESS_TOKEN}=${accessToken}`
+}
+`
+   const { user } = (
+      await fetch(
+         process.env.SERVER_URL
+            ? (process.env.SERVER_URL as string)
+            : 'http://localhost:5000',
+         {
+            credentials: 'include',
+            body: JSON.stringify({
+               query: profileQuery
+            }),
+            method: 'POST',
+            headers: {
+               'Content-Type': 'application/json',
+               Cookie: `${EnumTokens.ACCESS_TOKEN}=${accessToken}`
+            }
          }
-      }
-   ).then(res => res.json())) as UserIdQuery
-   console.log('user', user)
-   if ((orderPage && user === null) || (adminPanel && user === null))
+      ).then(res => res.json())
+   ).data as UserByIdQuery
+
+   console.log('user', user?.profile)
+   if (orderPage && user === null) {
       return NextResponse.redirect(new URL('/auth/login', url))
-
-   // if (
-   //    adminPanel &&
-   //    user?.profile.__typename === 'UserProfileOk' &&
-   //    user.profile.profile.role !== Role.Admin
-   // ) {
-   //    return NextResponse.redirect(new URL('/catalog', url))
-   // }
-
-   return response
+   }
+   if (adminPanel && user === null)
+      return NextResponse.redirect(new URL('/auth/login', url))
+   if (
+      user?.profile.__typename === 'UserProfileOk' &&
+      user.profile.profile.role !== Role.Admin
+   ) {
+      return NextResponse.redirect(new URL('/catalog', url))
+   }
 }
 
 export const config = {

@@ -1,7 +1,12 @@
-'use client'
+import { Metadata } from 'next'
 import { HeaderProfileEnum } from '~/shared/constants/headerprofile'
 import st from '~/shared/styles/Admin.module.scss'
 import { Header } from '~/widgets/header'
+
+export const metadata: Metadata = {
+   title: 'Mahakala | Admin'
+}
+
 export default function RootLayout({
    children
 }: {

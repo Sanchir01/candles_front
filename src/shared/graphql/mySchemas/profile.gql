@@ -1,4 +1,4 @@
-query UserId {
+query UserById {
    user {
       profile {
          __typename
