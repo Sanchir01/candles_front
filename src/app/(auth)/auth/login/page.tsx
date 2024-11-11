@@ -1,5 +1,4 @@
 'use client'
-
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useUser } from '~/Providers/store/useUser'
 import {
@@ -18,7 +17,6 @@ import { Input } from '~/shared/ui'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
-import toast from 'react-hot-toast'
 
 import { useLogin } from '~/shared/hooks/userLogin'
 import { type IInputLogin, loginSchema } from '~/shared/types/Auth.types'
@@ -36,6 +34,7 @@ export default function LoginPage() {
    const userStorage = useUser(state => state.setUser)
    const { mutateAsync, isPending } = useLogin()
    const onSubmit = async (data: IInputLogin) => {
+      const { toast } = await import('react-hot-toast')
       try {
          const { auth } = await mutateAsync({
             email: data.email,

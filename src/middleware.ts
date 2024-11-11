@@ -30,6 +30,15 @@ export async function middleware(request: NextRequest) {
    if (loginPage || registerPage) return NextResponse.next()
 
    if (refreshToken === undefined) {
+      response.cookies.set({
+         name: EnumTokens.ACCESS_TOKEN,
+         value: '',
+         expires: new Date(0),
+         httpOnly: false,
+         secure: true,
+         partitioned: true,
+         sameSite: 'none'
+      })
       return NextResponse.redirect(new URL('/auth/login', url))
    }
    if (accessToken === undefined) {
@@ -120,7 +129,6 @@ export async function middleware(request: NextRequest) {
       ).then(res => res.json())
    ).data as UserByIdQuery
 
-   console.log('user', user?.profile)
    if (orderPage && user === null) {
       return NextResponse.redirect(new URL('/auth/login', url))
    }
