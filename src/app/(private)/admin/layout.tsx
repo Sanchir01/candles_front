@@ -1,13 +1,15 @@
-import { Metadata } from 'next'
-import { HeaderProfileEnum } from '~/shared/constants/headerprofile'
-import st from '~/shared/styles/Admin.module.scss'
-import { SidebarProvider, SidebarTrigger } from '~/shared/ui/sidebar'
-import AsideAdmin from '~/widgets/admin/aside'
-import { Header } from '~/widgets/header'
+'use client'
+import dynamic from 'next/dynamic'
+import React from 'react'
+import { HeaderProfileEnum } from '~/shared/constants/header'
+import { SidebarInset, SidebarProvider } from '~/shared/ui/sidebar'
 
-export const metadata: Metadata = {
-   title: 'Mahakala | Admin'
-}
+const AppSidebar = dynamic(() => import('~/widgets/sidebar'), {
+   ssr: false
+})
+const HeaderAdmin = dynamic(() => import('~/widgets/header'), {
+   ssr: false
+})
 
 export default function RootLayout({
    children
@@ -15,15 +17,12 @@ export default function RootLayout({
    children: React.ReactNode
 }) {
    return (
-      <div className={st.admin}>
-         <Header variant={HeaderProfileEnum.PUBLIC} />
-         <SidebarProvider>
-            <AsideAdmin />
-            <SidebarTrigger />
-            <div className='flex flex-col h-screen w-screen overflow-auto'>
-               {children}
-            </div>
-         </SidebarProvider>
-      </div>
+      <SidebarProvider>
+         <AppSidebar />
+         <SidebarInset>
+            <HeaderAdmin isAuth={HeaderProfileEnum.PRIVATE} />
+            {children}
+         </SidebarInset>
+      </SidebarProvider>
    )
 }

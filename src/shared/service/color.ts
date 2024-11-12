@@ -8,7 +8,7 @@ import {
 export const colorService = {
    addToColorKey: 'addToColor',
    allColorKey: 'allColor',
-   //    colorByIdKey: 'colorById',
+   colorByIdKey: 'colorById',
    async addToColor({ title }: { title: string }) {
       return gqlRequest.request({
          document: AddToColorDocument,

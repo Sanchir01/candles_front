@@ -1,5 +1,5 @@
 'use client'
-import { HeaderProfileEnum } from '~/shared/constants/headerprofile'
+import { HeaderProfileEnum } from '~/shared/constants/header'
 import { Header } from '~/widgets/header'
 export default function RootLayout({
    children

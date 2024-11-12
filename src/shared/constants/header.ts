@@ -3,3 +3,6 @@ export enum HeaderProfileEnum {
    AUTH = 'auth',
    PUBLIC = 'public'
 }
+export enum HeaderVariant {
+   ADMIN = 'ADMIN'
+}
