@@ -4,7 +4,7 @@ import { candlesService } from '~/shared/service/candles'
 import { AllCandlesQuery, CandlesSortEnum } from '../graphql/gql/graphql'
 export interface IAllCandles {
    sort: CandlesSortEnum
-   initialdata: AllCandlesQuery
+   initialdata?: AllCandlesQuery
 }
 export const useAllCandles = ({ sort, initialdata }: IAllCandles) => {
    const { data, isPending, isLoading, isSuccess, isFetching } = useQuery({

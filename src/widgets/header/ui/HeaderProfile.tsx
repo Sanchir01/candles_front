@@ -21,7 +21,9 @@ export const HeaderProfile: FC = () => {
    return (
       <DropdownMenu>
          <DropdownMenuTrigger asChild>
-            <UsersRound className='cursor-pointer' />
+            <Button variant={'ghost'} size={'sm'}>
+               <UsersRound className='cursor-pointer' />
+            </Button>
          </DropdownMenuTrigger>
          {userProfile ? (
             <DropdownMenuContent className='mt-3'>
@@ -31,6 +33,7 @@ export const HeaderProfile: FC = () => {
                   <DropdownMenuItem>
                      {userProfile.role === 'admin' && 'Администратор'}
                      <Button
+                        size='icon'
                         onClick={() => (logout(), push('/catalog'))}
                         className='w-full'
                      >
@@ -42,7 +45,6 @@ export const HeaderProfile: FC = () => {
          ) : (
             <DropdownMenuContent className='w-full'>
                <DropdownMenuItem>
-                  {' '}
                   <Button
                      className='w-full'
                      onClick={() => push('/auth/login')}

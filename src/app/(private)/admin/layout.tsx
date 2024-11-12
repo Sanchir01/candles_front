@@ -1,7 +1,7 @@
 'use client'
 import dynamic from 'next/dynamic'
 import React from 'react'
-import { HeaderProfileEnum } from '~/shared/constants/header'
+import { HeaderProfileEnum, HeaderVariant } from '~/shared/constants/header'
 import { SidebarInset, SidebarProvider } from '~/shared/ui/sidebar'
 
 const AppSidebar = dynamic(() => import('~/widgets/sidebar'), {
@@ -20,7 +20,10 @@ export default function RootLayout({
       <SidebarProvider>
          <AppSidebar />
          <SidebarInset>
-            <HeaderAdmin isAuth={HeaderProfileEnum.PRIVATE} />
+            <HeaderAdmin
+               isAuth={HeaderProfileEnum.PRIVATE}
+               variant={HeaderVariant.ADMIN}
+            />
             {children}
          </SidebarInset>
       </SidebarProvider>

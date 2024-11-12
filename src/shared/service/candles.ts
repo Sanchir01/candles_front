@@ -27,7 +27,7 @@ export const candlesService = {
          queryFn: meta => candlesService.allCandles({ sort }),
          queryKey: [candlesService.allCandleKey],
          initialData: initialdata,
-         enabled: !initialdata,
+         enabled: !!initialdata,
          placeholderData: keepPreviousData,
          select: data => data.candles?.allCandles
       })

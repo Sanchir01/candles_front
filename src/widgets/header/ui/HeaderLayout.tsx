@@ -1,7 +1,6 @@
 import { Home } from 'lucide-react'
 import Link from 'next/link'
 import type React from 'react'
-import { ToggleTheme } from '~/features/theme/theme-toggle'
 import { HeaderVariant } from '~/shared/constants/header'
 import style from '~/shared/styles/Header.module.scss'
 import { Button } from '~/shared/ui'
@@ -53,12 +52,13 @@ export const HeaderLayout = ({
                   </Breadcrumb>
                </div>
                <div className='flex gap-3 items-center'>
+                  {theme}
+                  {profile}
                   <Button variant='ghost' size='icon'>
                      <Link href={'.'}>
                         <Home />
                      </Link>
                   </Button>
-                  <ToggleTheme />
                </div>
             </div>
          </header>

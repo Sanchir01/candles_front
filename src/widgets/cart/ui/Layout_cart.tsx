@@ -30,16 +30,16 @@ const LayoutCart: FC<ICartLayout> = ({ content }) => {
    return (
       <Sheet>
          <SheetTrigger asChild>
-            <div className='relative'>
+            <Button className='relative' variant={'ghost'} size={'icon'}>
                <ShoppingCart className='cursor-pointer' />
                {cart?.length === 0 ? (
                   <></>
                ) : (
-                  <span className='absolute top-1 left-[10px] text-[10px]'>
+                  <span className='absolute top-[10px] left-[18px] text-[10px]'>
                      {cart?.length}
                   </span>
                )}
-            </div>
+            </Button>
          </SheetTrigger>
          {
             <SheetContent

@@ -1,108 +1,53 @@
+import { AirplayIcon, CandlestickChart, Clock, Wallet2 } from 'lucide-react'
+const baseUrl = '/admin'
 export const dataSideBar = {
-   versions: ['1.0.1', '1.1.0-alpha', '2.0.0-beta1'],
+   versions: ['0.0.1'],
    navMain: [
       {
-         title: 'Getting Started',
-         url: '#',
+         title: 'Candles',
+         Icon: CandlestickChart,
          items: [
             {
-               title: 'Installation',
-               url: '#'
+               title: 'Все свечи',
+               url: `${baseUrl}/candles`
             },
             {
-               title: 'Project Structure',
-               url: '#'
+               title: 'Создать свечу',
+               url: `${baseUrl}/candles/create`
             }
          ]
       },
       {
-         title: 'Building Your Application',
-         url: '#',
+         title: 'Category',
+         Icon: AirplayIcon,
          items: [
             {
-               title: 'Routing',
-               url: '#'
+               title: 'Все категории',
+               url: `${baseUrl}/category`
             },
             {
-               title: 'Data Fetching',
-               url: '#',
-               isActive: true
-            },
-            {
-               title: 'Rendering',
-               url: '#'
-            },
-            {
-               title: 'Caching',
-               url: '#'
-            },
-            {
-               title: 'Styling',
-               url: '#'
-            },
-            {
-               title: 'Optimizing',
-               url: '#'
-            },
-            {
-               title: 'Configuring',
-               url: '#'
-            },
-            {
-               title: 'Testing',
-               url: '#'
-            },
-            {
-               title: 'Authentication',
-               url: '#'
-            },
-            {
-               title: 'Deploying',
-               url: '#'
-            },
-            {
-               title: 'Upgrading',
-               url: '#'
-            },
-            {
-               title: 'Examples',
-               url: '#'
+               title: 'Создать категорию',
+               url: `${baseUrl}/category/create`
             }
          ]
       },
       {
          title: 'API Reference',
-         url: '#',
+         Icon: CandlestickChart,
          items: [
             {
-               title: 'Components',
-               url: '#'
+               title: 'Все категории',
+               url: `${baseUrl}/category`
             },
             {
-               title: 'File Conventions',
-               url: '#'
-            },
-            {
-               title: 'Functions',
-               url: '#'
-            },
-            {
-               title: 'next.config.js Options',
-               url: '#'
-            },
-            {
-               title: 'CLI',
-               url: '#'
-            },
-            {
-               title: 'Edge Runtime',
-               url: '#'
+               title: 'Создать категорию',
+               url: `${baseUrl}/category/create`
             }
          ]
       },
       {
          title: 'Architecture',
-         url: '#',
+         Icon: Clock,
          items: [
             {
                title: 'Accessibility',
@@ -127,12 +72,16 @@ export const dataSideBar = {
          ]
       },
       {
-         title: 'Community',
-         url: '#',
+         title: 'Orders',
+         Icon: Wallet2,
          items: [
             {
-               title: 'Contribution Guide',
-               url: '#'
+               title: 'Все категории',
+               url: `${baseUrl}/category`
+            },
+            {
+               title: 'Создать категорию',
+               url: `${baseUrl}/category/create`
             }
          ]
       }

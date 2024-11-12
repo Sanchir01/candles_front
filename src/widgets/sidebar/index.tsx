@@ -1,4 +1,5 @@
-import { ChevronRight } from 'lucide-react'
+import { useAutoAnimate } from '@formkit/auto-animate/react'
+import Link from 'next/link'
 import * as React from 'react'
 import { dataSideBar } from '~/shared/constants/sidebar'
 
@@ -7,7 +8,6 @@ import {
    CollapsibleContent,
    CollapsibleTrigger
 } from '~/shared/ui/collapsible'
-import { SearchForm } from '~/shared/ui/search-form'
 import {
    Sidebar,
    SidebarContent,
@@ -25,6 +25,7 @@ import { VersionSwitcher } from '~/shared/ui/version-switcher'
 export default function AppSidebar({
    ...props
 }: React.ComponentProps<typeof Sidebar>) {
+   const [parent] = useAutoAnimate({ duration: 200, easing: 'ease-in' })
    return (
       <Sidebar {...props}>
          <SidebarHeader>
@@ -32,14 +33,13 @@ export default function AppSidebar({
                versions={dataSideBar.versions}
                defaultVersion={dataSideBar.versions[0]}
             />
-            <SearchForm />
          </SidebarHeader>
          <SidebarContent className='gap-0'>
-            {dataSideBar.navMain.map(item => (
+            {dataSideBar.navMain.map(({ title, items, Icon }) => (
                <Collapsible
-                  key={item.title}
-                  title={item.title}
-                  defaultOpen
+                  key={title}
+                  title={title}
+                  defaultOpen={false}
                   className='group/collapsible'
                >
                   <SidebarGroup>
@@ -47,21 +47,18 @@ export default function AppSidebar({
                         asChild
                         className='group/label text-sm text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground'
                      >
-                        <CollapsibleTrigger>
-                           {item.title}{' '}
-                           <ChevronRight className='ml-auto transition-transform group-data-[state=open]/collapsible:rotate-90' />
+                        <CollapsibleTrigger className='w-full flex items-center'>
+                           {title}
+                           <Icon className='ml-auto transition-transform group-data-[state=open]/collapsible:rotate-90' />
                         </CollapsibleTrigger>
                      </SidebarGroupLabel>
-                     <CollapsibleContent>
+                     <CollapsibleContent ref={parent}>
                         <SidebarGroupContent>
                            <SidebarMenu>
-                              {item.items.map(item => (
-                                 <SidebarMenuItem key={item.title}>
-                                    <SidebarMenuButton
-                                       asChild
-                                       isActive={item.isActive}
-                                    >
-                                       <a href={item.url}>{item.title}</a>
+                              {items.map(({ title, url }) => (
+                                 <SidebarMenuItem key={title}>
+                                    <SidebarMenuButton asChild>
+                                       <Link href={url}>{title}</Link>
                                     </SidebarMenuButton>
                                  </SidebarMenuItem>
                               ))}
