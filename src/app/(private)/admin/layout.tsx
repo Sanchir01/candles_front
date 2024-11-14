@@ -1,5 +1,6 @@
 'use client'
 import dynamic from 'next/dynamic'
+import { usePathname } from 'next/navigation'
 import React from 'react'
 import { HeaderProfileEnum, HeaderVariant } from '~/shared/constants/header'
 import { Title } from '~/shared/ui'
@@ -17,6 +18,7 @@ export default function RootLayout({
 }: {
    children: React.ReactNode
 }) {
+   const path = usePathname()
    return (
       <SidebarProvider>
          <AppSidebar />
@@ -25,7 +27,11 @@ export default function RootLayout({
                isAuth={HeaderProfileEnum.PRIVATE}
                variant={HeaderVariant.ADMIN}
             />
-            <Title text='title' size='lg' className='px-5' />
+            <Title
+               text={path === '/admin' ? '' : path.split('/').pop() || ''}
+               size='lg'
+               className='px-5'
+            />
             {children}
          </SidebarInset>
       </SidebarProvider>

@@ -1,13 +1,18 @@
 'use client'
+import { useQuery } from '@tanstack/react-query'
+import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
 import { EntityProductCart } from '~/entities/entitycandles/Carts'
 import { SkeletonCart } from '~/entities/entitycandles/SkeletenCart'
-import { AddToCart } from '~/features/AddToCart'
-import { AddToFavorites } from '~/features/AddToFavorites'
 import { AllCandlesQuery, CandlesSortEnum } from '~/shared/graphql/gql/graphql'
-import { useAllCandles } from '~/shared/hooks/useAllCandles'
-
+import { candlesService } from '~/shared/service/candles'
+const AddToCart = dynamic(() => import('~/features/AddToCart'), {
+   ssr: false
+})
+const AddToFavorites = dynamic(() => import('~/features/AddToFavorites'), {
+   ssr: false
+})
 export type itemsGridType = {
    title: string
    images: string[]
@@ -20,12 +25,15 @@ export type itemsGridType = {
 }[]
 
 const Items = ({ initialdata }: { initialdata: AllCandlesQuery }) => {
-   const { data, isPending, isLoading, isSuccess, isFetching } = useAllCandles({
-      sort: CandlesSortEnum.PriceAsc,
-      initialdata
+   const { data, isLoading, isSuccess } = useQuery({
+      ...candlesService.AllCandlesQueryOptions({
+         sort: CandlesSortEnum.PriceAsc
+      }),
+      initialData: initialdata,
+      enabled: !!initialdata
    })
 
-   return isFetching
+   return isLoading
       ? [...Array(10)].map((_, i) => <SkeletonCart key={i} />)
       : isSuccess && data?.__typename === 'AllCandlesOk'
         ? data.candles.map(

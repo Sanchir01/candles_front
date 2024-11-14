@@ -11,7 +11,10 @@ const CartContent: FC = () => {
       return 'Корзина пуста'
    }
    return cartContent.map(cartItem => (
-      <EntityProductCart children={<div>test</div>} key={cartItem.id} />
+      <EntityProductCart
+         children={<div>{cartItem.id}</div>}
+         key={cartItem.id}
+      />
    ))
 }
 

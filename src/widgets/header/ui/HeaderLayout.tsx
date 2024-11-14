@@ -41,7 +41,7 @@ export const HeaderLayout = ({
                   {theme}
                   {profile}
                   <Button variant='ghost' size='icon'>
-                     <Link href={'.'}>
+                     <Link href={'/'}>
                         <Home />
                      </Link>
                   </Button>
