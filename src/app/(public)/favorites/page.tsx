@@ -1,16 +1,22 @@
 'use client'
 
 import { useAutoAnimate } from '@formkit/auto-animate/react'
+import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useFavorites } from '~/Providers/store/useFavorites'
 import { EntityProductCart } from '~/entities/entitycandles/Carts'
 import { SkeletonCart } from '~/entities/entitycandles/SkeletenCart'
-import { AddToCart } from '~/features/AddToCart'
-import { AddToFavorites } from '~/features/AddToFavorites'
 import { useStoreZustand } from '~/shared/hooks/useStoreZustand'
 import st from '~/shared/styles/Catalog.module.scss'
 import { Button } from '~/shared/ui'
+
+const AddToCart = dynamic(() => import('~/features/AddToCart'), {
+   ssr: false
+})
+const AddToFavorites = dynamic(() => import('~/features/AddToFavorites'), {
+   ssr: false
+})
 
 export default function FavoritesPage() {
    const candlesFavourites = useStoreZustand(

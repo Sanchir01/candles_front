@@ -11,6 +11,7 @@ import {
 import {
    Sidebar,
    SidebarContent,
+   SidebarFooter,
    SidebarGroup,
    SidebarGroupContent,
    SidebarGroupLabel,
@@ -69,6 +70,7 @@ export default function AppSidebar({
                </Collapsible>
             ))}
          </SidebarContent>
+         <SidebarFooter>footer</SidebarFooter>
          <SidebarRail />
       </Sidebar>
    )

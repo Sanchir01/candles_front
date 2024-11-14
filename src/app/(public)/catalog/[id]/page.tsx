@@ -7,6 +7,8 @@ import {
 import { candlesService } from '~/shared/service/candles'
 import { Loader } from '~/shared/ui'
 
+export const revalidate = 86400
+
 export async function generateStaticParams() {
    const candles = await gqlRequest.request(AllCandlesDocument, {
       sort: CandlesSortEnum.PriceDesc
@@ -23,7 +25,7 @@ export async function generateMetadata(props: {
 }) {
    try {
       const params = await props.params
-      const { candles } = await candlesService.candleById(params.id)
+      const { candles } = await candlesService.candleById({ id: params.id })
       if (candles?.candleById.__typename == 'CandlesByIdOk') {
          return {
             title: candles.candleById.candle.id
@@ -40,7 +42,7 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
    if (params.id === 'favicon.ico') {
       return <Loader />
    }
-   const { candles } = await candlesService.candleById(params.id)
+   const { candles } = await candlesService.candleById({ id: params.id })
 
    return (
       <div>

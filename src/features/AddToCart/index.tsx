@@ -5,7 +5,7 @@ export interface IAddToCart extends ICart {
    text: string
 }
 
-export const AddToCart = ({
+const AddToCart = ({
    id,
    categoryId,
    colorId,
@@ -39,3 +39,4 @@ export const AddToCart = ({
       </Button>
    )
 }
+export default AddToCart

@@ -6,6 +6,7 @@ import { HeaderLogo } from '~/widgets/header/ui/HeaderLogo'
 import { HeaderNav } from '~/widgets/header/ui/HeaderNav'
 import { HeaderProfile } from '~/widgets/header/ui/HeaderProfile'
 import HeaderAdmin from './ui/HeaderAdmin'
+import HeaderBreadcrumbs from './ui/HeaderBreadcrumbs'
 
 const Header = ({
    isAuth,
@@ -19,6 +20,7 @@ const Header = ({
       theme={<ToggleTheme />}
       logo={<HeaderLogo />}
       admin={<HeaderAdmin />}
+      breadcrumbs={<HeaderBreadcrumbs />}
    />
 )
 export default Header

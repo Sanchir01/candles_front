@@ -11,11 +11,10 @@ interface IBreadcrumbsProps {
    items: IBreadcrumbItem[]
 }
 
-export function BreadcrumbsHeaderAdmin({ items }: IBreadcrumbsProps) {
+export function Breadcrumbs({ items }: IBreadcrumbsProps) {
    return (
       <nav className='flex' aria-label='Breadcrumb'>
          <ol className='flex items-center space-x-2'>
-            {/* Desktop - показывать все элементы */}
             <div className='hidden md:flex md:items-center md:space-x-2'>
                {items.map((item, index) => (
                   <React.Fragment key={item.href}>
@@ -37,7 +36,6 @@ export function BreadcrumbsHeaderAdmin({ items }: IBreadcrumbsProps) {
                   </React.Fragment>
                ))}
             </div>
-            {/* Mobile - показывать только предыдущий и текущий */}
             <div className='flex md:hidden items-center space-x-2'>
                {items.length > 1 && (
                   <>

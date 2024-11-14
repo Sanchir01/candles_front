@@ -2,7 +2,6 @@
 import { useFavorites } from '~/Providers/store/useFavorites'
 
 import { Heart } from 'lucide-react'
-import { FC } from 'react'
 import { useMediaQuery } from '~/shared/hooks/useMediaQuery'
 import { useStoreZustand } from '~/shared/hooks/useStoreZustand'
 
@@ -12,7 +11,7 @@ import { Button } from '~/shared/ui'
 export interface IToggleFavoritesFeature
    extends Omit<ProductCardPropsType, ''> {}
 
-export const AddToFavorites = ({
+const AddToFavorites = ({
    id,
    slug,
    colorId,
@@ -63,3 +62,4 @@ export const AddToFavorites = ({
       </Button>
    )
 }
+export default AddToFavorites

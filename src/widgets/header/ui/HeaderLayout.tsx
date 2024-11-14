@@ -1,7 +1,7 @@
 import { Home } from 'lucide-react'
 import Link from 'next/link'
 import type React from 'react'
-import { AdaptiveBreadcrumbsHeaderAdmin } from '~/app/(private)/admin/useBread'
+
 import { HeaderVariant } from '~/shared/constants/header'
 import style from '~/shared/styles/Header.module.scss'
 import { Button } from '~/shared/ui'
@@ -15,6 +15,7 @@ export interface HeaderLayoutProps {
    admin?: React.ReactNode
    theme?: React.ReactNode
    variant?: HeaderVariant
+   breadcrumbs?: React.ReactNode
 }
 
 export const HeaderLayout = ({
@@ -24,7 +25,8 @@ export const HeaderLayout = ({
    profile,
    admin,
    variant,
-   theme
+   theme,
+   breadcrumbs
 }: HeaderLayoutProps) => {
    if (variant === HeaderVariant.ADMIN) {
       return (
@@ -33,7 +35,7 @@ export const HeaderLayout = ({
                <div className='flex items-center'>
                   <SidebarTrigger className='-ml-1' />
                   <Separator orientation='vertical' className='mr-2 h-4' />
-                  <AdaptiveBreadcrumbsHeaderAdmin />
+                  {breadcrumbs}
                </div>
                <div className='flex gap-3 items-center'>
                   {theme}

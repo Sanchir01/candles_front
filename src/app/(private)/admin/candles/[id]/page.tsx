@@ -18,7 +18,7 @@ const AdminOneCandle: NextPage = () => {
       ),
       enabled: data?.__typename === 'CandlesByIdOk'
    })
- 
+
    return <div>{id}</div>
 }
 

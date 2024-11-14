@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { NewTokenMutation } from '~/shared/graphql/gql/graphql'
+import { NewTokenMutation, Role } from '~/shared/graphql/gql/graphql'
 
 enum EnumTokens {
    ACCESS_TOKEN = 'accessToken',
@@ -124,19 +124,19 @@ export async function middleware(request: NextRequest) {
          }
       }
    ).then(res => res.json())
-   console.log(data)
+   // console.log(data)
 
    if (orderPage && data.user === null) {
       return NextResponse.redirect(new URL('/auth/login', url))
    }
    if (adminPanel && data === null)
       return NextResponse.redirect(new URL('/auth/login', url))
-   // if (
-   //    user?.profile.__typename === 'UserProfileOk' &&
-   //    user.profile.profile.role !== Role.Admin
-   // ) {
-   //    return NextResponse.redirect(new URL('/catalog', url))
-   // }
+   if (
+      data?.user?.profile.__typename === 'UserProfileOk' &&
+      data.user.profile.profile.role !== Role.Admin
+   ) {
+      return NextResponse.redirect(new URL('/catalog', url))
+   }
 }
 
 export const config = {
