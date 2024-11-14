@@ -36,14 +36,14 @@ query CandleById($input: CandlesByIdInput!) {
          }
          ... on CandlesByIdOk {
             candle {
+               price
+               images
                id
-               title
-               version
                color_id
                category_id
-               images
-               price
                slug
+               title
+               version
             }
          }
       }

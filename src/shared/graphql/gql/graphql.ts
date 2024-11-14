@@ -74,6 +74,16 @@ export type AllOrdersResult =
    | InternalErrorProblem
    | UnauthorizedProblem
 
+export type AllUserOrdersOk = {
+   __typename?: 'AllUserOrdersOk'
+   orders: Array<Orders>
+}
+
+export type AllUserOrdersResult =
+   | AllUserOrdersOk
+   | InternalErrorProblem
+   | UnauthorizedProblem
+
 export type AuthMutations = {
    __typename?: 'AuthMutations'
    login: LoginResult
@@ -333,11 +343,11 @@ export type ColorMutationCreateColorArgs = {
 export type ColorQuery = {
    __typename?: 'ColorQuery'
    allColor: AllColorResult
-   colorByManyId: ColorByIdResult
+   colorById: ColorByIdResult
    colorBySlug: ColorBySlugResult
 }
 
-export type ColorQueryColorByManyIdArgs = {
+export type ColorQueryColorByIdArgs = {
    input: ColorByIdInput
 }
 
@@ -451,6 +461,7 @@ export type OrderMutationsCreateOrderArgs = {
 export type OrderQuery = {
    __typename?: 'OrderQuery'
    allOrders: AllOrdersResult
+   allUserOrders: AllUserOrdersResult
 }
 
 export type Orders = {
@@ -669,14 +680,14 @@ export type CandleByIdQuery = {
               __typename: 'CandlesByIdOk'
               candle: {
                  __typename?: 'Candles'
+                 price: number
+                 images: Array<string>
                  id: any
-                 title: string
-                 version: any
                  color_id: any
                  category_id: any
-                 images: Array<string>
-                 price: number
                  slug: string
+                 title: string
+                 version: any
               }
            }
          | { __typename: 'InternalErrorProblem'; message: string }
@@ -701,6 +712,29 @@ export type AllCategoryQuery = {
               }>
            }
          | { __typename: 'InternalErrorProblem'; message: string }
+   } | null
+}
+
+export type CategoryByIdQueryVariables = Exact<{
+   input: CategoryByIdInput
+}>
+
+export type CategoryByIdQuery = {
+   __typename?: 'Query'
+   category?: {
+      __typename?: 'CategoryQuery'
+      categoryById:
+         | {
+              __typename?: 'CategoryByIdOk'
+              category?: {
+                 __typename?: 'Category'
+                 title: string
+                 version: any
+                 id: any
+              } | null
+           }
+         | { __typename?: 'InternalErrorProblem'; message: string }
+         | { __typename?: 'VersionMismatchProblem'; message: string }
    } | null
 }
 
@@ -741,6 +775,30 @@ export type AllColorQuery = {
    }
 }
 
+export type ColorByIdQueryVariables = Exact<{
+   input: ColorByIdInput
+}>
+
+export type ColorByIdQuery = {
+   __typename?: 'Query'
+   color: {
+      __typename?: 'ColorQuery'
+      colorById:
+         | {
+              __typename?: 'ColorByIdOk'
+              colors: {
+                 __typename?: 'Color'
+                 id: any
+                 slug: string
+                 title: string
+                 version: any
+              }
+           }
+         | { __typename?: 'InternalErrorProblem'; message: string }
+         | { __typename?: 'VersionMismatchProblem'; message: string }
+   }
+}
+
 export type AddToColorMutationVariables = Exact<{
    input: CreateColorInput
 }>
@@ -766,10 +824,40 @@ export type AllOrdersQuery = {
       allOrders:
          | {
               __typename: 'AllOrdersOk'
-              orders: Array<{ __typename?: 'Orders'; id: any }>
+              orders: Array<{
+                 __typename?: 'Orders'
+                 id: any
+                 status: string
+                 total_amount: number
+                 userId: any
+                 version: any
+              }>
            }
          | { __typename: 'InternalErrorProblem'; message: string }
          | { __typename: 'UnauthorizedProblem'; message: string }
+   }
+}
+
+export type AllUserOrdersQueryVariables = Exact<{ [key: string]: never }>
+
+export type AllUserOrdersQuery = {
+   __typename?: 'Query'
+   orders: {
+      __typename?: 'OrderQuery'
+      allUserOrders:
+         | {
+              __typename?: 'AllUserOrdersOk'
+              orders: Array<{
+                 __typename?: 'Orders'
+                 id: any
+                 status: string
+                 total_amount: number
+                 userId: any
+                 version: any
+              }>
+           }
+         | { __typename?: 'InternalErrorProblem'; message: string }
+         | { __typename?: 'UnauthorizedProblem'; message: string }
    }
 }
 
@@ -1493,21 +1581,21 @@ export const CandleByIdDocument = {
                                                       kind: 'Field',
                                                       name: {
                                                          kind: 'Name',
+                                                         value: 'price'
+                                                      }
+                                                   },
+                                                   {
+                                                      kind: 'Field',
+                                                      name: {
+                                                         kind: 'Name',
+                                                         value: 'images'
+                                                      }
+                                                   },
+                                                   {
+                                                      kind: 'Field',
+                                                      name: {
+                                                         kind: 'Name',
                                                          value: 'id'
-                                                      }
-                                                   },
-                                                   {
-                                                      kind: 'Field',
-                                                      name: {
-                                                         kind: 'Name',
-                                                         value: 'title'
-                                                      }
-                                                   },
-                                                   {
-                                                      kind: 'Field',
-                                                      name: {
-                                                         kind: 'Name',
-                                                         value: 'version'
                                                       }
                                                    },
                                                    {
@@ -1528,21 +1616,21 @@ export const CandleByIdDocument = {
                                                       kind: 'Field',
                                                       name: {
                                                          kind: 'Name',
-                                                         value: 'images'
-                                                      }
-                                                   },
-                                                   {
-                                                      kind: 'Field',
-                                                      name: {
-                                                         kind: 'Name',
-                                                         value: 'price'
-                                                      }
-                                                   },
-                                                   {
-                                                      kind: 'Field',
-                                                      name: {
-                                                         kind: 'Name',
                                                          value: 'slug'
+                                                      }
+                                                   },
+                                                   {
+                                                      kind: 'Field',
+                                                      name: {
+                                                         kind: 'Name',
+                                                         value: 'title'
+                                                      }
+                                                   },
+                                                   {
+                                                      kind: 'Field',
+                                                      name: {
+                                                         kind: 'Name',
+                                                         value: 'version'
                                                       }
                                                    }
                                                 ]
@@ -1669,6 +1757,157 @@ export const AllCategoryDocument = {
       }
    ]
 } as unknown as DocumentNode<AllCategoryQuery, AllCategoryQueryVariables>
+export const CategoryByIdDocument = {
+   kind: 'Document',
+   definitions: [
+      {
+         kind: 'OperationDefinition',
+         operation: 'query',
+         name: { kind: 'Name', value: 'CategoryById' },
+         variableDefinitions: [
+            {
+               kind: 'VariableDefinition',
+               variable: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'input' }
+               },
+               type: {
+                  kind: 'NonNullType',
+                  type: {
+                     kind: 'NamedType',
+                     name: { kind: 'Name', value: 'CategoryByIdInput' }
+                  }
+               }
+            }
+         ],
+         selectionSet: {
+            kind: 'SelectionSet',
+            selections: [
+               {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'category' },
+                  selectionSet: {
+                     kind: 'SelectionSet',
+                     selections: [
+                        {
+                           kind: 'Field',
+                           name: { kind: 'Name', value: 'categoryById' },
+                           arguments: [
+                              {
+                                 kind: 'Argument',
+                                 name: { kind: 'Name', value: 'input' },
+                                 value: {
+                                    kind: 'Variable',
+                                    name: { kind: 'Name', value: 'input' }
+                                 }
+                              }
+                           ],
+                           selectionSet: {
+                              kind: 'SelectionSet',
+                              selections: [
+                                 {
+                                    kind: 'InlineFragment',
+                                    typeCondition: {
+                                       kind: 'NamedType',
+                                       name: {
+                                          kind: 'Name',
+                                          value: 'CategoryByIdOk'
+                                       }
+                                    },
+                                    selectionSet: {
+                                       kind: 'SelectionSet',
+                                       selections: [
+                                          {
+                                             kind: 'Field',
+                                             name: {
+                                                kind: 'Name',
+                                                value: 'category'
+                                             },
+                                             selectionSet: {
+                                                kind: 'SelectionSet',
+                                                selections: [
+                                                   {
+                                                      kind: 'Field',
+                                                      name: {
+                                                         kind: 'Name',
+                                                         value: 'title'
+                                                      }
+                                                   },
+                                                   {
+                                                      kind: 'Field',
+                                                      name: {
+                                                         kind: 'Name',
+                                                         value: 'version'
+                                                      }
+                                                   },
+                                                   {
+                                                      kind: 'Field',
+                                                      name: {
+                                                         kind: 'Name',
+                                                         value: 'id'
+                                                      }
+                                                   }
+                                                ]
+                                             }
+                                          }
+                                       ]
+                                    }
+                                 },
+                                 {
+                                    kind: 'InlineFragment',
+                                    typeCondition: {
+                                       kind: 'NamedType',
+                                       name: {
+                                          kind: 'Name',
+                                          value: 'InternalErrorProblem'
+                                       }
+                                    },
+                                    selectionSet: {
+                                       kind: 'SelectionSet',
+                                       selections: [
+                                          {
+                                             kind: 'Field',
+                                             name: {
+                                                kind: 'Name',
+                                                value: 'message'
+                                             }
+                                          }
+                                       ]
+                                    }
+                                 },
+                                 {
+                                    kind: 'InlineFragment',
+                                    typeCondition: {
+                                       kind: 'NamedType',
+                                       name: {
+                                          kind: 'Name',
+                                          value: 'VersionMismatchProblem'
+                                       }
+                                    },
+                                    selectionSet: {
+                                       kind: 'SelectionSet',
+                                       selections: [
+                                          {
+                                             kind: 'Field',
+                                             name: {
+                                                kind: 'Name',
+                                                value: 'message'
+                                             }
+                                          }
+                                       ]
+                                    }
+                                 }
+                              ]
+                           }
+                        }
+                     ]
+                  }
+               }
+            ]
+         }
+      }
+   ]
+} as unknown as DocumentNode<CategoryByIdQuery, CategoryByIdQueryVariables>
 export const AddCategoryDocument = {
    kind: 'Document',
    definitions: [
@@ -1921,6 +2160,164 @@ export const AllColorDocument = {
       }
    ]
 } as unknown as DocumentNode<AllColorQuery, AllColorQueryVariables>
+export const ColorByIdDocument = {
+   kind: 'Document',
+   definitions: [
+      {
+         kind: 'OperationDefinition',
+         operation: 'query',
+         name: { kind: 'Name', value: 'ColorById' },
+         variableDefinitions: [
+            {
+               kind: 'VariableDefinition',
+               variable: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'input' }
+               },
+               type: {
+                  kind: 'NonNullType',
+                  type: {
+                     kind: 'NamedType',
+                     name: { kind: 'Name', value: 'ColorByIdInput' }
+                  }
+               }
+            }
+         ],
+         selectionSet: {
+            kind: 'SelectionSet',
+            selections: [
+               {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'color' },
+                  selectionSet: {
+                     kind: 'SelectionSet',
+                     selections: [
+                        {
+                           kind: 'Field',
+                           name: { kind: 'Name', value: 'colorById' },
+                           arguments: [
+                              {
+                                 kind: 'Argument',
+                                 name: { kind: 'Name', value: 'input' },
+                                 value: {
+                                    kind: 'Variable',
+                                    name: { kind: 'Name', value: 'input' }
+                                 }
+                              }
+                           ],
+                           selectionSet: {
+                              kind: 'SelectionSet',
+                              selections: [
+                                 {
+                                    kind: 'InlineFragment',
+                                    typeCondition: {
+                                       kind: 'NamedType',
+                                       name: {
+                                          kind: 'Name',
+                                          value: 'InternalErrorProblem'
+                                       }
+                                    },
+                                    selectionSet: {
+                                       kind: 'SelectionSet',
+                                       selections: [
+                                          {
+                                             kind: 'Field',
+                                             name: {
+                                                kind: 'Name',
+                                                value: 'message'
+                                             }
+                                          }
+                                       ]
+                                    }
+                                 },
+                                 {
+                                    kind: 'InlineFragment',
+                                    typeCondition: {
+                                       kind: 'NamedType',
+                                       name: {
+                                          kind: 'Name',
+                                          value: 'VersionMismatchProblem'
+                                       }
+                                    },
+                                    selectionSet: {
+                                       kind: 'SelectionSet',
+                                       selections: [
+                                          {
+                                             kind: 'Field',
+                                             name: {
+                                                kind: 'Name',
+                                                value: 'message'
+                                             }
+                                          }
+                                       ]
+                                    }
+                                 },
+                                 {
+                                    kind: 'InlineFragment',
+                                    typeCondition: {
+                                       kind: 'NamedType',
+                                       name: {
+                                          kind: 'Name',
+                                          value: 'ColorByIdOk'
+                                       }
+                                    },
+                                    selectionSet: {
+                                       kind: 'SelectionSet',
+                                       selections: [
+                                          {
+                                             kind: 'Field',
+                                             name: {
+                                                kind: 'Name',
+                                                value: 'colors'
+                                             },
+                                             selectionSet: {
+                                                kind: 'SelectionSet',
+                                                selections: [
+                                                   {
+                                                      kind: 'Field',
+                                                      name: {
+                                                         kind: 'Name',
+                                                         value: 'id'
+                                                      }
+                                                   },
+                                                   {
+                                                      kind: 'Field',
+                                                      name: {
+                                                         kind: 'Name',
+                                                         value: 'slug'
+                                                      }
+                                                   },
+                                                   {
+                                                      kind: 'Field',
+                                                      name: {
+                                                         kind: 'Name',
+                                                         value: 'title'
+                                                      }
+                                                   },
+                                                   {
+                                                      kind: 'Field',
+                                                      name: {
+                                                         kind: 'Name',
+                                                         value: 'version'
+                                                      }
+                                                   }
+                                                ]
+                                             }
+                                          }
+                                       ]
+                                    }
+                                 }
+                              ]
+                           }
+                        }
+                     ]
+                  }
+               }
+            ]
+         }
+      }
+   ]
+} as unknown as DocumentNode<ColorByIdQuery, ColorByIdQueryVariables>
 export const AddToColorDocument = {
    kind: 'Document',
    definitions: [
@@ -2101,6 +2498,145 @@ export const AllOrdersDocument = {
                                        kind: 'NamedType',
                                        name: {
                                           kind: 'Name',
+                                          value: 'AllOrdersOk'
+                                       }
+                                    },
+                                    selectionSet: {
+                                       kind: 'SelectionSet',
+                                       selections: [
+                                          {
+                                             kind: 'Field',
+                                             name: {
+                                                kind: 'Name',
+                                                value: 'orders'
+                                             },
+                                             selectionSet: {
+                                                kind: 'SelectionSet',
+                                                selections: [
+                                                   {
+                                                      kind: 'Field',
+                                                      name: {
+                                                         kind: 'Name',
+                                                         value: 'id'
+                                                      }
+                                                   },
+                                                   {
+                                                      kind: 'Field',
+                                                      name: {
+                                                         kind: 'Name',
+                                                         value: 'status'
+                                                      }
+                                                   },
+                                                   {
+                                                      kind: 'Field',
+                                                      name: {
+                                                         kind: 'Name',
+                                                         value: 'total_amount'
+                                                      }
+                                                   },
+                                                   {
+                                                      kind: 'Field',
+                                                      name: {
+                                                         kind: 'Name',
+                                                         value: 'userId'
+                                                      }
+                                                   },
+                                                   {
+                                                      kind: 'Field',
+                                                      name: {
+                                                         kind: 'Name',
+                                                         value: 'version'
+                                                      }
+                                                   }
+                                                ]
+                                             }
+                                          }
+                                       ]
+                                    }
+                                 },
+                                 {
+                                    kind: 'InlineFragment',
+                                    typeCondition: {
+                                       kind: 'NamedType',
+                                       name: {
+                                          kind: 'Name',
+                                          value: 'InternalErrorProblem'
+                                       }
+                                    },
+                                    selectionSet: {
+                                       kind: 'SelectionSet',
+                                       selections: [
+                                          {
+                                             kind: 'Field',
+                                             name: {
+                                                kind: 'Name',
+                                                value: 'message'
+                                             }
+                                          }
+                                       ]
+                                    }
+                                 },
+                                 {
+                                    kind: 'InlineFragment',
+                                    typeCondition: {
+                                       kind: 'NamedType',
+                                       name: {
+                                          kind: 'Name',
+                                          value: 'UnauthorizedProblem'
+                                       }
+                                    },
+                                    selectionSet: {
+                                       kind: 'SelectionSet',
+                                       selections: [
+                                          {
+                                             kind: 'Field',
+                                             name: {
+                                                kind: 'Name',
+                                                value: 'message'
+                                             }
+                                          }
+                                       ]
+                                    }
+                                 }
+                              ]
+                           }
+                        }
+                     ]
+                  }
+               }
+            ]
+         }
+      }
+   ]
+} as unknown as DocumentNode<AllOrdersQuery, AllOrdersQueryVariables>
+export const AllUserOrdersDocument = {
+   kind: 'Document',
+   definitions: [
+      {
+         kind: 'OperationDefinition',
+         operation: 'query',
+         name: { kind: 'Name', value: 'AllUserOrders' },
+         selectionSet: {
+            kind: 'SelectionSet',
+            selections: [
+               {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'orders' },
+                  selectionSet: {
+                     kind: 'SelectionSet',
+                     selections: [
+                        {
+                           kind: 'Field',
+                           name: { kind: 'Name', value: 'allUserOrders' },
+                           selectionSet: {
+                              kind: 'SelectionSet',
+                              selections: [
+                                 {
+                                    kind: 'InlineFragment',
+                                    typeCondition: {
+                                       kind: 'NamedType',
+                                       name: {
+                                          kind: 'Name',
                                           value: 'InternalErrorProblem'
                                        }
                                     },
@@ -2145,7 +2681,7 @@ export const AllOrdersDocument = {
                                        kind: 'NamedType',
                                        name: {
                                           kind: 'Name',
-                                          value: 'AllOrdersOk'
+                                          value: 'AllUserOrdersOk'
                                        }
                                     },
                                     selectionSet: {
@@ -2166,6 +2702,34 @@ export const AllOrdersDocument = {
                                                          kind: 'Name',
                                                          value: 'id'
                                                       }
+                                                   },
+                                                   {
+                                                      kind: 'Field',
+                                                      name: {
+                                                         kind: 'Name',
+                                                         value: 'status'
+                                                      }
+                                                   },
+                                                   {
+                                                      kind: 'Field',
+                                                      name: {
+                                                         kind: 'Name',
+                                                         value: 'total_amount'
+                                                      }
+                                                   },
+                                                   {
+                                                      kind: 'Field',
+                                                      name: {
+                                                         kind: 'Name',
+                                                         value: 'userId'
+                                                      }
+                                                   },
+                                                   {
+                                                      kind: 'Field',
+                                                      name: {
+                                                         kind: 'Name',
+                                                         value: 'version'
+                                                      }
                                                    }
                                                 ]
                                              }
@@ -2183,7 +2747,7 @@ export const AllOrdersDocument = {
          }
       }
    ]
-} as unknown as DocumentNode<AllOrdersQuery, AllOrdersQueryVariables>
+} as unknown as DocumentNode<AllUserOrdersQuery, AllUserOrdersQueryVariables>
 export const MutationDocument = {
    kind: 'Document',
    definitions: [

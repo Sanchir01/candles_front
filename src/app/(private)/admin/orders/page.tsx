@@ -1,53 +1,39 @@
-import { FC } from 'react'
+'use client'
+import { useQuery } from '@tanstack/react-query'
+import { NextPage } from 'next'
+import { orderService } from '~/shared/service/orders'
 import { Skeleton } from '~/shared/ui'
 import AdminItemLine from '~/shared/ui/adminItem'
 
-const page: FC = () => {
+const AdminOrdersPage: NextPage = () => {
+   const { data, isLoading, isSuccess } = useQuery({
+      ...orderService.allOrdersQueryOptions()
+   })
    return (
       <div className='flex flex-1 flex-col gap-4 p-4'>
-         <div className='grid auto-rows-min gap-4 md:grid-cols-3'>
-            <Skeleton className='aspect-video rounded-xl' />
-            <Skeleton className='aspect-video rounded-xl' />
-            <Skeleton className='aspect-video rounded-xl' />
-         </div>
-         <AdminItemLine
-            id={'sadad'}
-            title={'sadsad'}
-            href={'/admin'}
-            Delete={<div>tes</div>}
-         />
-         <AdminItemLine
-            id={'sadad'}
-            title={'sadsad'}
-            href={'/admin'}
-            Delete={<div>tes</div>}
-         />
-         <AdminItemLine
-            id={'sadad'}
-            title={'sadsad'}
-            href={'/admin'}
-            Delete={<div>tes</div>}
-         />
-         <AdminItemLine
-            id={'sadad'}
-            title={'sadsad'}
-            href={'/admin'}
-            Delete={<div>tes</div>}
-         />
-         <AdminItemLine
-            id={'sadad'}
-            title={'sadsad'}
-            href={'/admin'}
-            Delete={<div>tes</div>}
-         />
-         <AdminItemLine
-            id={'sadad'}
-            title={'sadsad'}
-            href={'/admin'}
-            Delete={<div>tes</div>}
-         />
+         {isLoading ? (
+            <div className='grid auto-rows-min gap-4 md:grid-cols-3'>
+               <Skeleton className='aspect-video rounded-xl' />
+               <Skeleton className='aspect-video rounded-xl' />
+               <Skeleton className='aspect-video rounded-xl' />
+            </div>
+         ) : isSuccess &&
+           data?.__typename === 'AllOrdersOk' &&
+           data.orders.length !== 0 ? (
+            data.orders.map(({ id, status, userId, total_amount }) => (
+               <AdminItemLine
+                  key={id}
+                  id={id}
+                  title={status}
+                  href={'/admin'}
+                  Delete={<div>{total_amount}</div>}
+               />
+            ))
+         ) : (
+            <div className=''>нету заказов</div>
+         )}
       </div>
    )
 }
 
-export default page
+export default AdminOrdersPage

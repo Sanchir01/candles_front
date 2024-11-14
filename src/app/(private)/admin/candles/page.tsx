@@ -1,5 +1,6 @@
 'use client'
 import { useQuery } from '@tanstack/react-query'
+import Link from 'next/link'
 import { CandlesSortEnum } from '~/shared/graphql/gql/graphql'
 import { candlesService } from '~/shared/service/candles'
 import AdminItemLine from '~/shared/ui/adminItem'
@@ -22,13 +23,14 @@ const AdminPage = () => {
                  ))
                : isSuccess && data?.__typename === 'AllCandlesOk'
                  ? data.candles.map(({ id, title }) => (
-                      <AdminItemLine
-                         id={id}
-                         title={title}
-                         key={id}
-                         href={`/admin/candles/${id}`}
-                         Delete={<div>delete</div>}
-                      />
+                      <Link href={`/admin/candles/${id}`} key={id}>
+                         <AdminItemLine
+                            id={id}
+                            title={title}
+                            href={`/admin/candles/${id}`}
+                            Delete={<div>delete</div>}
+                         />
+                      </Link>
                    ))
                  : 'нету доступных свеч'}
          </div>

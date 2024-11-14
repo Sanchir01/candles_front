@@ -2,7 +2,8 @@ import { queryOptions } from '@tanstack/react-query'
 import { gqlRequest } from '~/shared/api/api-instance'
 import {
    AddToColorDocument,
-   AllColorDocument
+   AllColorDocument,
+   ColorByIdDocument
 } from '~/shared/graphql/gql/graphql'
 
 export const colorService = {
@@ -17,6 +18,12 @@ export const colorService = {
    },
    async allColor() {
       return gqlRequest.request({ document: AllColorDocument })
+   },
+   async colorById({ id }: { id: string }) {
+      return gqlRequest.request({
+         document: ColorByIdDocument,
+         variables: { input: { id } }
+      })
    },
    allColorQueryOptions: () => {
       return queryOptions({

@@ -2,16 +2,16 @@ import { ChevronRight } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
 
-interface BreadcrumbItem {
+interface IBreadcrumbItem {
    label: string
    href: string
 }
 
-interface BreadcrumbsProps {
-   items: BreadcrumbItem[]
+interface IBreadcrumbsProps {
+   items: IBreadcrumbItem[]
 }
 
-export function BreadcrumbsHeaderAdmin({ items }: BreadcrumbsProps) {
+export function BreadcrumbsHeaderAdmin({ items }: IBreadcrumbsProps) {
    return (
       <nav className='flex' aria-label='Breadcrumb'>
          <ol className='flex items-center space-x-2'>
@@ -37,7 +37,6 @@ export function BreadcrumbsHeaderAdmin({ items }: BreadcrumbsProps) {
                   </React.Fragment>
                ))}
             </div>
-
             {/* Mobile - показывать только предыдущий и текущий */}
             <div className='flex md:hidden items-center space-x-2'>
                {items.length > 1 && (
