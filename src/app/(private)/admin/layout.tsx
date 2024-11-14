@@ -2,6 +2,7 @@
 import dynamic from 'next/dynamic'
 import React from 'react'
 import { HeaderProfileEnum, HeaderVariant } from '~/shared/constants/header'
+import { Title } from '~/shared/ui'
 import { SidebarInset, SidebarProvider } from '~/shared/ui/sidebar'
 
 const AppSidebar = dynamic(() => import('~/widgets/sidebar'), {
@@ -24,6 +25,7 @@ export default function RootLayout({
                isAuth={HeaderProfileEnum.PRIVATE}
                variant={HeaderVariant.ADMIN}
             />
+            <Title text='title' size='lg' className='px-5' />
             {children}
          </SidebarInset>
       </SidebarProvider>

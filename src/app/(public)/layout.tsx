@@ -8,7 +8,7 @@ export default function RootLayout({
 }) {
    return (
       <>
-         <Header  isAuth={HeaderProfileEnum.PUBLIC} />
+         <Header isAuth={HeaderProfileEnum.PUBLIC} />
          <main>{children}</main>
          <div className=''>tes</div>
       </>

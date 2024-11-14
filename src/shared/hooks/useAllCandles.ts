@@ -8,7 +8,9 @@ export interface IAllCandles {
 }
 export const useAllCandles = ({ sort, initialdata }: IAllCandles) => {
    const { data, isPending, isLoading, isSuccess, isFetching } = useQuery({
-      ...candlesService.AllCandlesQueryOptions({ sort, initialdata })
+      ...candlesService.AllCandlesQueryOptions({ sort }),
+      initialData: initialdata,
+      enabled: !!initialdata
    })
 
    return { data, isPending, isSuccess, isLoading, isFetching }

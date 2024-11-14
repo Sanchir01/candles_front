@@ -26,7 +26,7 @@ const AdminPage = () => {
                          id={id}
                          title={title}
                          key={id}
-                         href={`/admin/${id}`}
+                         href={`/admin/candles/${id}`}
                          Delete={<div>delete</div>}
                       />
                    ))

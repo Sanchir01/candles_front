@@ -5,7 +5,6 @@ import {
    CandleByIdDocument
 } from '~/shared/graphql/gql/graphql'
 import { CandlesSortEnum } from '~/shared/graphql/gql/graphql'
-import { IAllCandles } from '~/shared/hooks/useAllCandles'
 
 export const candlesService = {
    allCandleKey: 'allcandles',
@@ -22,12 +21,11 @@ export const candlesService = {
          variables: { input: { id: id } }
       })
    },
-   AllCandlesQueryOptions: ({ sort, initialdata }: IAllCandles) => {
+   AllCandlesQueryOptions: ({ sort }: { sort: CandlesSortEnum }) => {
       return queryOptions({
          queryFn: meta => candlesService.allCandles({ sort }),
          queryKey: [candlesService.allCandleKey],
-         initialData: initialdata,
-         enabled: !!initialdata,
+
          placeholderData: keepPreviousData,
          select: data => data.candles?.allCandles
       })

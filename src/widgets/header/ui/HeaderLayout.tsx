@@ -1,16 +1,10 @@
 import { Home } from 'lucide-react'
 import Link from 'next/link'
 import type React from 'react'
+import { AdaptiveBreadcrumbsHeaderAdmin } from '~/app/(private)/admin/useBread'
 import { HeaderVariant } from '~/shared/constants/header'
 import style from '~/shared/styles/Header.module.scss'
 import { Button } from '~/shared/ui'
-import {
-   Breadcrumb,
-   BreadcrumbItem,
-   BreadcrumbList,
-   BreadcrumbPage,
-   BreadcrumbSeparator
-} from '~/shared/ui/breadcrumb'
 import { Separator } from '~/shared/ui/separator'
 import { SidebarTrigger } from '~/shared/ui/sidebar'
 export interface HeaderLayoutProps {
@@ -39,17 +33,7 @@ export const HeaderLayout = ({
                <div className='flex items-center'>
                   <SidebarTrigger className='-ml-1' />
                   <Separator orientation='vertical' className='mr-2 h-4' />
-                  <Breadcrumb>
-                     <BreadcrumbList>
-                        <BreadcrumbItem className='hidden md:block'>
-                           <Link href={'/admin'}>admin</Link>
-                        </BreadcrumbItem>
-                        <BreadcrumbSeparator className='hidden md:block' />
-                        <BreadcrumbItem>
-                           <BreadcrumbPage>Data Fetching</BreadcrumbPage>
-                        </BreadcrumbItem>
-                     </BreadcrumbList>
-                  </Breadcrumb>
+                  <AdaptiveBreadcrumbsHeaderAdmin />
                </div>
                <div className='flex gap-3 items-center'>
                   {theme}

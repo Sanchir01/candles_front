@@ -1,10 +1,11 @@
-import { AirplayIcon, CandlestickChart, Clock, Wallet2 } from 'lucide-react'
+import { AirplayIcon, CandlestickChart, Wallet2 } from 'lucide-react'
 const baseUrl = '/admin'
+
 export const dataSideBar = {
    versions: ['0.0.1'],
    navMain: [
       {
-         title: 'Candles',
+         title: 'Свечи',
          Icon: CandlestickChart,
          items: [
             {
@@ -18,7 +19,7 @@ export const dataSideBar = {
          ]
       },
       {
-         title: 'Category',
+         title: 'Категории',
          Icon: AirplayIcon,
          items: [
             {
@@ -32,56 +33,31 @@ export const dataSideBar = {
          ]
       },
       {
-         title: 'API Reference',
+         title: 'Цвета',
          Icon: CandlestickChart,
          items: [
             {
-               title: 'Все категории',
-               url: `${baseUrl}/category`
+               title: 'Все цвета',
+               url: `${baseUrl}/colors`
             },
             {
-               title: 'Создать категорию',
-               url: `${baseUrl}/category/create`
+               title: 'Создать цвет',
+               url: `${baseUrl}/colors/create`
             }
          ]
       },
+
       {
-         title: 'Architecture',
-         Icon: Clock,
-         items: [
-            {
-               title: 'Accessibility',
-               url: '#'
-            },
-            {
-               title: 'Fast Refresh',
-               url: '#'
-            },
-            {
-               title: 'Next.js Compiler',
-               url: '#'
-            },
-            {
-               title: 'Supported Browsers',
-               url: '#'
-            },
-            {
-               title: 'Turbopack',
-               url: '#'
-            }
-         ]
-      },
-      {
-         title: 'Orders',
+         title: 'Заказы',
          Icon: Wallet2,
          items: [
             {
-               title: 'Все категории',
-               url: `${baseUrl}/category`
+               title: 'Все заказы',
+               url: `${baseUrl}/orders`
             },
             {
-               title: 'Создать категорию',
-               url: `${baseUrl}/category/create`
+               title: 'Создать заказ',
+               url: `${baseUrl}/orders/create`
             }
          ]
       }
