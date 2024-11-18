@@ -45,10 +45,7 @@ export const HeaderProfile: FC = () => {
          ) : (
             <DropdownMenuContent className='w-full'>
                <DropdownMenuItem>
-                  <Button
-                     className='w-full'
-                     onClick={() => push('/auth/login')}
-                  >
+                  <Button className='w-full' onClick={() => push('/catalog')}>
                      Войти
                   </Button>
                </DropdownMenuItem>

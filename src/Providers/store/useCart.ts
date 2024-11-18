@@ -39,7 +39,7 @@ const useCartStore = create<IUseCartStore>()(
                   state.totalPrice -= item.price
                }
 
-               return { cart: state.cart, totalPrice: state.totalPrice }
+               return { cart: [...state.cart], totalPrice: state.totalPrice }
             }),
          plus: (id: UUID, categoryId: UUID, colorId: UUID) => {
             const cart = get().cart

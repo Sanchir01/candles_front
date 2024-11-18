@@ -2,19 +2,14 @@
 
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 import dynamic from 'next/dynamic'
-import Image from 'next/image'
 import Link from 'next/link'
 import { useFavorites } from '~/Providers/store/useFavorites'
-import { EntityProductCart } from '~/entities/entitycandles/Carts'
 import { SkeletonCart } from '~/entities/entitycandles/SkeletenCart'
 import { useStoreZustand } from '~/shared/hooks/useStoreZustand'
 import st from '~/shared/styles/Catalog.module.scss'
-import { Button } from '~/shared/ui'
+import { Button, Container } from '~/shared/ui'
 
-const AddToCart = dynamic(() => import('~/features/AddToCart'), {
-   ssr: false
-})
-const AddToFavorites = dynamic(() => import('~/features/AddToFavorites'), {
+const GridItem = dynamic(() => import('~/widgets/catalog/ui/item'), {
    ssr: false
 })
 
@@ -33,59 +28,38 @@ export default function FavoritesPage() {
          </Link>
       </div>
    ) : (
-      <div className={st.catalog__content} ref={parent}>
-         {candlesFavourites !== undefined
-            ? candlesFavourites?.map(
-                 ({
-                    title,
-                    images,
-                    id,
-                    slug,
-                    price,
-                    colorId,
-                    categoryId,
-                    version
-                 }) => (
-                    <EntityProductCart key={id}>
-                       <Link href={`/catalog/${id}`}>
-                          <Image
-                             src={images}
-                             alt={title}
-                             width={300}
-                             height={500}
+      <div className='mt-5'>
+         <Container>
+            <div className={st.catalog__content} ref={parent}>
+               {candlesFavourites !== undefined
+                  ? candlesFavourites?.map(
+                       ({
+                          title,
+                          images,
+                          id,
+                          slug,
+                          price,
+                          colorId,
+                          categoryId,
+                          version
+                       }) => (
+                          <GridItem
+                             focusImage={false}
+                             key={id}
+                             id={id}
+                             title={title}
+                             images={[images]}
+                             price={price}
+                             version={version}
+                             color_id={colorId}
+                             category_id={categoryId}
+                             slug={slug}
                           />
-                       </Link>
-                       <div className='flex flex-col px-2'>
-                          <h5>{title}</h5>
-                          <div className='flex justify-between gap-2 '>
-                             <AddToCart
-                                text={'добавить в корзину'}
-                                images={images}
-                                quantity={1}
-                                title={title}
-                                id={id}
-                                slug={slug}
-                                price={price}
-                                version={version}
-                                colorId={colorId}
-                                categoryId={categoryId}
-                             />
-                             <AddToFavorites
-                                images={[images]}
-                                title={title}
-                                id={id}
-                                slug={slug}
-                                price={price}
-                                version={version}
-                                colorId={colorId}
-                                categoryId={categoryId}
-                             />
-                          </div>
-                       </div>
-                    </EntityProductCart>
-                 )
-              )
-            : [...Array(10)].map((_, i) => <SkeletonCart key={i} />)}
+                       )
+                    )
+                  : [...Array(10)].map((_, i) => <SkeletonCart key={i} />)}
+            </div>
+         </Container>
       </div>
    )
 }

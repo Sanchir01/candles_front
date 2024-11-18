@@ -8,8 +8,7 @@ import { useStoreZustand } from '~/shared/hooks/useStoreZustand'
 import { ProductCardPropsType } from '~/shared/types/Catalog.types'
 import { Button } from '~/shared/ui'
 
-export interface IToggleFavoritesFeature
-   extends Omit<ProductCardPropsType, ''> {}
+export interface IToggleFavoritesFeature extends ProductCardPropsType {}
 
 const AddToFavorites = ({
    id,

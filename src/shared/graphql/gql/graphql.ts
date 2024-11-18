@@ -86,6 +86,7 @@ export type AllUserOrdersResult =
 
 export type AuthMutations = {
    __typename?: 'AuthMutations'
+   deleteToken?: Maybe<DeleteTokensResult>
    login: LoginResult
    newTokens: NewTokensResult
    registrations: RegistrationsResult
@@ -391,6 +392,13 @@ export type CreateOrderResult =
    | InternalErrorProblem
    | UnauthorizedProblem
 
+export type DeleteTokensOk = {
+   __typename?: 'DeleteTokensOk'
+   ok: Scalars['String']['output']
+}
+
+export type DeleteTokensResult = DeleteTokensOk | InternalErrorProblem
+
 export type InternalErrorProblem = ProblemInterface & {
    __typename?: 'InternalErrorProblem'
    message: Scalars['String']['output']
@@ -636,6 +644,19 @@ export type NewTokenMutation = {
       newTokens:
          | { __typename: 'InternalErrorProblem'; message: string }
          | { __typename: 'NewTokensOk'; token: string }
+   }
+}
+
+export type DeleteTokenMutationVariables = Exact<{ [key: string]: never }>
+
+export type DeleteTokenMutation = {
+   __typename?: 'Mutation'
+   auth: {
+      __typename?: 'AuthMutations'
+      deleteToken?:
+         | { __typename?: 'DeleteTokensOk'; ok: string }
+         | { __typename?: 'InternalErrorProblem'; message: string }
+         | null
    }
 }
 
@@ -1273,6 +1294,80 @@ export const NewTokenDocument = {
       }
    ]
 } as unknown as DocumentNode<NewTokenMutation, NewTokenMutationVariables>
+export const DeleteTokenDocument = {
+   kind: 'Document',
+   definitions: [
+      {
+         kind: 'OperationDefinition',
+         operation: 'mutation',
+         name: { kind: 'Name', value: 'DeleteToken' },
+         selectionSet: {
+            kind: 'SelectionSet',
+            selections: [
+               {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'auth' },
+                  selectionSet: {
+                     kind: 'SelectionSet',
+                     selections: [
+                        {
+                           kind: 'Field',
+                           name: { kind: 'Name', value: 'deleteToken' },
+                           selectionSet: {
+                              kind: 'SelectionSet',
+                              selections: [
+                                 {
+                                    kind: 'InlineFragment',
+                                    typeCondition: {
+                                       kind: 'NamedType',
+                                       name: {
+                                          kind: 'Name',
+                                          value: 'InternalErrorProblem'
+                                       }
+                                    },
+                                    selectionSet: {
+                                       kind: 'SelectionSet',
+                                       selections: [
+                                          {
+                                             kind: 'Field',
+                                             name: {
+                                                kind: 'Name',
+                                                value: 'message'
+                                             }
+                                          }
+                                       ]
+                                    }
+                                 },
+                                 {
+                                    kind: 'InlineFragment',
+                                    typeCondition: {
+                                       kind: 'NamedType',
+                                       name: {
+                                          kind: 'Name',
+                                          value: 'DeleteTokensOk'
+                                       }
+                                    },
+                                    selectionSet: {
+                                       kind: 'SelectionSet',
+                                       selections: [
+                                          {
+                                             kind: 'Field',
+                                             name: { kind: 'Name', value: 'ok' }
+                                          }
+                                       ]
+                                    }
+                                 }
+                              ]
+                           }
+                        }
+                     ]
+                  }
+               }
+            ]
+         }
+      }
+   ]
+} as unknown as DocumentNode<DeleteTokenMutation, DeleteTokenMutationVariables>
 export const AllCandlesDocument = {
    kind: 'Document',
    definitions: [

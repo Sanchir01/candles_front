@@ -7,7 +7,7 @@ export const SkeletonCart = () => (
       <Skeleton
          className={cn(
             st.skeleton__image,
-            'bg-skeleton min-h-[500px] w-auto rounded-xl'
+            'bg-skeleton min-h-[400px] w-auto rounded-xl'
          )}
       />
       <div className='flex justify-between mt-4'>
