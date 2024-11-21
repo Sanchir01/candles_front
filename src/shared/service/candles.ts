@@ -9,10 +9,14 @@ import { CandlesSortEnum } from '~/shared/graphql/gql/graphql'
 export const candlesService = {
    allCandleKey: 'allcandles',
    candlesByIdKey: 'candleById',
-   async allCandles({ sort }: { sort: CandlesSortEnum }) {
+   async allCandles({
+      sort,
+      categoryId,
+      colorId
+   }: { sort: CandlesSortEnum; categoryId?: string; colorId?: string }) {
       return gqlRequest.request({
          document: AllCandlesDocument,
-         variables: { sort }
+         variables: { sort, filter: { categoryId, colorId } }
       })
    },
    async candleById({ id }: { id: string }) {

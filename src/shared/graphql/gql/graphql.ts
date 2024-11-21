@@ -105,6 +105,7 @@ export type Candles = {
    category_id: Scalars['Uuid']['output']
    color_id: Scalars['Uuid']['output']
    created_at: Scalars['DateTime']['output']
+   description: Scalars['String']['output']
    id: Scalars['Uuid']['output']
    images: Array<Scalars['String']['output']>
    price: Scalars['Int']['output']
@@ -112,6 +113,7 @@ export type Candles = {
    title: Scalars['String']['output']
    updated_at: Scalars['DateTime']['output']
    version: Scalars['UInt']['output']
+   weight: Scalars['Int']['output']
 }
 
 export type CandlesByIdInput = {
@@ -148,8 +150,8 @@ export type CandlesCreateOk = {
 }
 
 export type CandlesFilterInput = {
-   categoryId?: InputMaybe<Array<Scalars['Uuid']['input']>>
-   colorId?: InputMaybe<Array<Scalars['Uuid']['input']>>
+   categoryId?: InputMaybe<Scalars['Uuid']['input']>
+   colorId?: InputMaybe<Scalars['Uuid']['input']>
 }
 
 export type CandlesMutation = {
@@ -359,9 +361,11 @@ export type ColorQueryColorBySlugArgs = {
 export type CreateCandleInput = {
    category_id: Scalars['Uuid']['input']
    color_id: Scalars['Uuid']['input']
+   description: Scalars['String']['input']
    images: Array<Scalars['Upload']['input']>
    price: Scalars['Int']['input']
    title: Scalars['String']['input']
+   weight: Scalars['Int']['input']
 }
 
 export type CreateCategoryInput = {
@@ -662,6 +666,7 @@ export type DeleteTokenMutation = {
 
 export type AllCandlesQueryVariables = Exact<{
    sort?: InputMaybe<CandlesSortEnum>
+   filter?: InputMaybe<CandlesFilterInput>
 }>
 
 export type AllCandlesQuery = {
@@ -1386,6 +1391,17 @@ export const AllCandlesDocument = {
                   kind: 'NamedType',
                   name: { kind: 'Name', value: 'CandlesSortEnum' }
                }
+            },
+            {
+               kind: 'VariableDefinition',
+               variable: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'filter' }
+               },
+               type: {
+                  kind: 'NamedType',
+                  name: { kind: 'Name', value: 'CandlesFilterInput' }
+               }
             }
          ],
          selectionSet: {
@@ -1407,6 +1423,14 @@ export const AllCandlesDocument = {
                                  value: {
                                     kind: 'Variable',
                                     name: { kind: 'Name', value: 'sort' }
+                                 }
+                              },
+                              {
+                                 kind: 'Argument',
+                                 name: { kind: 'Name', value: 'filter' },
+                                 value: {
+                                    kind: 'Variable',
+                                    name: { kind: 'Name', value: 'filter' }
                                  }
                               }
                            ],

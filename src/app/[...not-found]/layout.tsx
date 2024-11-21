@@ -1,4 +1,4 @@
-import { HeaderProfileEnum, HeaderVariant } from '~/shared/constants/header'
+import { HeaderProfileEnum } from '~/shared/constants/header'
 import Header from '~/widgets/header'
 
 export default function RootLayout({
@@ -8,10 +8,7 @@ export default function RootLayout({
 }) {
    return (
       <>
-         <Header
-            variant={HeaderVariant.ADMIN}
-            isAuth={HeaderProfileEnum.AUTH}
-         />
+         <Header isAuth={HeaderProfileEnum.AUTH} />
          <main>{children}</main>
          <div className=''>tes</div>
       </>

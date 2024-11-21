@@ -1,6 +1,6 @@
-query AllCandles($sort: CandlesSortEnum) {
+query AllCandles($sort: CandlesSortEnum, $filter: CandlesFilterInput) {
    candles {
-      allCandles(sort: $sort) {
+      allCandles(sort: $sort, filter: $filter) {
          __typename
          ... on VersionMismatchProblem {
             message

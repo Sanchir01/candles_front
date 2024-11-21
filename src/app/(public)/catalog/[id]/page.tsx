@@ -1,16 +1,11 @@
-import { gqlRequest } from '~/shared/api/api-instance'
-import {
-   AllCandlesDocument,
-   CandlesSortEnum
-} from '~/shared/graphql/gql/graphql'
-
+import { CandlesSortEnum } from '~/shared/graphql/gql/graphql'
 import { candlesService } from '~/shared/service/candles'
 import { Loader } from '~/shared/ui'
 
-export const revalidate = 86400
+export const revalidate = 60
 
 export async function generateStaticParams() {
-   const candles = await gqlRequest.request(AllCandlesDocument, {
+   const candles = await candlesService.allCandles({
       sort: CandlesSortEnum.PriceDesc
    })
 

@@ -1,5 +1,6 @@
-import { Breadcrumbs } from '~/shared/ui/breadcrumb/breadcrumbs'
+'use client'
 import { useBreadcrumbs } from '~/shared/hooks/useBreadcrumbs'
+import { Breadcrumbs } from '~/shared/ui/breadcrumb/breadcrumbs'
 
 const HeaderBreadcrumbs = () => {
    const breadcrumbsContent = useBreadcrumbs()

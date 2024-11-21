@@ -30,7 +30,7 @@ export const HeaderLayout = ({
 }: HeaderLayoutProps) => {
    if (variant === HeaderVariant.ADMIN) {
       return (
-         <header className='sticky top-0 bg-background  shrink-0 items-center border-b '>
+         <header className={style.header}>
             <div className='flex px-4  h-16 items-center justify-between'>
                <div className='flex items-center'>
                   <SidebarTrigger className='-ml-1' />

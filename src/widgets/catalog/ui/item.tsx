@@ -28,7 +28,7 @@ export const GridItem = ({
 }: GridItemsPropsType) => {
    return (
       <EntityProductCart key={id}>
-         <Link href={`/candles/${id}`}>
+         <Link href={`/catalog/${id}`}>
             <ImageGallery focusImage={focusImage} images={images} />
          </Link>
          <div className='flex flex-col px-2  border-t border-black pt-5'>

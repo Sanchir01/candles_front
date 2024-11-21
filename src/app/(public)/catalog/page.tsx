@@ -5,6 +5,8 @@ import st from '~/shared/styles/Catalog.module.scss'
 import { Container } from '~/shared/ui'
 import Catalog from '~/widgets/catalog'
 
+export const revalidate = 60
+
 export const metadata: Metadata = {
    title: 'Mahakala | Catalog'
 }
