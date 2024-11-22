@@ -8,7 +8,9 @@ import Catalog from '~/widgets/catalog'
 export const revalidate = 60
 
 export const metadata: Metadata = {
-   title: 'Mahakala | Catalog'
+   title: 'Mahakala | Catalog',
+   robots: 'index, follow',
+   
 }
 
 const SSGDataCandles = async () => {

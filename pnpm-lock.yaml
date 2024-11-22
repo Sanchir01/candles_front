@@ -92,6 +92,9 @@ importers:
       sass:
         specifier: ^1.80.6
         version: 1.80.6
+      swiper:
+        specifier: ^11.1.15
+        version: 11.1.15
       tailwind-merge:
         specifier: ^2.5.4
         version: 2.5.4
@@ -5623,6 +5626,10 @@ packages:
 
   swap-case@2.0.2:
     resolution: {integrity: sha512-kc6S2YS/2yXbtkSMunBtKdah4VFETZ8Oh6ONSmSd9bRxhqTrtARUCBUiWXH3xVPpvR7tz2CSnkuXVE42EcGnMw==}
+
+  swiper@11.1.15:
+    resolution: {integrity: sha512-IzWeU34WwC7gbhjKsjkImTuCRf+lRbO6cnxMGs88iVNKDwV+xQpBCJxZ4bNH6gSrIbbyVJ1kuGzo3JTtz//CBw==}
+    engines: {node: '>= 4.7.0'}
 
   tailwind-merge@2.5.4:
     resolution: {integrity: sha512-0q8cfZHMu9nuYP/b5Shb7Y7Sh1B7Nnl5GqNr1U+n2p6+mybvRtayrQ+0042Z5byvTA8ihjlP8Odo8/VnHbZu4Q==}
@@ -12592,6 +12599,8 @@ snapshots:
   swap-case@2.0.2:
     dependencies:
       tslib: 2.8.1
+
+  swiper@11.1.15: {}
 
   tailwind-merge@2.5.4: {}
 

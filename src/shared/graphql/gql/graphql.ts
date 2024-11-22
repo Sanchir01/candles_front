@@ -722,6 +722,8 @@ export type DeleteTokenMutation = {
 }
 
 export type AllCandlesQueryVariables = Exact<{
+   pageNumber: Scalars['PageNumber']['input']
+   pageSize: Scalars['PageSize']['input']
    sort?: InputMaybe<CandlesSortEnum>
    filter?: InputMaybe<CandlesFilterInput>
 }>
@@ -743,6 +745,8 @@ export type AllCandlesQuery = {
                  images: Array<string>
                  price: number
                  slug: string
+                 description: string
+                 weight: number
               }>
            }
          | { __typename: 'InternalErrorProblem'; message: string }
@@ -763,14 +767,16 @@ export type CandleByIdQuery = {
               __typename: 'CandlesByIdOk'
               candle: {
                  __typename?: 'Candles'
-                 price: number
-                 images: Array<string>
                  id: any
-                 color_id: any
-                 category_id: any
-                 slug: string
                  title: string
                  version: any
+                 color_id: any
+                 category_id: any
+                 images: Array<string>
+                 price: number
+                 slug: string
+                 description: string
+                 weight: number
               }
            }
          | { __typename: 'InternalErrorProblem'; message: string }
@@ -1442,6 +1448,34 @@ export const AllCandlesDocument = {
                kind: 'VariableDefinition',
                variable: {
                   kind: 'Variable',
+                  name: { kind: 'Name', value: 'pageNumber' }
+               },
+               type: {
+                  kind: 'NonNullType',
+                  type: {
+                     kind: 'NamedType',
+                     name: { kind: 'Name', value: 'PageNumber' }
+                  }
+               }
+            },
+            {
+               kind: 'VariableDefinition',
+               variable: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'pageSize' }
+               },
+               type: {
+                  kind: 'NonNullType',
+                  type: {
+                     kind: 'NamedType',
+                     name: { kind: 'Name', value: 'PageSize' }
+                  }
+               }
+            },
+            {
+               kind: 'VariableDefinition',
+               variable: {
+                  kind: 'Variable',
                   name: { kind: 'Name', value: 'sort' }
                },
                type: {
@@ -1474,6 +1508,22 @@ export const AllCandlesDocument = {
                            kind: 'Field',
                            name: { kind: 'Name', value: 'allCandles' },
                            arguments: [
+                              {
+                                 kind: 'Argument',
+                                 name: { kind: 'Name', value: 'pageNumber' },
+                                 value: {
+                                    kind: 'Variable',
+                                    name: { kind: 'Name', value: 'pageNumber' }
+                                 }
+                              },
+                              {
+                                 kind: 'Argument',
+                                 name: { kind: 'Name', value: 'pageSize' },
+                                 value: {
+                                    kind: 'Variable',
+                                    name: { kind: 'Name', value: 'pageSize' }
+                                 }
+                              },
                               {
                                  kind: 'Argument',
                                  name: { kind: 'Name', value: 'sort' },
@@ -1618,6 +1668,20 @@ export const AllCandlesDocument = {
                                                          kind: 'Name',
                                                          value: 'slug'
                                                       }
+                                                   },
+                                                   {
+                                                      kind: 'Field',
+                                                      name: {
+                                                         kind: 'Name',
+                                                         value: 'description'
+                                                      }
+                                                   },
+                                                   {
+                                                      kind: 'Field',
+                                                      name: {
+                                                         kind: 'Name',
+                                                         value: 'weight'
+                                                      }
                                                    }
                                                 ]
                                              }
@@ -1757,21 +1821,21 @@ export const CandleByIdDocument = {
                                                       kind: 'Field',
                                                       name: {
                                                          kind: 'Name',
-                                                         value: 'price'
-                                                      }
-                                                   },
-                                                   {
-                                                      kind: 'Field',
-                                                      name: {
-                                                         kind: 'Name',
-                                                         value: 'images'
-                                                      }
-                                                   },
-                                                   {
-                                                      kind: 'Field',
-                                                      name: {
-                                                         kind: 'Name',
                                                          value: 'id'
+                                                      }
+                                                   },
+                                                   {
+                                                      kind: 'Field',
+                                                      name: {
+                                                         kind: 'Name',
+                                                         value: 'title'
+                                                      }
+                                                   },
+                                                   {
+                                                      kind: 'Field',
+                                                      name: {
+                                                         kind: 'Name',
+                                                         value: 'version'
                                                       }
                                                    },
                                                    {
@@ -1792,6 +1856,20 @@ export const CandleByIdDocument = {
                                                       kind: 'Field',
                                                       name: {
                                                          kind: 'Name',
+                                                         value: 'images'
+                                                      }
+                                                   },
+                                                   {
+                                                      kind: 'Field',
+                                                      name: {
+                                                         kind: 'Name',
+                                                         value: 'price'
+                                                      }
+                                                   },
+                                                   {
+                                                      kind: 'Field',
+                                                      name: {
+                                                         kind: 'Name',
                                                          value: 'slug'
                                                       }
                                                    },
@@ -1799,14 +1877,14 @@ export const CandleByIdDocument = {
                                                       kind: 'Field',
                                                       name: {
                                                          kind: 'Name',
-                                                         value: 'title'
+                                                         value: 'description'
                                                       }
                                                    },
                                                    {
                                                       kind: 'Field',
                                                       name: {
                                                          kind: 'Name',
-                                                         value: 'version'
+                                                         value: 'weight'
                                                       }
                                                    }
                                                 ]

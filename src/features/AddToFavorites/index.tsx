@@ -8,7 +8,10 @@ import { useStoreZustand } from '~/shared/hooks/useStoreZustand'
 import { ProductCardPropsType } from '~/shared/types/Catalog.types'
 import { Button } from '~/shared/ui'
 
-export interface IToggleFavoritesFeature extends ProductCardPropsType {}
+export interface IToggleFavoritesFeature
+   extends Omit<ProductCardPropsType, 'images'> {
+   images: string
+}
 
 const AddToFavorites = ({
    id,
@@ -39,7 +42,7 @@ const AddToFavorites = ({
       toggleFavorites({
          id,
          colorId,
-         images: images[0],
+         images: images,
          title,
          price,
          slug,

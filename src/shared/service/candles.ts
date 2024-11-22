@@ -5,6 +5,13 @@ import {
    CandleByIdDocument
 } from '~/shared/graphql/gql/graphql'
 import { CandlesSortEnum } from '~/shared/graphql/gql/graphql'
+export type AllCandlesQueryType = {
+   sort: CandlesSortEnum
+   categoryId?: string
+   colorId?: string
+   pageNumber?: number
+   pageSize?: number
+}
 
 export const candlesService = {
    allCandleKey: 'allcandles',
@@ -12,11 +19,18 @@ export const candlesService = {
    async allCandles({
       sort,
       categoryId,
-      colorId
-   }: { sort: CandlesSortEnum; categoryId?: string; colorId?: string }) {
+      colorId,
+      pageNumber = 1,
+      pageSize = 10
+   }: AllCandlesQueryType) {
       return gqlRequest.request({
          document: AllCandlesDocument,
-         variables: { sort, filter: { categoryId, colorId } }
+         variables: {
+            sort,
+            filter: { categoryId, colorId },
+            pageNumber,
+            pageSize
+         }
       })
    },
    async candleById({ id }: { id: string }) {
@@ -25,9 +39,22 @@ export const candlesService = {
          variables: { input: { id: id } }
       })
    },
-   AllCandlesQueryOptions: ({ sort }: { sort: CandlesSortEnum }) => {
+   AllCandlesQueryOptions: ({
+      sort,
+      categoryId,
+      colorId,
+      pageNumber = 1,
+      pageSize = 10
+   }: AllCandlesQueryType) => {
       return queryOptions({
-         queryFn: meta => candlesService.allCandles({ sort }),
+         queryFn: meta =>
+            candlesService.allCandles({
+               sort,
+               categoryId,
+               colorId,
+               pageNumber,
+               pageSize
+            }),
          queryKey: [candlesService.allCandleKey],
          placeholderData: keepPreviousData,
          select: data => data.candles?.allCandles

@@ -36,7 +36,7 @@ export const GridItem = ({
             <div className='flex justify-between gap-2 border-t py-2 items-center'>
                <div className='font-bold'>{price} ₽</div>
                <AddToFavorites
-                  images={images}
+                  images={images[0]}
                   title={title}
                   id={id}
                   slug={slug}

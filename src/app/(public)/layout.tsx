@@ -1,3 +1,4 @@
+'use client'
 import { HeaderProfileEnum } from '~/shared/constants/header'
 import Header from '~/widgets/header'
 

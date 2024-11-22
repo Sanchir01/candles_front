@@ -1,7 +1,6 @@
 import { CandlesSortEnum } from '~/shared/graphql/gql/graphql'
 import { candlesService } from '~/shared/service/candles'
-import { Loader } from '~/shared/ui'
-
+import OneCandle from '~/widgets/onCandle'
 export const revalidate = 60
 
 export async function generateStaticParams() {
@@ -23,7 +22,10 @@ export async function generateMetadata(props: {
       const { candles } = await candlesService.candleById({ id: params.id })
       if (candles?.candleById.__typename == 'CandlesByIdOk') {
          return {
-            title: candles.candleById.candle.id
+            title: candles.candleById.candle.id,
+            description: candles.candleById.candle.description,
+            keywords: candles.candleById.candle.title,
+            robots: 'index, follow'
          }
       }
    } catch (error) {
@@ -34,17 +36,20 @@ export async function generateMetadata(props: {
 }
 export default async function Page(props: { params: Promise<{ id: string }> }) {
    const params = await props.params
-   if (params.id === 'favicon.ico') {
-      return <Loader />
-   }
+
    const { candles } = await candlesService.candleById({ id: params.id })
 
    return (
-      <div>
-         My Post{' '}
-         {candles?.candleById.__typename === 'CandlesByIdOk'
-            ? candles.candleById.candle.id
-            : 'no data'}
+      <div className='mt-10'>
+         <div className='container'>
+            <div className='flex flex-col gap-10'>
+               {candles?.candleById.__typename === 'CandlesByIdOk' ? (
+                  <OneCandle {...candles.candleById.candle} />
+               ) : (
+                  <div className=''>no data</div>
+               )}
+            </div>
+         </div>
       </div>
    )
 }

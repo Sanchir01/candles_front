@@ -31,7 +31,7 @@ export const HeaderLayout = ({
    if (variant === HeaderVariant.ADMIN) {
       return (
          <header className={style.header}>
-            <div className='flex px-4  h-16 items-center justify-between'>
+            <div className='flex px-4 items-center justify-between'>
                <div className='flex items-center'>
                   <SidebarTrigger className='-ml-1' />
                   <Separator orientation='vertical' className='mr-2 h-4' />

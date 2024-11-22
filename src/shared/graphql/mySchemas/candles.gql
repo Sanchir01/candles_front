@@ -1,6 +1,16 @@
-query AllCandles($sort: CandlesSortEnum, $filter: CandlesFilterInput) {
+query AllCandles(
+   $pageNumber: PageNumber!
+   $pageSize: PageSize!
+   $sort: CandlesSortEnum
+   $filter: CandlesFilterInput
+) {
    candles {
-      allCandles(sort: $sort, filter: $filter) {
+      allCandles(
+         pageNumber: $pageNumber
+         pageSize: $pageSize
+         sort: $sort
+         filter: $filter
+      ) {
          __typename
          ... on VersionMismatchProblem {
             message
@@ -18,6 +28,8 @@ query AllCandles($sort: CandlesSortEnum, $filter: CandlesFilterInput) {
                images
                price
                slug
+               description
+               weight
             }
          }
       }
@@ -36,14 +48,16 @@ query CandleById($input: CandlesByIdInput!) {
          }
          ... on CandlesByIdOk {
             candle {
-               price
-               images
                id
-               color_id
-               category_id
-               slug
                title
                version
+               color_id
+               category_id
+               images
+               price
+               slug
+               description
+               weight
             }
          }
       }
