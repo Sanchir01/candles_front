@@ -6,6 +6,7 @@ export const gqlRequest = new GraphQLClient(
       : 'http://localhost:5000',
    {
       credentials: 'include',
-      next: { revalidate: 60 }
+      next: { revalidate: 60 },
+      cache: 'no-cache'
    }
 )

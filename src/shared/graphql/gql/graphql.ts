@@ -259,11 +259,16 @@ export type CategoryGetAllResult = CategoryGetAllOk | InternalErrorProblem
 export type CategoryMutation = {
    __typename?: 'CategoryMutation'
    createCategory: CategoryCreateResult
+   delete?: Maybe<DeleteCategoryResult>
    updateCategory: UpdateCategoryResult
 }
 
 export type CategoryMutationCreateCategoryArgs = {
    input?: InputMaybe<CreateCategoryInput>
+}
+
+export type CategoryMutationDeleteArgs = {
+   input?: InputMaybe<DeleteCategoryInput>
 }
 
 export type CategoryMutationUpdateCategoryArgs = {
@@ -337,10 +342,20 @@ export type ColorCreateResult =
 export type ColorMutation = {
    __typename?: 'ColorMutation'
    createColor: ColorCreateResult
+   delete?: Maybe<DeleteColorResult>
+   updateColor: UpdateColorResult
 }
 
 export type ColorMutationCreateColorArgs = {
    input: CreateColorInput
+}
+
+export type ColorMutationDeleteArgs = {
+   input?: InputMaybe<DeleteColorInput>
+}
+
+export type ColorMutationUpdateColorArgs = {
+   input: UpdateColorInput
 }
 
 export type ColorQuery = {
@@ -395,6 +410,34 @@ export type CreateOrderResult =
    | CreateOrderOk
    | InternalErrorProblem
    | UnauthorizedProblem
+
+export type DeleteCategoryInput = {
+   id: Scalars['Uuid']['input']
+}
+
+export type DeleteCategoryOk = {
+   __typename?: 'DeleteCategoryOk'
+   ok: Scalars['Uuid']['output']
+}
+
+export type DeleteCategoryResult =
+   | DeleteCategoryOk
+   | InternalErrorProblem
+   | VersionMismatchProblem
+
+export type DeleteColorInput = {
+   id: Scalars['Uuid']['input']
+}
+
+export type DeleteColorOk = {
+   __typename?: 'DeleteColorOk'
+   ok: Scalars['Uuid']['output']
+}
+
+export type DeleteColorResult =
+   | DeleteColorOk
+   | InternalErrorProblem
+   | VersionMismatchProblem
 
 export type DeleteTokensOk = {
    __typename?: 'DeleteTokensOk'
@@ -558,6 +601,20 @@ export type UpdateCategoryOk = {
 export type UpdateCategoryResult =
    | InternalErrorProblem
    | UpdateCategoryOk
+   | VersionMismatchProblem
+
+export type UpdateColorInput = {
+   title: Scalars['String']['input']
+}
+
+export type UpdateColorOk = {
+   __typename?: 'UpdateColorOk'
+   id: Scalars['Uuid']['output']
+}
+
+export type UpdateColorResult =
+   | InternalErrorProblem
+   | UpdateColorOk
    | VersionMismatchProblem
 
 export type User = {

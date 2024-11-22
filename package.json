@@ -3,7 +3,7 @@
    "version": "0.1.0",
    "private": true,
    "scripts": {
-      "dev": "graphql-codegen --config codegen.ts && pnpm format && next dev ",
+      "dev": "graphql-codegen --config codegen.ts && pnpm format && next dev --turbopack",
       "build": "next build",
       "start": "next start",
       "gen": "graphql-codegen --config codegen.ts",
