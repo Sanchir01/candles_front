@@ -1,7 +1,7 @@
 import Form from './ui/Form'
 import OndeCandleImageGallery from './ui/OndeCandleImageGallery'
 import OneCandleLayout from './ui/OneCandleLayout'
-import SimilarColorSlider from './ui/SimalarColorSlider'
+import SimilarColorSlider from './ui/SimilarColorSlider'
 import SimilarCategorySlider from './ui/SimilarCategorySlider'
 
 type OneCandleType = {

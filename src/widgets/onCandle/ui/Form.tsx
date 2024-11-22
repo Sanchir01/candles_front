@@ -1,5 +1,9 @@
+'use client'
 import AddToCart from '~/features/AddToCart'
 import AddToFavorites from '~/features/AddToFavorites'
+import useCartStore from '~/Providers/store/useCart'
+import { useStoreZustand } from '~/shared/hooks/useStoreZustand'
+import { priceFormat } from '~/shared/lib/utils'
 
 type OneCandleFormType = {
    title: string
@@ -24,15 +28,23 @@ const Form = ({
    id,
    version
 }: OneCandleFormType) => {
+    const cardStore = useStoreZustand(useCartStore, state => state.cart)
+    const isExistCard = cardStore?.findIndex(
+       cartItem =>
+          cartItem.id === id &&
+          cartItem.categoryId === category_id &&
+          cartItem.colorId === color_id
+    )
    return (
-      <div>
+      <div className='mt-5'>
          <h1 className='text-4xl'>{title}</h1>
-         <div className='text-xl'>{slug}</div>
-         <div className='text-xl'>Цена: {price}</div>
-         <div className='text-xl'>Вес: {weight}</div>
-         <div className='flex gap-2'>
+         <div className='text-xl flex gap-2 pt-5'>
+            <span className="">{priceFormat.format(price)} </span>
+            <span className="line-through text-gray-500">{priceFormat.format(price * 1.1)}</span>
+         </div>
+         <div className='flex gap-2 pt-5'>
             <AddToCart
-               text={'Добавить в корзину'}
+               text={isExistCard ? 'Добавить в корзину' : 'Убрать из корзины'}
                images={images[0]}
                quantity={0}
                categoryId={category_id}

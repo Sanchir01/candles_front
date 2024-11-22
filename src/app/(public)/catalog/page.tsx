@@ -9,8 +9,7 @@ export const revalidate = 60
 
 export const metadata: Metadata = {
    title: 'Mahakala | Catalog',
-   robots: 'index, follow',
-   
+   robots: 'index, follow'
 }
 
 const SSGDataCandles = async () => {
