@@ -9,7 +9,7 @@ type OneCandleFormType = {
    title: string
    slug: string
    price: number
-   weight: number
+
    images: string[]
    category_id: string
    color_id: string
@@ -21,26 +21,27 @@ const Form = ({
    title,
    slug,
    price,
-   weight,
    images,
    category_id,
    color_id,
    id,
    version
 }: OneCandleFormType) => {
-    const cardStore = useStoreZustand(useCartStore, state => state.cart)
-    const isExistCard = cardStore?.findIndex(
-       cartItem =>
-          cartItem.id === id &&
-          cartItem.categoryId === category_id &&
-          cartItem.colorId === color_id
-    )
+   const cardStore = useStoreZustand(useCartStore, state => state.cart)
+   const isExistCard = cardStore?.findIndex(
+      cartItem =>
+         cartItem.id === id &&
+         cartItem.categoryId === category_id &&
+         cartItem.colorId === color_id
+   )
    return (
       <div className='mt-5'>
          <h1 className='text-4xl'>{title}</h1>
          <div className='text-xl flex gap-2 pt-5'>
-            <span className="">{priceFormat.format(price)} </span>
-            <span className="line-through text-gray-500">{priceFormat.format(price * 1.1)}</span>
+            <span className=''>{priceFormat.format(price)} </span>
+            <span className='line-through text-gray-500'>
+               {priceFormat.format(price * 1.1)}
+            </span>
          </div>
          <div className='flex gap-2 pt-5'>
             <AddToCart

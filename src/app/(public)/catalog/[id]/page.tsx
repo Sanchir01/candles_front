@@ -1,11 +1,14 @@
 import { CandlesSortEnum } from '~/shared/graphql/gql/graphql'
 import { candlesService } from '~/shared/service/candles'
 import OneCandle from '~/widgets/onCandle'
-export const revalidate = 60
+
+export const revalidate = 600
 
 export async function generateStaticParams() {
    const candles = await candlesService.allCandles({
-      sort: CandlesSortEnum.PriceDesc
+      sort: CandlesSortEnum.PriceDesc,
+      categoryId: null,
+      colorId: null
    })
 
    return candles.candles?.allCandles.__typename == 'AllCandlesOk'

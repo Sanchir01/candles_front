@@ -1,7 +1,8 @@
 import './globals.css'
 import { Toaster } from 'react-hot-toast'
 import { Provider } from '~/Providers/Provider'
-
+import { Inter } from 'next/font/google'
+const inter = Inter({ subsets: ['latin'] })
 export default function RootLayout({
    children
 }: Readonly<{
@@ -9,7 +10,7 @@ export default function RootLayout({
 }>) {
    return (
       <html lang='ru' suppressHydrationWarning>
-         <body>
+         <body className={inter.className}>
             <Toaster
                position='top-center'
                reverseOrder={false}

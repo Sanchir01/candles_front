@@ -1,8 +1,18 @@
+'use client'
+import dynamic from 'next/dynamic'
 import Form from './ui/Form'
 import OndeCandleImageGallery from './ui/OndeCandleImageGallery'
 import OneCandleLayout from './ui/OneCandleLayout'
-import SimilarColorSlider from './ui/SimilarColorSlider'
-import SimilarCategorySlider from './ui/SimilarCategorySlider'
+
+const SimilarCategorySlider = dynamic(
+   () => import('./ui/SimilarCategorySlider'),
+   {
+      ssr: false
+   }
+)
+const SimilarColorSlider = dynamic(() => import('./ui/SimilarColorSlider'), {
+   ssr: false
+})
 
 type OneCandleType = {
    id: string
@@ -21,7 +31,6 @@ const OneCandle = ({
    title,
    slug,
    price,
-   weight,
    color_id,
    category_id,
    version,
@@ -35,7 +44,6 @@ const OneCandle = ({
                title={title}
                slug={slug}
                price={price}
-               weight={weight}
                color_id={color_id}
                category_id={category_id}
                version={version}

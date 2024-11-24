@@ -1,4 +1,6 @@
 'use client'
+import { ApolloProvider } from '@apollo/client'
+
 import { HeaderProfileEnum } from '~/shared/constants/header'
 import Header from '~/widgets/header'
 

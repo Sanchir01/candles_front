@@ -8,7 +8,9 @@ import AdminItemLine from '~/shared/ui/adminItem'
 const AdminPage = () => {
    const { data, isLoading, isSuccess } = useQuery({
       ...candlesService.AllCandlesQueryOptions({
-         sort: CandlesSortEnum.PriceAsc
+         sort: CandlesSortEnum.PriceAsc,
+         categoryId: null,
+         colorId: null
       })
    })
    return (

@@ -1,3 +1,4 @@
+import { useQueryClient } from '@tanstack/react-query'
 import { keepPreviousData, queryOptions } from '@tanstack/react-query'
 import { gqlRequest } from '~/shared/api/api-instance'
 import {
@@ -7,8 +8,8 @@ import {
 import { CandlesSortEnum } from '~/shared/graphql/gql/graphql'
 export type AllCandlesQueryType = {
    sort: CandlesSortEnum
-   categoryId?: string
-   colorId?: string
+   categoryId: string | null
+   colorId: string | null
    pageNumber?: number
    pageSize?: number
 }
@@ -47,7 +48,7 @@ export const candlesService = {
       pageSize = 10
    }: AllCandlesQueryType) => {
       return queryOptions({
-         queryFn: meta =>
+         queryFn: () =>
             candlesService.allCandles({
                sort,
                categoryId,
@@ -55,15 +56,18 @@ export const candlesService = {
                pageNumber,
                pageSize
             }),
-         queryKey: [candlesService.allCandleKey],
-         placeholderData: keepPreviousData,
-         select: data => data.candles?.allCandles
+         queryKey: [
+            candlesService.allCandleKey,
+            { sort, categoryId, colorId, pageNumber }
+         ],
+         select: data => data.candles?.allCandles,
+         refetchOnMount: 'always'
       })
    },
 
    CandleByIdQueryOptions: ({ id }: { id: string }) => {
       return queryOptions({
-         queryKey: [candlesService.candlesByIdKey, id],
+         queryKey: ['candleById', id],
          queryFn: () => candlesService.candleById({ id }),
          select: data => data.candles?.candleById,
          enabled: !!id,

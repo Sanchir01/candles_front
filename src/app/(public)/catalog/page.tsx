@@ -5,7 +5,7 @@ import st from '~/shared/styles/Catalog.module.scss'
 import { Container } from '~/shared/ui'
 import Catalog from '~/widgets/catalog'
 
-export const revalidate = 60
+export const revalidate = 600
 
 export const metadata: Metadata = {
    title: 'Mahakala | Catalog',
@@ -14,7 +14,9 @@ export const metadata: Metadata = {
 
 const SSGDataCandles = async () => {
    const data = await candlesService.allCandles({
-      sort: CandlesSortEnum.PriceDesc
+      sort: CandlesSortEnum.PriceDesc,
+      categoryId: null,
+      colorId: null
    })
 
    return data

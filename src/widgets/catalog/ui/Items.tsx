@@ -1,8 +1,9 @@
 'use client'
 import { useQuery } from '@tanstack/react-query'
 
+import { useFilters } from '~/Providers/store/useFilters'
 import { SkeletonCart } from '~/entities/entitycandles/SkeletenCart'
-import { AllCandlesQuery, CandlesSortEnum } from '~/shared/graphql/gql/graphql'
+import { AllCandlesQuery } from '~/shared/graphql/gql/graphql'
 import { candlesService } from '~/shared/service/candles'
 import GridItem from './item'
 
@@ -18,15 +19,21 @@ export type itemsGridType = {
 }[]
 
 const Items = ({ initialdata }: { initialdata: AllCandlesQuery }) => {
-   const { data, isLoading, isSuccess } = useQuery({
+   const sort = useFilters(state => state.sorting)
+   const colorId = useFilters(state => state.color)
+   const categoryId = useFilters(state => state.category)
+
+   const { data, isFetching, isSuccess } = useQuery({
       ...candlesService.AllCandlesQueryOptions({
-         sort: CandlesSortEnum.PriceAsc
+         sort,
+         colorId,
+         categoryId
       }),
       initialData: initialdata,
       enabled: !!initialdata
    })
-
-   return isLoading
+   console.log('data', data?.__typename)
+   return isFetching
       ? [...Array(10)].map((_, i) => <SkeletonCart key={i} />)
       : isSuccess && data?.__typename === 'AllCandlesOk'
         ? data.candles.map(

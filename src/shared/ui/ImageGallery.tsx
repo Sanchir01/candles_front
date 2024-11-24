@@ -19,7 +19,7 @@ const ImagesGallery: FC<{ images: string[]; focusImage?: boolean }> = ({
          width={0}
          height={0}
          sizes='100vw'
-         priority
+         priority={true}
          objectFit='cover'
       />
    ) : (
@@ -29,6 +29,7 @@ const ImagesGallery: FC<{ images: string[]; focusImage?: boolean }> = ({
          alt={images[0]}
          width={400}
          height={400}
+         priority={true}
       />
    )
 }

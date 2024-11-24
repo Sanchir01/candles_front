@@ -22,7 +22,7 @@ export default function FavoritesPage() {
 
    return candlesFavourites?.length === 0 ? (
       <div className='flex flex-col gap-5 items-center justify-center h-[100dvh]'>
-         <h1 className='text-2xl '>корзина пуста</h1>
+         <h1 className='text-2xl '>список избранного пуст</h1>
          <Link href={'/catalog'}>
             <Button>В каталог</Button>
          </Link>
