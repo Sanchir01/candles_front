@@ -1,4 +1,3 @@
-import { ApolloClient, InMemoryCache } from '@apollo/client'
 import { QueryClient } from '@tanstack/react-query'
 //todo:switch time 1 mitnute 1*60*1000
 export const queryClient = new QueryClient({

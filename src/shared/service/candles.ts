@@ -1,4 +1,3 @@
-import { useQueryClient } from '@tanstack/react-query'
 import { keepPreviousData, queryOptions } from '@tanstack/react-query'
 import { gqlRequest } from '~/shared/api/api-instance'
 import {
@@ -48,20 +47,19 @@ export const candlesService = {
       pageSize = 10
    }: AllCandlesQueryType) => {
       return queryOptions({
-         queryFn: () =>
+         queryFn: meta =>
             candlesService.allCandles({
                sort,
                categoryId,
                colorId,
-               pageNumber,
+               pageNumber: meta.pageParam as number,
                pageSize
             }),
          queryKey: [
             candlesService.allCandleKey,
             { sort, categoryId, colorId, pageNumber }
          ],
-         select: data => data.candles?.allCandles,
-         refetchOnMount: 'always'
+         select: data => data.candles?.allCandles
       })
    },
 

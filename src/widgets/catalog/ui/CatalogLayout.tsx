@@ -8,8 +8,15 @@ export interface ICatalogLayout {
    title?: React.ReactNode
    sorting?: React.ReactNode
    filters?: React.ReactNode
+   pagination?: React.ReactNode
 }
-const CatalogLayout = ({ grid, title, sorting, filters }: ICatalogLayout) => {
+const CatalogLayout = ({
+   grid,
+   title,
+   sorting,
+   filters,
+   pagination
+}: ICatalogLayout) => {
    const [parent] = useAutoAnimate({ easing: 'ease-in-out', duration: 500 })
 
    return (
@@ -22,6 +29,7 @@ const CatalogLayout = ({ grid, title, sorting, filters }: ICatalogLayout) => {
          <div className={cn(st.catalog__content, 'mt-5')} ref={parent}>
             {grid}
          </div>
+         <div className='mt-5'>{pagination}</div>
       </div>
    )
 }
