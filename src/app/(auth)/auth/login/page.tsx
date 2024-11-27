@@ -1,6 +1,5 @@
 'use client'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useUser } from '~/Providers/store/useUser'
 import {
    Form,
    FormControl,
@@ -31,7 +30,6 @@ export default function LoginPage() {
    })
    const { replace } = useRouter()
 
-   const userStorage = useUser(state => state.setUser)
    const { mutateAsync, isPending } = useLogin()
    const onSubmit = async (data: IInputLogin) => {
       const { toast } = await import('react-hot-toast')
@@ -41,12 +39,9 @@ export default function LoginPage() {
             password: data.password
          })
          if (auth.login.__typename === 'LoginOk') {
-            userStorage(auth.login)
-
-            replace('/catalog')
             toast.success('Вы вошли в аккаунт')
+            replace('/catalog')
          }
-         // biome-ignore lint/suspicious/noExplicitAny: <explanation>
       } catch (e: any) {
          toast.error(e.response?.errors[0].message ?? e.message)
       }

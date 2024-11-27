@@ -29,7 +29,7 @@ const Items = ({ initialdata }: { initialdata: AllCandlesQuery }) => {
          colorId,
          categoryId
       }),
-      
+
       initialPageParam: 1,
       getNextPageParam: result => true,
       enabled: !!initialdata

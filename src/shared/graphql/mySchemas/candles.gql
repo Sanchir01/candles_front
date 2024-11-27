@@ -1,17 +1,16 @@
 query AllCandles(
-   $pageNumber: PageNumber!
    $pageSize: PageSize!
+   $pageNumber: PageNumber!
    $sort: CandlesSortEnum
    $filter: CandlesFilterInput
 ) {
    candles {
       allCandles(
-         pageNumber: $pageNumber
          pageSize: $pageSize
+         pageNumber: $pageNumber
          sort: $sort
          filter: $filter
       ) {
-         __typename
          ... on VersionMismatchProblem {
             message
          }
@@ -19,17 +18,19 @@ query AllCandles(
             message
          }
          ... on AllCandlesOk {
+            totalCount {
+               ... on TotalCountResolvingOk {
+                  totalCount
+               }
+            }
             candles {
                id
-               title
-               version
-               color_id
                category_id
                images
                price
-               slug
-               description
-               weight
+               title
+               version
+               color_id
             }
          }
       }

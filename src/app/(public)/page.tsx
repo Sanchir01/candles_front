@@ -1,25 +1,18 @@
-import type { Metadata } from 'next'
-import Image from 'next/image'
-import { SkeletonCart } from '~/entities/entitycandles/SkeletenCart'
-import styles from '~/shared/styles/NotFound.module.scss'
-import { Container } from '~/shared/ui'
-import { Button } from '~/shared/ui/button'
-export const metadata: Metadata = {
-   title: 'Mahakala | Главная'
+'use client'
+import { Suspense } from 'react'
+
+import { Metadata } from 'next'
+import HeroSlider from '~/shared/ui/slider/heroSlider'
+import LoadingMainPage from './loading'
+export const metaDta: Metadata = {
+   title: 'Home',
+   keywords: 'canlde, candles, Elista shop, свечи, свечи на заказ'
 }
+
 export default function Home() {
    return (
-      <div className={styles.home}>
-         <Container>
-            <Button>Hi</Button>
-            <SkeletonCart />
-            <Image
-               src={'https://random.imagecdn.app/800/600'}
-               alt='candle'
-               width={100}
-               height={100}
-            />
-         </Container>
-      </div>
+      <Suspense fallback={<LoadingMainPage />}>
+         <HeroSlider />
+      </Suspense>
    )
 }

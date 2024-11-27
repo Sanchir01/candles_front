@@ -4,7 +4,6 @@ import { AllCandlesQuery } from '~/shared/graphql/gql/graphql'
 import { Title } from '~/shared/ui'
 
 import CatalogLayout from '~/widgets/catalog/ui/CatalogLayout'
-import Items from '~/widgets/catalog/ui/Items'
 import Sorting from '~/widgets/catalog/ui/sorting'
 import { PaginationCatalog } from './ui/pagination'
 const FiltersSheet = dynamic(() => import('~/widgets/catalog/ui/filters'), {
@@ -14,7 +13,7 @@ const FiltersSheet = dynamic(() => import('~/widgets/catalog/ui/filters'), {
 const Catalog = ({ candles }: { candles: AllCandlesQuery }) => {
    return (
       <CatalogLayout
-         grid={<Items initialdata={candles} />}
+         // grid={<Items initialdata={candles} />}
          title={<Title text={'Все свечи'} size='lg' />}
          sorting={<Sorting />}
          filters={<FiltersSheet />}
