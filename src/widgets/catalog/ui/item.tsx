@@ -11,14 +11,14 @@ export type GridItemsPropsType = {
    version: number
    color_id: string
    category_id: string
-   slug: string
+
    focusImage: boolean
 }
 
 export const GridItem = ({
    id,
    title,
-   slug,
+
    images,
    price,
    version,
@@ -39,7 +39,6 @@ export const GridItem = ({
                   images={images[0]}
                   title={title}
                   id={id}
-                  slug={slug}
                   price={price}
                   version={version}
                   colorId={color_id}

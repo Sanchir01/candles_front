@@ -9,13 +9,12 @@ import { ProductCardPropsType } from '~/shared/types/Catalog.types'
 import { Button } from '~/shared/ui'
 
 export interface IToggleFavoritesFeature
-   extends Omit<ProductCardPropsType, 'images'> {
+   extends Omit<ProductCardPropsType, 'images' | 'slug'> {
    images: string
 }
 
 const AddToFavorites = ({
    id,
-   slug,
    colorId,
    categoryId,
    title,
@@ -45,7 +44,6 @@ const AddToFavorites = ({
          images: images,
          title,
          price,
-         slug,
          categoryId,
          version
       })

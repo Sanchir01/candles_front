@@ -737,7 +737,7 @@ export type AllCandlesQuery = {
       __typename?: 'CandlesQuery'
       allCandles:
          | {
-              __typename?: 'AllCandlesOk'
+              __typename: 'AllCandlesOk'
               totalCount:
                  | { __typename?: 'InternalErrorProblem' }
                  | { __typename?: 'TotalCountResolvingOk'; totalCount: any }
@@ -1604,6 +1604,13 @@ export const AllCandlesDocument = {
                                     selectionSet: {
                                        kind: 'SelectionSet',
                                        selections: [
+                                          {
+                                             kind: 'Field',
+                                             name: {
+                                                kind: 'Name',
+                                                value: '__typename'
+                                             }
+                                          },
                                           {
                                              kind: 'Field',
                                              name: {

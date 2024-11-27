@@ -1,19 +1,19 @@
-'use client'
 import Link from 'next/link'
 import { FC } from 'react'
-import styles from '~/shared/styles/Hero.module.scss'
+import styles from '~/shared/styles/Home.module.scss'
 import 'swiper/css/navigation'
-import { Navigation } from 'swiper/modules'
+import 'swiper/scss'
+import { Autoplay, Navigation } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { HeroSliderContent } from '~/shared/constants/header_content'
-import 'swiper/scss'
+
 const HeroSlider: FC = () => (
    <section className={styles.hero}>
       <Swiper
-         modules={[Navigation]}
+         modules={[Navigation, Autoplay]}
          navigation
          autoplay={{
-            delay: 1500
+            delay: 2500
          }}
       >
          {HeroSliderContent.map(content => (

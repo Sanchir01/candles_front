@@ -1,28 +1,28 @@
-'use client'
 import { useQuery } from '@tanstack/react-query'
 import Link from 'next/link'
+import { FC } from 'react'
 import { SwiperSlide } from 'swiper/react'
 import { SkeletonCart } from '~/entities/entitycandles/SkeletenCart'
 import { CandlesSortEnum } from '~/shared/graphql/gql/graphql'
 import { candlesService } from '~/shared/service/candles'
-import { Title } from '~/shared/ui'
+import { Container, Title } from '~/shared/ui'
 import ImagesGallery from '~/shared/ui/ImageGallery'
 import SliderDesktop from '~/shared/ui/sliders'
-import 'swiper/css'
-const SimilarColorSlider = ({ colorId }: { colorId: string }) => {
+
+const PopularItemsSlider: FC = () => {
    const { data, isLoading, isSuccess } = useQuery({
       ...candlesService.AllCandlesQueryOptions({
-         sort: CandlesSortEnum.PriceAsc,
-         colorId,
-         categoryId: null
+         sort: CandlesSortEnum.CreatedAtAsc,
+         pageNumber: 1,
+         pageSize: 20,
+         categoryId: null,
+         colorId: null
       })
    })
    return (
-      <div className=''>
-         {isSuccess && data?.__typename === 'AllCandlesOk' && (
-            <Title text={'Товары c похожим цветом'} size='lg' />
-         )}
-         <div className='w-full overflow-hidden pt-5'>
+      <Container>
+         <Title text='Популярные товары' size='lg' />
+         <div className='mt-5'>
             <SliderDesktop navigation={false} pagination={false}>
                {isLoading ? (
                   Array.from({ length: 8 }).map((_, index) => (
@@ -43,8 +43,8 @@ const SimilarColorSlider = ({ colorId }: { colorId: string }) => {
                )}
             </SliderDesktop>
          </div>
-      </div>
+      </Container>
    )
 }
 
-export default SimilarColorSlider
+export default PopularItemsSlider

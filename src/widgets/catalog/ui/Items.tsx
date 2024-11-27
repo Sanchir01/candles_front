@@ -1,5 +1,5 @@
 'use client'
-import { useInfiniteQuery } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 
 import { useFilters } from '~/Providers/store/useFilters'
 import { SkeletonCart } from '~/entities/entitycandles/SkeletenCart'
@@ -23,18 +23,16 @@ const Items = ({ initialdata }: { initialdata: AllCandlesQuery }) => {
    const colorId = useFilters(state => state.color)
    const categoryId = useFilters(state => state.category)
 
-   const { data, isPlaceholderData, isLoading, isSuccess } = useInfiniteQuery({
+   const { data, isPlaceholderData, isLoading, isSuccess } = useQuery({
       ...candlesService.AllCandlesQueryOptions({
          sort,
          colorId,
          categoryId
       }),
 
-      initialPageParam: 1,
-      getNextPageParam: result => true,
       enabled: !!initialdata
    })
-
+   console.log(data?.__typename)
    return isPlaceholderData || isLoading
       ? [...Array(10)].map((_, i) => <SkeletonCart key={i} />)
       : isSuccess && data?.__typename === 'AllCandlesOk'
@@ -43,7 +41,7 @@ const Items = ({ initialdata }: { initialdata: AllCandlesQuery }) => {
                 title,
                 images,
                 id,
-                slug,
+
                 price,
                 color_id,
                 category_id,
@@ -59,7 +57,6 @@ const Items = ({ initialdata }: { initialdata: AllCandlesQuery }) => {
                    version={version}
                    color_id={color_id}
                    category_id={category_id}
-                   slug={slug}
                 />
              )
           )

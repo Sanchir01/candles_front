@@ -18,6 +18,7 @@ query AllCandles(
             message
          }
          ... on AllCandlesOk {
+            __typename
             totalCount {
                ... on TotalCountResolvingOk {
                   totalCount

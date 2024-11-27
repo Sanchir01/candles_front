@@ -2,7 +2,7 @@ import { create } from 'zustand'
 import { createJSONStorage, devtools, persist } from 'zustand/middleware'
 import { ICart } from './useCart'
 
-export interface IFavoritesItems extends Omit<ICart, 'quantity'> {}
+export interface IFavoritesItems extends Omit<ICart, 'quantity' | 'slug'> {}
 
 export interface IFavoritesStore {
    favorites: IFavoritesItems[]

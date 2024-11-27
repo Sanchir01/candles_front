@@ -5,7 +5,8 @@ import { Title } from '~/shared/ui'
 
 import CatalogLayout from '~/widgets/catalog/ui/CatalogLayout'
 import Sorting from '~/widgets/catalog/ui/sorting'
-import { PaginationCatalog } from './ui/pagination'
+import Items from './ui/Items'
+
 const FiltersSheet = dynamic(() => import('~/widgets/catalog/ui/filters'), {
    ssr: false
 })
@@ -13,11 +14,10 @@ const FiltersSheet = dynamic(() => import('~/widgets/catalog/ui/filters'), {
 const Catalog = ({ candles }: { candles: AllCandlesQuery }) => {
    return (
       <CatalogLayout
-         // grid={<Items initialdata={candles} />}
+         grid={<Items initialdata={candles} />}
          title={<Title text={'Все свечи'} size='lg' />}
          sorting={<Sorting />}
          filters={<FiltersSheet />}
-         pagination={<PaginationCatalog />}
       />
    )
 }

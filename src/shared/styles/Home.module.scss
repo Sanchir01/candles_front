@@ -1,4 +1,27 @@
-.hero{
-    min-height: 1000px;
-    width: auto;
+.hero {
+	&__slide {
+		background-image: url('../public/images/bgCandle1.webp');
+		background-repeat: no-repeat;
+		background-position: top center;
+		background-size: cover;
+		min-height: 100svh;
+
+		&__link {
+			min-height: 100svh;
+			padding-top: 50svh;
+			@apply flex flex-col items-center;
+		}
+		&__title {
+			font-size: clamp(1.625rem, 0.517rem + 2.955vw, 4.063rem);
+		}
+		&__subtitle {
+			font-size: clamp(1.25rem, 0.852rem + 1.061vw, 2.125rem);
+		}
+	}
+}
+
+@media (max-width: (1024px)) {
+	.hero__slide {
+		@apply bg-left;
+	}
 }
