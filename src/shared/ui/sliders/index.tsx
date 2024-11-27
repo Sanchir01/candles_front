@@ -49,8 +49,6 @@ const SliderDesktop = ({
          navigation={navigation}
          slidesPerView={countSlides}
          pagination={pagination ? { clickable: true } : false}
-         onSlideChange={() => console.log('slide change')}
-         onSwiper={swiper => console.log(swiper)}
       >
          {children}
       </Swiper>

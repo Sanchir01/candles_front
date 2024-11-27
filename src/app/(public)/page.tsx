@@ -2,7 +2,7 @@
 import { Suspense } from 'react'
 
 import { Metadata } from 'next'
-import HeroSlider from '~/shared/ui/slider/heroSlider'
+import HeroSlider from '~/shared/ui/sliders/heroSlider'
 import LoadingMainPage from './loading'
 export const metaDta: Metadata = {
    title: 'Home',

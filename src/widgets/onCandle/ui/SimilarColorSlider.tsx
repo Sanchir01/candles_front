@@ -1,13 +1,13 @@
 'use client'
 import { useQuery } from '@tanstack/react-query'
 import Link from 'next/link'
-import { Swiper, SwiperSlide } from 'swiper/react'
+import { SwiperSlide } from 'swiper/react'
 import { SkeletonCart } from '~/entities/entitycandles/SkeletenCart'
 import { CandlesSortEnum } from '~/shared/graphql/gql/graphql'
 import { candlesService } from '~/shared/service/candles'
 import { Title } from '~/shared/ui'
 import ImagesGallery from '~/shared/ui/ImageGallery'
-import SliderDesktop from '~/shared/ui/slider'
+import SliderDesktop from '~/shared/ui/sliders'
 
 const SimilarColorSlider = ({ colorId }: { colorId: string }) => {
    const { data, isLoading, isSuccess } = useQuery({
