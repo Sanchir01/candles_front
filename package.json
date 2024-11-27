@@ -3,7 +3,7 @@
    "version": "0.1.0",
    "private": true,
    "scripts": {
-      "dev": "graphql-codegen --config codegen.ts && pnpm format && next dev --turbopack",
+      "dev": "graphql-codegen --config codegen.ts && pnpm format && next dev",
       "build": "next build",
       "start": "next start",
       "gen": "graphql-codegen --config codegen.ts",
@@ -33,6 +33,7 @@
       "@tanstack/react-query": "^5.59.16",
       "class-variance-authority": "^0.7.0",
       "clsx": "^2.1.1",
+      "framer-motion": "^11.12.0",
       "graphql": "^16.9.0",
       "graphql-request": "^7.1.2",
       "husky": "^9.1.6",

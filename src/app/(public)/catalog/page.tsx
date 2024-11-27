@@ -21,7 +21,6 @@ const SSGDataCandles = async () => {
 
    return data
 }
-
 const CatalogPage: NextPage = async () => {
    const data = await SSGDataCandles()
 

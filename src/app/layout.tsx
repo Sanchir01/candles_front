@@ -1,8 +1,11 @@
 import './globals.css'
+import { Arsenal_SC } from 'next/font/google'
 import { Toaster } from 'react-hot-toast'
 import { Provider } from '~/Providers/Provider'
-import { Inter } from 'next/font/google'
-const inter = Inter({ subsets: ['latin'] })
+const Arsenal = Arsenal_SC({
+   subsets: ['latin'],
+   weight: ['400','700']
+})
 export default function RootLayout({
    children
 }: Readonly<{
@@ -10,7 +13,7 @@ export default function RootLayout({
 }>) {
    return (
       <html lang='ru' suppressHydrationWarning>
-         <body className={inter.className}>
+         <body className={Arsenal.className}>
             <Toaster
                position='top-center'
                reverseOrder={false}

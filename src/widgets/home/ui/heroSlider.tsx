@@ -6,6 +6,8 @@ import 'swiper/scss'
 import { Autoplay, Navigation } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { HeroSliderContent } from '~/shared/constants/header_content'
+import { cn } from '~/shared/lib/utils'
+import { Button } from '~/shared/ui'
 
 const HeroSlider: FC = () => (
    <section className={styles.hero}>
@@ -18,11 +20,19 @@ const HeroSlider: FC = () => (
       >
          {HeroSliderContent.map(content => (
             <SwiperSlide key={content.id} className={styles.hero__slide}>
-               <Link href={content.href} className={styles.hero__slide__link}>
-                  <p className={styles.hero__slide__title}>{content.title}</p>
+               <Link
+                  href={content.href}
+                  className={cn(styles.hero__slide__link, 'text-myWhite')}
+               >
+                  <h1 className={styles.hero__slide__title}>{content.title}</h1>
                   <span className={styles.hero__slide__subtitle}>
                      {content.subtitle}
                   </span>
+                  <div className='mt-5'>
+                     <Button className='h-10  min-w-[200px] p-3 text-xl'>
+                        {content.buttonText}
+                     </Button>
+                  </div>
                </Link>
             </SwiperSlide>
          ))}

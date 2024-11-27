@@ -1,13 +1,12 @@
 import { useQuery } from '@tanstack/react-query'
-import Link from 'next/link'
 import { FC } from 'react'
 import { SwiperSlide } from 'swiper/react'
 import { SkeletonCart } from '~/entities/entitycandles/SkeletenCart'
 import { CandlesSortEnum } from '~/shared/graphql/gql/graphql'
 import { candlesService } from '~/shared/service/candles'
 import { Container, Title } from '~/shared/ui'
-import ImagesGallery from '~/shared/ui/ImageGallery'
 import SliderDesktop from '~/shared/ui/sliders'
+import GridItem from '~/widgets/catalog/ui/item'
 
 const PopularItemsSlider: FC = () => {
    const { data, isLoading, isSuccess } = useQuery({
@@ -21,9 +20,17 @@ const PopularItemsSlider: FC = () => {
    })
    return (
       <Container>
-         <Title text='Популярные товары' size='lg' />
+         <Title
+            text='Популярные товары'
+            size='lg'
+            className='text-mySecondary'
+         />
          <div className='mt-5'>
-            <SliderDesktop navigation={false} pagination={false}>
+            <SliderDesktop
+               navigation={false}
+               pagination={false}
+               countSlides={5.5}
+            >
                {isLoading ? (
                   Array.from({ length: 8 }).map((_, index) => (
                      <SwiperSlide key={index}>
@@ -31,13 +38,30 @@ const PopularItemsSlider: FC = () => {
                      </SwiperSlide>
                   ))
                ) : isSuccess && data?.__typename === 'AllCandlesOk' ? (
-                  data?.candles?.map(candle => (
-                     <SwiperSlide key={candle.id}>
-                        <Link href={`/catalog/${candle.id}`}>
-                           <ImagesGallery images={candle.images} focusImage />
-                        </Link>
-                     </SwiperSlide>
-                  ))
+                  data?.candles?.map(
+                     ({
+                        id,
+                        title,
+                        images,
+                        price,
+                        version,
+                        color_id,
+                        category_id
+                     }) => (
+                        <SwiperSlide key={id}>
+                           <GridItem
+                              id={id}
+                              title={title}
+                              images={images}
+                              price={price}
+                              version={version}
+                              color_id={color_id}
+                              category_id={category_id}
+                              focusImage={true}
+                           />
+                        </SwiperSlide>
+                     )
+                  )
                ) : (
                   <></>
                )}

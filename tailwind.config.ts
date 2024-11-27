@@ -20,6 +20,13 @@ const config = {
       extend: {
          colors: {
             skeleton: '#858585',
+            myPrimary: '#BDA18C',
+            mySecondary: '#7C634D',
+            myDestructive: '#8D7C72',
+            myHover: '#D5BEB0',
+            myWhite: '#FBF3EB',
+            myDisable: '#b3a19f',
+            myPress: '#bda18c',
             border: 'hsl(var(--border))',
             input: 'hsl(var(--input))',
             ring: 'hsl(var(--ring))',
