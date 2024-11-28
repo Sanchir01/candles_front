@@ -1,19 +1,19 @@
+import { FooterColumnContent } from "~/shared/constants/footercontent";
 import { Container } from "~/shared/ui";
+import FooterColumn from "./ui/footerColumn";
 
 const Footer = () => {
   return (
-    <footer className="">
+    <footer className="mt-10">
       <Container>
-        <div className="">Logo</div>
-       
-        <div className="">
-          <h4></h4>
-          <div className=""></div>
-        </div>
-        <div className="">
-          <h4></h4>
-          <div className=""></div>
-        </div>
+        {FooterColumnContent.map((item, i) => (
+          <FooterColumn
+            key={i}
+            title={item.title}
+            content={item.content}
+            column={item.column}
+          />
+        ))}
       </Container>
     </footer>
   );

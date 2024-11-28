@@ -26,10 +26,7 @@ const PopularItemsSlider: FC = () => {
             className='text-mySecondary'
          />
          <div className='mt-5'>
-            <SliderDesktop
-             
-               countSlides={5.5}
-            >
+            <SliderDesktop countSlides={5.5}>
                {isLoading ? (
                   Array.from({ length: 8 }).map((_, index) => (
                      <SwiperSlide key={index}>

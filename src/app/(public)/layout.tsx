@@ -1,5 +1,6 @@
 'use client'
 import { HeaderProfileEnum } from '~/shared/constants/header'
+import Footer from '~/widgets/footer'
 import Header from '~/widgets/header'
 
 export default function RootLayout({
@@ -11,7 +12,7 @@ export default function RootLayout({
       <>
          <Header isAuth={HeaderProfileEnum.PUBLIC} />
          <main>{children}</main>
-         <div className=''>tes</div>
+         <Footer />
       </>
    )
 }
