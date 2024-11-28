@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import { FC } from 'react'
 import styles from '~/shared/styles/Home.module.scss'
-import 'swiper/css/navigation'
 import 'swiper/scss'
 import { Autoplay, Navigation } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -13,7 +12,6 @@ const HeroSlider: FC = () => (
    <section className={styles.hero}>
       <Swiper
          modules={[Navigation, Autoplay]}
-         navigation
          autoplay={{
             delay: 2500
          }}

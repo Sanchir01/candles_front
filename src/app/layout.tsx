@@ -4,7 +4,7 @@ import { Toaster } from 'react-hot-toast'
 import { Provider } from '~/Providers/Provider'
 const Arsenal = Arsenal_SC({
    subsets: ['latin'],
-   weight: ['400','700']
+   weight: ['400', '700']
 })
 export default function RootLayout({
    children

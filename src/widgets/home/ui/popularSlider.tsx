@@ -27,8 +27,7 @@ const PopularItemsSlider: FC = () => {
          />
          <div className='mt-5'>
             <SliderDesktop
-               navigation={false}
-               pagination={false}
+             
                countSlides={5.5}
             >
                {isLoading ? (
