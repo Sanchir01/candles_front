@@ -1,42 +1,30 @@
 import Link from 'next/link'
-import { ReactNode } from 'react'
 import { cn } from '~/shared/lib/utils'
 export type FooterColumContentType = {
    title: string
    href: string
-   type: string
 }
 export type FooterColumnType = {
    title: string
-   content: FooterColumContentType[] | ReactNode[]
+   content: FooterColumContentType[]
    column: boolean
 }
 const FooterColumn = ({ title, content, column }: FooterColumnType) => {
    return (
       <div className=''>
-         <h4>{title}</h4>
-         <div className={cn('flex gap-5', column ? 'flex-col' : '')}>
+         <h4 className='text-xl'>{title}</h4>
+         <div className={cn('flex gap-1 mt-3', column ? 'flex-col' : '')}>
             {content.map((item, i) => {
-               if (!item) return null
-
-               if (
-                  typeof item === 'object' &&
-                  'title' in item &&
-                  'href' in item
-               ) {
-                  const typedItem = item as FooterColumContentType
-                  return (
-                     <Link
-                        href={typedItem.href}
-                        key={i}
-                        className='text-primary hover:underline'
-                     >
-                        {typedItem.title}
-                     </Link>
-                  )
-               }
-
-               return <div key={i}>{item}</div>
+               const typedItem = item as FooterColumContentType
+               return (
+                  <Link
+                     href={typedItem.href}
+                     key={i}
+                     className='text-primary hover:underline'
+                  >
+                     {typedItem.title}
+                  </Link>
+               )
             })}
          </div>
       </div>
