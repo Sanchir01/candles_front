@@ -1,4 +1,8 @@
-import { keepPreviousData, queryOptions } from '@tanstack/react-query'
+import {
+   infiniteQueryOptions,
+   keepPreviousData,
+   queryOptions
+} from '@tanstack/react-query'
 import { gqlRequest } from '~/shared/api/api-instance'
 import {
    AllCandlesDocument,
@@ -9,10 +13,14 @@ export type AllCandlesQueryType = {
    sort: CandlesSortEnum
    categoryId: string | null
    colorId: string | null
-   pageNumber?: number
+   pageNumber: number
    pageSize?: number
 }
-
+export type AllCandlesQueryOptionsType = Omit<
+   AllCandlesQueryType,
+   'pageNumber' | 'pageSize'
+>
+export type InfiniteData = {}
 export const candlesService = {
    allCandleKey: 'allcandles',
    candlesByIdKey: 'candleById',
@@ -21,7 +29,7 @@ export const candlesService = {
       categoryId,
       colorId,
       pageNumber = 1,
-      pageSize = 10
+      pageSize = 20
    }: AllCandlesQueryType) {
       return gqlRequest.request({
          document: AllCandlesDocument,
@@ -42,10 +50,8 @@ export const candlesService = {
    AllCandlesQueryOptions: ({
       sort,
       categoryId,
-      colorId,
-      pageNumber = 1,
-      pageSize = 10
-   }: AllCandlesQueryType) => {
+      colorId
+   }: AllCandlesQueryOptionsType) => {
       return queryOptions({
          queryFn: meta =>
             candlesService.allCandles({
@@ -53,16 +59,39 @@ export const candlesService = {
                categoryId,
                colorId,
                pageNumber: meta.pageParam as number,
-               pageSize
+               pageSize: 20
             }),
-         queryKey: [
-            candlesService.allCandleKey,
-            { sort, categoryId, colorId, pageNumber }
-         ],
-         select: data => data.candles?.allCandles
+         queryKey: [candlesService.allCandleKey, { sort, categoryId, colorId }]
       })
    },
-
+   InfiniteAllCandlesQueryOptions: ({
+      sort,
+      categoryId,
+      colorId
+   }: AllCandlesQueryOptionsType) => {
+      return infiniteQueryOptions({
+         queryFn: meta =>
+            candlesService.allCandles({
+               sort,
+               categoryId,
+               colorId,
+               pageNumber: meta.pageParam,
+               pageSize: 20
+            }),
+         queryKey: [candlesService.allCandleKey, { sort, categoryId, colorId }],
+         getNextPageParam: data =>
+            data.candles?.allCandles.__typename === 'AllCandlesOk'
+               ? data.candles.allCandles.page
+               : 0,
+         initialPageParam: 1,
+         select: data =>
+            data.pages.flatMap(data =>
+               data.candles?.allCandles.__typename === 'AllCandlesOk'
+                  ? data.candles.allCandles.candles
+                  : []
+            )
+      })
+   },
    CandleByIdQueryOptions: ({ id }: { id: string }) => {
       return queryOptions({
          queryKey: ['candleById', id],

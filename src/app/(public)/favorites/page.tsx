@@ -37,7 +37,6 @@ export default function FavoritesPage() {
                           title,
                           images,
                           id,
-                          slug,
                           price,
                           colorId,
                           categoryId,
@@ -53,7 +52,6 @@ export default function FavoritesPage() {
                              version={version}
                              color_id={colorId}
                              category_id={categoryId}
-                             slug={slug}
                           />
                        )
                     )

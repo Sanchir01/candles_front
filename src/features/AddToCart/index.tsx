@@ -1,7 +1,7 @@
 'use client'
 import useCartStore, { ICart } from '~/Providers/store/useCart'
 import { Button } from '~/shared/ui'
-export interface IAddToCart extends ICart {
+export interface IAddToCart extends Omit<ICart, 'slug'> {
    text: string
 }
 
@@ -12,7 +12,7 @@ const AddToCart = ({
    images,
    price,
    quantity,
-   slug,
+
    title,
    version,
    text
@@ -29,7 +29,6 @@ const AddToCart = ({
                price,
                categoryId,
                colorId,
-               slug,
                quantity,
                version
             })

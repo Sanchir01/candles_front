@@ -54,7 +54,6 @@ const Form = ({
                title={title}
                price={price}
                version={version}
-               slug={slug}
             />
             <AddToFavorites
                id={id}
@@ -64,7 +63,6 @@ const Form = ({
                title={title}
                price={price}
                version={version}
-               slug={slug}
             />
          </div>
       </div>

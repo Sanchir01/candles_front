@@ -1,8 +1,8 @@
 import './globals.css'
-import { Arsenal_SC } from 'next/font/google'
+import { Arsenal } from 'next/font/google'
 import { Toaster } from 'react-hot-toast'
 import { Provider } from '~/Providers/Provider'
-const Arsenal = Arsenal_SC({
+const ArsenalFont = Arsenal({
    subsets: ['latin'],
    weight: ['400', '700']
 })
@@ -13,7 +13,7 @@ export default function RootLayout({
 }>) {
    return (
       <html lang='ru' suppressHydrationWarning>
-         <body className={Arsenal.className}>
+         <body className={ArsenalFont.className}>
             <Toaster
                position='top-center'
                reverseOrder={false}

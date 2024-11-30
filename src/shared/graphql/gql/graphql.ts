@@ -42,7 +42,11 @@ export type Scalars = {
 export type AllCandlesOk = {
    __typename?: 'AllCandlesOk'
    candles: Array<Candles>
+   nextPage: Scalars['Boolean']['output']
+   page: Scalars['Int']['output']
+   prevPage: Scalars['Boolean']['output']
    totalCount: TotalCountResolvingResult
+   totalPage: Scalars['Int']['output']
 }
 
 export type AllCandlesOkTotalCountArgs = {
@@ -576,10 +580,7 @@ export type SortRankInput = {
 
 export type TotalCountResolvingOk = {
    __typename?: 'TotalCountResolvingOk'
-   nextPage: Scalars['Boolean']['output']
-   prevPage: Scalars['Boolean']['output']
    totalCount: Scalars['UInt']['output']
-   totalCountPage: Scalars['UInt']['output']
 }
 
 export type TotalCountResolvingResult =
@@ -738,6 +739,9 @@ export type AllCandlesQuery = {
       allCandles:
          | {
               __typename: 'AllCandlesOk'
+              nextPage: boolean
+              page: number
+              totalPage: number
               totalCount:
                  | { __typename?: 'InternalErrorProblem' }
                  | { __typename?: 'TotalCountResolvingOk'; totalCount: any }
@@ -753,8 +757,8 @@ export type AllCandlesQuery = {
                  color_id: any
               }>
            }
-         | { __typename?: 'InternalErrorProblem'; message: string }
-         | { __typename?: 'VersionMismatchProblem'; message: string }
+         | { __typename: 'InternalErrorProblem'; message: string }
+         | { __typename: 'VersionMismatchProblem'; message: string }
    } | null
 }
 
@@ -1549,6 +1553,10 @@ export const AllCandlesDocument = {
                               kind: 'SelectionSet',
                               selections: [
                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: '__typename' }
+                                 },
+                                 {
                                     kind: 'InlineFragment',
                                     typeCondition: {
                                        kind: 'NamedType',
@@ -1604,13 +1612,6 @@ export const AllCandlesDocument = {
                                     selectionSet: {
                                        kind: 'SelectionSet',
                                        selections: [
-                                          {
-                                             kind: 'Field',
-                                             name: {
-                                                kind: 'Name',
-                                                value: '__typename'
-                                             }
-                                          },
                                           {
                                              kind: 'Field',
                                              name: {
@@ -1704,6 +1705,27 @@ export const AllCandlesDocument = {
                                                       }
                                                    }
                                                 ]
+                                             }
+                                          },
+                                          {
+                                             kind: 'Field',
+                                             name: {
+                                                kind: 'Name',
+                                                value: 'nextPage'
+                                             }
+                                          },
+                                          {
+                                             kind: 'Field',
+                                             name: {
+                                                kind: 'Name',
+                                                value: 'page'
+                                             }
+                                          },
+                                          {
+                                             kind: 'Field',
+                                             name: {
+                                                kind: 'Name',
+                                                value: 'totalPage'
                                              }
                                           }
                                        ]

@@ -3,7 +3,7 @@ import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
 import { ProductCardPropsType } from '~/shared/types/Catalog.types'
 
-export interface ICart extends Omit<ProductCardPropsType, 'images'> {
+export interface ICart extends Omit<ProductCardPropsType, 'images' | 'slug'> {
    images: string
    quantity: number
 }

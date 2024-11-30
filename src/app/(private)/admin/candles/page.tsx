@@ -11,7 +11,8 @@ const AdminPage = () => {
          sort: CandlesSortEnum.PriceAsc,
          categoryId: null,
          colorId: null
-      })
+      }),
+      select: data => data.candles?.allCandles
    })
    return (
       <>
