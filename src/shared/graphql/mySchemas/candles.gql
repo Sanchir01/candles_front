@@ -20,8 +20,15 @@ query AllCandles(
          }
          ... on AllCandlesOk {
             totalCount {
+               __typename
                ... on TotalCountResolvingOk {
                   totalCount
+               }
+               ... on VersionMismatchProblem {
+                  message
+               }
+               ... on InternalErrorProblem {
+                  message
                }
             }
             candles {
@@ -34,13 +41,51 @@ query AllCandles(
                color_id
             }
             nextPage
-            page
-            totalPage
-         }
+           
+          prevPage
+        }
       }
    }
 }
-
+query AllCandlesTotalCount(
+   $pageSize: PageSize!
+   $pageNumber: PageNumber!
+   $sort: CandlesSortEnum
+   $filter: CandlesFilterInput
+) {
+   candles {
+      allCandles(
+         pageSize: $pageSize
+         pageNumber: $pageNumber
+         sort: $sort
+         filter: $filter
+      ) {
+         __typename
+         ... on VersionMismatchProblem {
+            message
+         }
+         ... on InternalErrorProblem {
+            message
+         }
+         ... on AllCandlesOk {
+            totalCount {
+               __typename
+               ... on TotalCountResolvingOk {
+                  totalCount
+               }
+               ... on VersionMismatchProblem {
+                  message
+               }
+               ... on InternalErrorProblem {
+                  message
+               }
+            }
+          
+            
+        }
+      }
+   }
+}
 query CandleById($input: CandlesByIdInput!) {
    candles {
       candleById(input: $input) {

@@ -12,8 +12,7 @@ const config: CodegenConfig = {
       'src/shared/graphql/gql/': {
          preset: 'client'
       }
-   },
-   ignoreNoDocuments: true
+   }
 }
 
 export default config

@@ -1,12 +1,12 @@
 'use client'
 import { useInfiniteQuery } from '@tanstack/react-query'
-import { useCallback, useRef } from 'react'
 import { useFilters } from '~/Providers/store/useFilters'
 import { SkeletonCart } from '~/entities/entitycandles/SkeletenCart'
 import { AllCandlesQuery } from '~/shared/graphql/gql/graphql'
 import { candlesService } from '~/shared/service/candles'
 import { Loader } from '~/shared/ui'
 import GridItem from './item'
+import { useIntersections } from '~/shared/hooks/useIntersections'
 export type itemsGridType = {
    title: string
    images: string[]
@@ -37,7 +37,8 @@ const Items = ({ initialdata }: { initialdata: AllCandlesQuery }) => {
          categoryId,
          colorId,
          sort
-      })
+      }),
+      enabled: !!initialdata
    })
    const cursorRef = useIntersections(() => {
       fetchNextPage()
@@ -82,27 +83,6 @@ const Items = ({ initialdata }: { initialdata: AllCandlesQuery }) => {
          </div>
       </>
    )
-}
-export function useIntersections(onIntersect: () => void) {
-   const unsubscribe = useRef(() => {})
-
-   return useCallback((el: HTMLDivElement | null) => {
-      const observer = new IntersectionObserver(entries => {
-         entries.forEach(intersection => {
-            if (intersection.isIntersecting) {
-               onIntersect()
-            }
-         })
-      })
-
-      if (el) {
-         observer.observe(el)
-         unsubscribe.current = () => observer.disconnect()
-      } else {
-         unsubscribe.current()
-      }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-   }, [])
 }
 
 export default Items

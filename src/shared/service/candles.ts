@@ -6,8 +6,10 @@ import {
 import { gqlRequest } from '~/shared/api/api-instance'
 import {
    AllCandlesDocument,
+   AllCandlesTotalCountDocument,
    CandleByIdDocument
-} from '~/shared/graphql/gql/graphql'
+} from './../graphql/gql/graphql'
+
 import { CandlesSortEnum } from '~/shared/graphql/gql/graphql'
 export type AllCandlesQueryType = {
    sort: CandlesSortEnum
@@ -47,6 +49,23 @@ export const candlesService = {
          variables: { input: { id: id } }
       })
    },
+   async AllCandlesTotalCount({
+      sort,
+      categoryId,
+      colorId,
+      pageNumber,
+      pageSize
+   }: AllCandlesQueryType) {
+      return gqlRequest.request({
+         document: AllCandlesTotalCountDocument,
+         variables: {
+            sort,
+            filter: { categoryId, colorId },
+            pageNumber,
+            pageSize
+         }
+      })
+   },
    AllCandlesQueryOptions: ({
       sort,
       categoryId,
@@ -61,7 +80,8 @@ export const candlesService = {
                pageNumber: meta.pageParam as number,
                pageSize: 20
             }),
-         queryKey: [candlesService.allCandleKey, { sort, categoryId, colorId }]
+         queryKey: [candlesService.allCandleKey, { sort, categoryId, colorId }],
+         select: data => data.candles?.allCandles
       })
    },
    InfiniteAllCandlesQueryOptions: ({
@@ -79,10 +99,18 @@ export const candlesService = {
                pageSize: 20
             }),
          queryKey: [candlesService.allCandleKey, { sort, categoryId, colorId }],
-         getNextPageParam: data =>
-            data.candles?.allCandles.__typename === 'AllCandlesOk'
-               ? data.candles.allCandles.page
-               : 0,
+         getNextPageParam: data => {
+            const allCandles = data.candles?.allCandles
+            if (allCandles?.__typename !== 'AllCandlesOk') return null
+
+            if (allCandles.totalCount?.__typename !== 'TotalCountResolvingOk')
+               return null
+
+            const hasMoreItems =
+               allCandles.totalCount.totalCount > allCandles.prevPage * 20
+
+            return hasMoreItems ? allCandles.nextPage : null
+         },
          initialPageParam: 1,
          select: data =>
             data.pages.flatMap(data =>
@@ -92,6 +120,7 @@ export const candlesService = {
             )
       })
    },
+
    CandleByIdQueryOptions: ({ id }: { id: string }) => {
       return queryOptions({
          queryKey: ['candleById', id],

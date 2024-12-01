@@ -12,8 +12,6 @@ const PopularItemsSlider: FC = () => {
    const { data, isLoading, isSuccess } = useQuery({
       ...candlesService.AllCandlesQueryOptions({
          sort: CandlesSortEnum.CreatedAtAsc,
-         pageNumber: 1,
-         pageSize: 20,
          categoryId: null,
          colorId: null
       })
