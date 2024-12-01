@@ -41,9 +41,9 @@ query AllCandles(
                color_id
             }
             nextPage
-           
-          prevPage
-        }
+
+            prevPage
+         }
       }
    }
 }
@@ -80,9 +80,7 @@ query AllCandlesTotalCount(
                   message
                }
             }
-          
-            
-        }
+         }
       }
    }
 }

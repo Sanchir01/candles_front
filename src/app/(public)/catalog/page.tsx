@@ -16,7 +16,9 @@ const SSGDataCandles = async () => {
    const data = await candlesService.allCandles({
       sort: CandlesSortEnum.PriceDesc,
       categoryId: null,
-      colorId: null
+      colorId: null,
+      pageNumber: 1,
+      pageSize: 20
    })
 
    return data

@@ -1,13 +1,20 @@
-import React from 'react'
+import React from "react";
+import { cn } from "~/shared/lib/utils";
 
 export const EntityProductCart = ({
-   children
+  children,
+  className,
+  border = false,
 }: {
-   children: React.ReactNode
+  children: React.ReactNode;
+  className?: string;
+  border?: boolean;
 }) => {
-   return (
-      <article className={'w-[250px] h-auto border border-black'}>
-         <div className='flex flex-col'>{children}</div>
-      </article>
-   )
-}
+  return (
+    <article
+      className={cn("w-[250px] h-auto", border && "border border-black ")}
+    >
+      <div className={className}>{children}</div>
+    </article>
+  );
+};

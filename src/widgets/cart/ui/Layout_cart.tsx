@@ -1,12 +1,9 @@
 'use client'
-import { useAutoAnimate } from '@formkit/auto-animate/react'
 import { ShoppingCart } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { FC, ReactNode } from 'react'
 import useCartStore from '~/Providers/store/useCart'
 import { useStoreZustand } from '~/shared/hooks/useStoreZustand'
-import { cn } from '~/shared/lib/utils'
-import styles from '~/shared/styles/Scrollbar.module.scss'
 import {
    Button,
    Sheet,
@@ -24,7 +21,6 @@ export interface ICartLayout {
 }
 
 const LayoutCart: FC<ICartLayout> = ({ content }) => {
-   const [parent] = useAutoAnimate({ easing: 'ease-in-out', duration: 400 })
    const { push } = useRouter()
    const cart = useStoreZustand(useCartStore, state => state.cart)
    return (
@@ -58,12 +54,7 @@ const LayoutCart: FC<ICartLayout> = ({ content }) => {
                </SheetHeader>
                {cart?.length !== 0 ? (
                   <>
-                     <div className={cn(styles.scroll, 'h-[84vh]')}>
-                        <div className='px-3' ref={parent}>
-                           {' '}
-                           {content}
-                        </div>
-                     </div>
+                     {content}
                      <SheetFooter className='mt-5 px-3'>
                         <SheetClose asChild>
                            <Button

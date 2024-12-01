@@ -15,7 +15,7 @@ export type GridItemsPropsType = {
    focusImage: boolean
 }
 
-export const GridItem = ({
+export const CatalogItem = ({
    id,
    title,
 
@@ -27,7 +27,7 @@ export const GridItem = ({
    focusImage
 }: GridItemsPropsType) => {
    return (
-      <EntityProductCart key={id}>
+      <EntityProductCart key={id} border={true}>
          <Link href={`/catalog/${id}`}>
             <ImageGallery focusImage={focusImage} images={images} />
          </Link>
@@ -50,4 +50,4 @@ export const GridItem = ({
    )
 }
 
-export default GridItem
+export default CatalogItem
