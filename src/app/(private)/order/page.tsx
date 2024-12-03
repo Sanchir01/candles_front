@@ -1,7 +1,8 @@
-import { FC } from 'react'
+import { FC } from "react";
+import Order from "~/widgets/order/Order";
 
 const OrderPage: FC = () => {
-   return <div>page</div>
-}
+  return <Order />;
+};
 
-export default OrderPage
+export default OrderPage;
