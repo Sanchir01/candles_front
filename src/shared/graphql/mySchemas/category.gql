@@ -1,52 +1,52 @@
 query allCategory {
-   category {
-      getAllCategory {
-         __typename
-         ... on CategoryGetAllOk {
-            category {
-               id
-               title
-               slug
-            }
-         }
-         ... on InternalErrorProblem {
-            message
-         }
-      }
-   }
+	category {
+		getAllCategory {
+			__typename
+			... on CategoryGetAllOk {
+				category {
+					id
+					title
+					slug
+				}
+			}
+			... on InternalErrorProblem {
+				message
+			}
+		}
+	}
 }
 query CategoryById($input: CategoryByIdInput!) {
-   category {
-      categoryById(input: $input) {
-         ... on CategoryByIdOk {
-            category {
-               title
-               version
-               id
-            }
-         }
-         ... on InternalErrorProblem {
-            message
-         }
-         ... on VersionMismatchProblem {
-            message
-         }
-      }
-   }
+	category {
+		categoryById(input: $input) {
+			... on CategoryByIdOk {
+				category {
+					title
+					version
+					id
+				}
+			}
+			... on InternalErrorProblem {
+				message
+			}
+			... on VersionMismatchProblem {
+				message
+			}
+		}
+	}
 }
 mutation AddCategory($input: CreateCategoryInput) {
-   category {
-      createCategory(input: $input) {
-         __typename
-         ... on CategoryCreateOk {
-            id
-         }
-         ... on InternalErrorProblem {
-            message
-         }
-         ... on UnauthorizedProblem {
-            message
-         }
-      }
-   }
+	category {
+		createCategory(input: $input) {
+			__typename
+			... on CategoryCreateOk {
+				id
+			}
+			... on InternalErrorProblem {
+				message
+			}
+			... on UnauthorizedProblem {
+				message
+			}
+		}
+	}
 }

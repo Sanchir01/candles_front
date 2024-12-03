@@ -1,8 +1,8 @@
 export enum HeaderProfileEnum {
-   PRIVATE = 'private',
-   AUTH = 'auth',
-   PUBLIC = 'public'
+	PRIVATE = 'private',
+	AUTH = 'auth',
+	PUBLIC = 'public'
 }
 export enum HeaderVariant {
-   ADMIN = 'ADMIN'
+	ADMIN = 'ADMIN'
 }

@@ -8,18 +8,18 @@ import Sorting from '~/widgets/catalog/ui/sorting'
 import Items from './ui/Items'
 
 const FiltersSheet = dynamic(() => import('~/widgets/catalog/ui/filters'), {
-   ssr: false
+	ssr: false
 })
 
 const Catalog = ({ candles }: { candles: AllCandlesQuery }) => {
-   return (
-      <CatalogLayout
-         grid={<Items initialdata={candles} />}
-         title={<Title text={'Все свечи'} size='lg' />}
-         sorting={<Sorting />}
-         filters={<FiltersSheet />}
-      />
-   )
+	return (
+		<CatalogLayout
+			grid={<Items initialdata={candles} />}
+			title={<Title text={'Все свечи'} size='lg' />}
+			sorting={<Sorting />}
+			filters={<FiltersSheet />}
+		/>
+	)
 }
 
 export default Catalog

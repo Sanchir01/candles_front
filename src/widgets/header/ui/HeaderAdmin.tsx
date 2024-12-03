@@ -7,16 +7,16 @@ import { ShieldCheck } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { Role } from '~/shared/graphql/gql/graphql'
 const HeaderAdmin = () => {
-   const user = useStoreZustand(useUser, state => state.user)
-   const { push } = useRouter()
+	const user = useStoreZustand(useUser, state => state.user)
+	const { push } = useRouter()
 
-   return user?.role === Role.Admin ? (
-      <Button variant={'ghost'} onClick={() => push('/admin')}>
-         <ShieldCheck />
-      </Button>
-   ) : (
-      <></>
-   )
+	return user?.role === Role.Admin ? (
+		<Button variant={'ghost'} onClick={() => push('/admin')}>
+			<ShieldCheck />
+		</Button>
+	) : (
+		<></>
+	)
 }
 
 export default HeaderAdmin

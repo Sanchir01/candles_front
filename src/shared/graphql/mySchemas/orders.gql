@@ -1,61 +1,61 @@
 query AllOrders {
-   orders {
-      allOrders {
-         __typename
-         ... on AllOrdersOk {
-            orders {
-               id
-               status
-               total_amount
-               userId
-               version
-            }
-         }
-         ... on InternalErrorProblem {
-            message
-         }
-         ... on UnauthorizedProblem {
-            message
-         }
-      }
-   }
+	orders {
+		allOrders {
+			__typename
+			... on AllOrdersOk {
+				orders {
+					id
+					status
+					total_amount
+					userId
+					version
+				}
+			}
+			... on InternalErrorProblem {
+				message
+			}
+			... on UnauthorizedProblem {
+				message
+			}
+		}
+	}
 }
 
 query AllUserOrders {
-   orders {
-      allUserOrders {
-         ... on InternalErrorProblem {
-            message
-         }
-         ... on UnauthorizedProblem {
-            message
-         }
-         ... on AllUserOrdersOk {
-            orders {
-               id
-               status
-               total_amount
-               userId
-               version
-            }
-         }
-      }
-   }
+	orders {
+		allUserOrders {
+			... on InternalErrorProblem {
+				message
+			}
+			... on UnauthorizedProblem {
+				message
+			}
+			... on AllUserOrdersOk {
+				orders {
+					id
+					status
+					total_amount
+					userId
+					version
+				}
+			}
+		}
+	}
 }
 
 mutation Mutation($input: CreateOrderInput!) {
-   orders {
-      createOrder(input: $input) {
-         __typename
-         ... on InternalErrorProblem {
-            message
-         }
-         ... on UnauthorizedProblem {
-            message
-         }
-         ... on CreateOrderOk {
-            ok
-         }
-      }
-   }
+	orders {
+		createOrder(input: $input) {
+			__typename
+			... on InternalErrorProblem {
+				message
+			}
+			... on UnauthorizedProblem {
+				message
+			}
+			... on CreateOrderOk {
+				ok
+			}
+		}
+	}
 }

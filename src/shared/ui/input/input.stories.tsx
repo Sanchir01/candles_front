@@ -2,9 +2,9 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Input } from '.'
 
 const meta: Meta<typeof Input> = {
-   title: 'Components/Input',
-   component: Input,
-   tags: ['autodocs']
+	title: 'Components/Input',
+	component: Input,
+	tags: ['autodocs']
 }
 
 export default meta
@@ -12,10 +12,10 @@ export default meta
 type Story = StoryObj<typeof Input>
 
 export const Default: Story = {
-   args: {
-      className: 'flex gap-3',
-      placeholder: '',
-      suffix: <div>Иконка</div>,
-      type: ''
-   }
+	args: {
+		className: 'flex gap-3',
+		placeholder: '',
+		suffix: <div>Иконка</div>,
+		type: ''
+	}
 }

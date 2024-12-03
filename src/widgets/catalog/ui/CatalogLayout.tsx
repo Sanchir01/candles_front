@@ -4,34 +4,34 @@ import React from 'react'
 import { cn } from '~/shared/lib/utils'
 import st from '~/shared/styles/Catalog.module.scss'
 export interface ICatalogLayout {
-   grid?: React.ReactNode
-   title?: React.ReactNode
-   sorting?: React.ReactNode
-   filters?: React.ReactNode
-   pagination?: React.ReactNode
+	grid?: React.ReactNode
+	title?: React.ReactNode
+	sorting?: React.ReactNode
+	filters?: React.ReactNode
+	pagination?: React.ReactNode
 }
 const CatalogLayout = ({
-   grid,
-   title,
-   sorting,
-   filters,
-   pagination
+	grid,
+	title,
+	sorting,
+	filters,
+	pagination
 }: ICatalogLayout) => {
-   const [parent] = useAutoAnimate({ easing: 'ease-in-out', duration: 500 })
+	const [parent] = useAutoAnimate({ easing: 'ease-in-out', duration: 500 })
 
-   return (
-      <div className='flex flex-col '>
-         <div className=''>{title}</div>
-         <div className='flex justify-between items-center'>
-            {filters}
-            {sorting}
-         </div>
-         <div className={cn(st.catalog__content, 'mt-5')} ref={parent}>
-            {grid}
-         </div>
-         <div className='mt-5'>{pagination}</div>
-      </div>
-   )
+	return (
+		<div className='flex flex-col '>
+			<div className=''>{title}</div>
+			<div className='flex justify-between items-center'>
+				{filters}
+				{sorting}
+			</div>
+			<div className={cn(st.catalog__content, 'mt-5')} ref={parent}>
+				{grid}
+			</div>
+			<div className='mt-5'>{pagination}</div>
+		</div>
+	)
 }
 
 export default CatalogLayout
