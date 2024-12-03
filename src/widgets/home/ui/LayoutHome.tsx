@@ -1,14 +1,23 @@
 import { motion } from 'framer-motion'
-import { SliderHero } from '..'
-import AboutBrand from './aboutBrand'
-import Advantages from './advantages'
-import FeedbackSection from './feedbackForm'
-import PopularItemsSlider from './popularSlider'
+import { ReactNode } from 'react'
 
-export const HomeLayout = () => {
+export type HomeLayoutType = {
+   heroSlider?: ReactNode
+   popularSlider?: ReactNode
+   aboutBrand?: ReactNode
+   advantages?: ReactNode
+   feedbackForm?: ReactNode
+}
+export const HomeLayout = ({
+   heroSlider,
+   aboutBrand,
+   popularSlider,
+   advantages,
+   feedbackForm
+}: HomeLayoutType) => {
    return (
       <>
-         <SliderHero />
+         {heroSlider}
          <div className='overflow-hidden'>
             <motion.section
                initial={{ opacity: 0.2, x: 100 }}
@@ -17,7 +26,7 @@ export const HomeLayout = () => {
                animate='visible'
                transition={{ duration: 0.4, delay: 0.1 }}
             >
-               <PopularItemsSlider />
+               {popularSlider}
             </motion.section>
             <motion.section
                initial={{ opacity: 0.2, x: -250 }}
@@ -26,7 +35,7 @@ export const HomeLayout = () => {
                animate='visible'
                transition={{ duration: 0.4, delay: 0.1 }}
             >
-               <AboutBrand />
+               {aboutBrand}
             </motion.section>
             <motion.section
                initial={{ opacity: 0.2, x: 100 }}
@@ -35,7 +44,7 @@ export const HomeLayout = () => {
                animate='visible'
                transition={{ duration: 0.4, delay: 0.1 }}
             >
-               <Advantages />
+               {advantages}
             </motion.section>
             <motion.section
                initial={{ opacity: 0.2, x: -250 }}
@@ -44,7 +53,7 @@ export const HomeLayout = () => {
                animate='visible'
                transition={{ duration: 0.4, delay: 0.1 }}
             >
-               <FeedbackSection />
+               {feedbackForm}
             </motion.section>
          </div>
       </>

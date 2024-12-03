@@ -131,6 +131,8 @@ export async function middleware(request: NextRequest) {
    }
    if (adminPanel && data === null)
       return NextResponse.redirect(new URL('/auth/login', url))
+   if (orderPage && data === null)
+      return NextResponse.redirect(new URL('/auth/login', url))
    if (
       data?.user?.profile.__typename === 'UserProfileOk' &&
       data.user.profile.profile.role !== Role.Admin

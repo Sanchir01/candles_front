@@ -2,8 +2,8 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { FC } from 'react'
 import { useForm } from 'react-hook-form'
-import { FeedbackFormType, FeedbackSchema } from '~/shared/types/fedbackform'
 import styles from '~/shared/styles/Home.module.scss'
+import { FeedbackFormType, FeedbackSchema } from '~/shared/types/fedbackform'
 import {
    Button,
    Container,
