@@ -9,21 +9,21 @@ import HeaderAdmin from './ui/HeaderAdmin'
 import HeaderBreadcrumbs from './ui/HeaderBreadcrumbs'
 
 const Header = ({
-	isAuth,
-	variant
+   isAuth,
+   variant
 }: {
-	isAuth: HeaderProfileEnum
-	variant?: HeaderVariant
+   isAuth: HeaderProfileEnum
+   variant?: HeaderVariant
 }) => (
-	<HeaderLayout
-		variant={variant}
-		nav={<HeaderNav />}
-		actions={<HeaderActions />}
-		profile={isAuth === HeaderProfileEnum.AUTH ? <></> : <HeaderProfile />}
-		theme={<ToggleTheme />}
-		logo={<HeaderLogo />}
-		admin={<HeaderAdmin />}
-		breadcrumbs={<HeaderBreadcrumbs />}
-	/>
+   <HeaderLayout
+      variant={variant}
+      nav={<HeaderNav />}
+      actions={<HeaderActions />}
+      profile={isAuth === HeaderProfileEnum.AUTH ? <></> : <HeaderProfile />}
+      theme={<ToggleTheme />}
+      logo={<HeaderLogo />}
+      admin={<HeaderAdmin />}
+      breadcrumbs={<HeaderBreadcrumbs />}
+   />
 )
 export default Header

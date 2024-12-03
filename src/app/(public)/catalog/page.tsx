@@ -8,31 +8,31 @@ import Catalog from '~/widgets/catalog'
 export const revalidate = 600
 
 export const metadata: Metadata = {
-	title: 'Mahakala | Catalog',
-	robots: 'index, follow'
+   title: 'Mahakala | Catalog',
+   robots: 'index, follow'
 }
 
 const SSGDataCandles = async () => {
-	const data = await candlesService.allCandles({
-		sort: CandlesSortEnum.PriceDesc,
-		categoryId: null,
-		colorId: null,
-		pageNumber: 1,
-		pageSize: 20
-	})
+   const data = await candlesService.allCandles({
+      sort: CandlesSortEnum.PriceDesc,
+      categoryId: null,
+      colorId: null,
+      pageNumber: 1,
+      pageSize: 20
+   })
 
-	return data
+   return data
 }
 const CatalogPage: NextPage = async () => {
-	const data = await SSGDataCandles()
+   const data = await SSGDataCandles()
 
-	return (
-		<div className={st.catalog}>
-			<Container>
-				<Catalog candles={data} />
-			</Container>
-		</div>
-	)
+   return (
+      <div className={st.catalog}>
+         <Container>
+            <Catalog candles={data} />
+         </Container>
+      </div>
+   )
 }
 
 export default CatalogPage

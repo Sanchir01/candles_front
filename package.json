@@ -8,7 +8,7 @@
 		"start": "next start",
 		"gen": "graphql-codegen --config codegen.ts",
 		"lint": "next lint",
-		"format": "pnpm prettier format --write ./src",
+		"format": "pnpm biome format --write ./src",
 		"storybook": "storybook dev -p 6006",
 		"build-storybook": "storybook build"
 	},
@@ -54,6 +54,7 @@
 		"zustand": "^5"
 	},
 	"devDependencies": {
+		"@biomejs/biome": "^1.9.4",
 		"@chromatic-com/storybook": "1.9.0",
 		"@graphql-codegen/cli": "5.0.2",
 		"@graphql-codegen/client-preset": "4.3.3",

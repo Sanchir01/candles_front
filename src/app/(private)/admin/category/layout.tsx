@@ -1,9 +1,9 @@
 import { SidebarInset } from '~/shared/ui/sidebar'
 
 export default function RootLayout({
-	children
+   children
 }: {
-	children: React.ReactNode
+   children: React.ReactNode
 }) {
-	return <SidebarInset>{children}</SidebarInset>
+   return <SidebarInset>{children}</SidebarInset>
 }

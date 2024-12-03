@@ -5,56 +5,58 @@ import OndeCandleImageGallery from './ui/OndeCandleImageGallery'
 import OneCandleLayout from './ui/OneCandleLayout'
 
 const SimilarCategorySlider = dynamic(
-	() => import('./ui/SimilarCategorySlider'),
-	{
-		ssr: false
-	}
+   () => import('./ui/SimilarCategorySlider'),
+   {
+      ssr: false
+   }
 )
 const SimilarColorSlider = dynamic(() => import('./ui/SimilarColorSlider'), {
-	ssr: false
+   ssr: false
 })
 
 type OneCandleType = {
-	id: string
-	title: string
-	slug: string
-	price: number
-	weight: number
-	color_id: string
-	category_id: string
-	version: number
-	images: string[]
+   id: string
+   title: string
+   slug: string
+   price: number
+   weight: number
+   color_id: string
+   category_id: string
+   version: number
+   images: string[]
 }
 
 const OneCandle = ({
-	id,
-	title,
-	slug,
-	price,
-	color_id,
-	category_id,
-	version,
-	images
+   id,
+   title,
+   slug,
+   price,
+   color_id,
+   category_id,
+   version,
+   images
 }: OneCandleType) => {
-	return (
-		<OneCandleLayout
-			imageGallery={<OndeCandleImageGallery images={images} id={id} />}
-			form={
-				<Form
-					title={title}
-					slug={slug}
-					price={price}
-					color_id={color_id}
-					category_id={category_id}
-					version={version}
-					images={images}
-					id={id}
-				/>
-			}
-			similarCategorySlider={<SimilarCategorySlider categoryId={category_id} />}
-			similarColorSlider={<SimilarColorSlider colorId={color_id} />}
-		/>
-	)
+   return (
+      <OneCandleLayout
+         imageGallery={<OndeCandleImageGallery images={images} id={id} />}
+         form={
+            <Form
+               title={title}
+               slug={slug}
+               price={price}
+               color_id={color_id}
+               category_id={category_id}
+               version={version}
+               images={images}
+               id={id}
+            />
+         }
+         similarCategorySlider={
+            <SimilarCategorySlider categoryId={category_id} />
+         }
+         similarColorSlider={<SimilarColorSlider colorId={color_id} />}
+      />
+   )
 }
 
 export default OneCandle

@@ -1,113 +1,113 @@
 query AllCandles(
-	$pageSize: PageSize!
-	$pageNumber: PageNumber!
-	$sort: CandlesSortEnum
-	$filter: CandlesFilterInput
+   $pageSize: PageSize!
+   $pageNumber: PageNumber!
+   $sort: CandlesSortEnum
+   $filter: CandlesFilterInput
 ) {
-	candles {
-		allCandles(
-			pageSize: $pageSize
-			pageNumber: $pageNumber
-			sort: $sort
-			filter: $filter
-		) {
-			__typename
-			... on VersionMismatchProblem {
-				message
-			}
-			... on InternalErrorProblem {
-				message
-			}
-			... on AllCandlesOk {
-				totalCount {
-					__typename
-					... on TotalCountResolvingOk {
-						totalCount
-					}
-					... on VersionMismatchProblem {
-						message
-					}
-					... on InternalErrorProblem {
-						message
-					}
-				}
-				candles {
-					id
-					category_id
-					images
-					price
-					title
-					version
-					color_id
-				}
-				nextPage
+   candles {
+      allCandles(
+         pageSize: $pageSize
+         pageNumber: $pageNumber
+         sort: $sort
+         filter: $filter
+      ) {
+         __typename
+         ... on VersionMismatchProblem {
+            message
+         }
+         ... on InternalErrorProblem {
+            message
+         }
+         ... on AllCandlesOk {
+            totalCount {
+               __typename
+               ... on TotalCountResolvingOk {
+                  totalCount
+               }
+               ... on VersionMismatchProblem {
+                  message
+               }
+               ... on InternalErrorProblem {
+                  message
+               }
+            }
+            candles {
+               id
+               category_id
+               images
+               price
+               title
+               version
+               color_id
+            }
+            nextPage
 
-				prevPage
-			}
-		}
-	}
+            prevPage
+         }
+      }
+   }
 }
 query AllCandlesTotalCount(
-	$pageSize: PageSize!
-	$pageNumber: PageNumber!
-	$sort: CandlesSortEnum
-	$filter: CandlesFilterInput
+   $pageSize: PageSize!
+   $pageNumber: PageNumber!
+   $sort: CandlesSortEnum
+   $filter: CandlesFilterInput
 ) {
-	candles {
-		allCandles(
-			pageSize: $pageSize
-			pageNumber: $pageNumber
-			sort: $sort
-			filter: $filter
-		) {
-			__typename
-			... on VersionMismatchProblem {
-				message
-			}
-			... on InternalErrorProblem {
-				message
-			}
-			... on AllCandlesOk {
-				totalCount {
-					__typename
-					... on TotalCountResolvingOk {
-						totalCount
-					}
-					... on VersionMismatchProblem {
-						message
-					}
-					... on InternalErrorProblem {
-						message
-					}
-				}
-			}
-		}
-	}
+   candles {
+      allCandles(
+         pageSize: $pageSize
+         pageNumber: $pageNumber
+         sort: $sort
+         filter: $filter
+      ) {
+         __typename
+         ... on VersionMismatchProblem {
+            message
+         }
+         ... on InternalErrorProblem {
+            message
+         }
+         ... on AllCandlesOk {
+            totalCount {
+               __typename
+               ... on TotalCountResolvingOk {
+                  totalCount
+               }
+               ... on VersionMismatchProblem {
+                  message
+               }
+               ... on InternalErrorProblem {
+                  message
+               }
+            }
+         }
+      }
+   }
 }
 query CandleById($input: CandlesByIdInput!) {
-	candles {
-		candleById(input: $input) {
-			__typename
-			... on VersionMismatchProblem {
-				message
-			}
-			... on InternalErrorProblem {
-				message
-			}
-			... on CandlesByIdOk {
-				candle {
-					id
-					title
-					version
-					color_id
-					category_id
-					images
-					price
-					slug
-					description
-					weight
-				}
-			}
-		}
-	}
+   candles {
+      candleById(input: $input) {
+         __typename
+         ... on VersionMismatchProblem {
+            message
+         }
+         ... on InternalErrorProblem {
+            message
+         }
+         ... on CandlesByIdOk {
+            candle {
+               id
+               title
+               version
+               color_id
+               category_id
+               images
+               price
+               slug
+               description
+               weight
+            }
+         }
+      }
+   }
 }
