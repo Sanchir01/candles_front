@@ -8,7 +8,9 @@ export async function generateStaticParams() {
    const candles = await candlesService.allCandles({
       sort: CandlesSortEnum.PriceDesc,
       categoryId: null,
-      colorId: null
+      colorId: null,
+      pageNumber: 1,
+      pageSize: 20
    })
 
    return candles.candles?.allCandles.__typename == 'AllCandlesOk'
