@@ -1,107 +1,108 @@
-'use client'
-import { zodResolver } from '@hookform/resolvers/zod'
+"use client";
+import { zodResolver } from "@hookform/resolvers/zod";
 import {
-   Form,
-   FormControl,
-   FormField,
-   FormItem,
-   FormLabel,
-   FormMessage
-} from '~/shared/ui'
-import { Loader } from '~/shared/ui'
-import { Button } from '~/shared/ui'
-import { Card, CardContent, CardHeader } from '~/shared/ui'
-import { Input } from '~/shared/ui'
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "~/shared/ui";
+import { Loader } from "~/shared/ui";
+import { Button } from "~/shared/ui";
+import { Card, CardContent, CardHeader } from "~/shared/ui";
+import { Input } from "~/shared/ui";
 
-import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import { useForm } from 'react-hook-form'
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
 
-import { useLogin } from '~/shared/hooks/userLogin'
-import { type IInputLogin, loginSchema } from '~/shared/types/Auth.types'
+import { useLogin } from "~/shared/hooks/userLogin";
+import { AuthServiceTokens } from "~/shared/lib/Tokens.service";
+import { type IInputLogin, loginSchema } from "~/shared/types/Auth.types";
 
 export default function LoginPage() {
-   const form = useForm<IInputLogin>({
-      resolver: zodResolver(loginSchema),
-      defaultValues: {
-         email: '',
-         password: ''
-      }
-   })
-   const { replace } = useRouter()
+  const form = useForm<IInputLogin>({
+    resolver: zodResolver(loginSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+  const { replace } = useRouter();
 
-   const { mutateAsync, isPending } = useLogin()
-   const onSubmit = async (data: IInputLogin) => {
-      const { toast } = await import('react-hot-toast')
-      try {
-         const { auth } = await mutateAsync({
-            email: data.email,
-            password: data.password
-         })
-         if (auth.login.__typename === 'LoginOk') {
-            toast.success('Вы вошли в аккаунт')
-            replace('/catalog')
-         }
-      } catch (e: any) {
-         toast.error(e.response?.errors[0].message ?? e.message)
+  const { mutateAsync, isPending } = useLogin();
+  const onSubmit = async (data: IInputLogin) => {
+    const { toast } = await import("react-hot-toast");
+    try {
+      const { auth } = await mutateAsync({
+        email: data.email,
+        password: data.password,
+      });
+      if (auth.login.__typename === "LoginOk") {
+        toast.success("Вы вошли в аккаунт");
+        replace("/catalog");
       }
-   }
-
-   return (
-      <Card className='p-8 max-w-[350px]'>
-         <CardHeader className='text-xl'>Вход в аккаунт</CardHeader>
-         <CardContent>
-            <Form {...form}>
-               <form
-                  onSubmit={form.handleSubmit(onSubmit)}
-                  className='flex max-w-md w-full flex-col gap-4'
-               >
-                  <FormField
-                     name='email'
-                     control={form.control}
-                     render={({ field }) => (
-                        <FormItem className='flex flex-col gap-2 '>
-                           <FormLabel>Ваш email</FormLabel>
-                           <FormControl>
-                              <Input
-                                 {...field}
-                                 type='email'
-                                 placeholder='Введите email'
-                              />
-                           </FormControl>
-                           <FormMessage />
-                        </FormItem>
-                     )}
-                  />
-                  <FormField
-                     name='password'
-                     control={form.control}
-                     render={({ field }) => (
-                        <FormItem className='flex flex-col gap-2 '>
-                           <FormLabel>Пароль</FormLabel>
-                           <FormControl>
-                              <Input
-                                 {...field}
-                                 type='password'
-                                 placeholder='Введите пароль'
-                              />
-                           </FormControl>
-                           <FormMessage />
-                        </FormItem>
-                     )}
-                  />
-                  <Link
-                     href={'/auth/registration'}
-                     className='hover:underline  cursor-pointer py-2'
-                  >
-                     Пройти регистрацию
-                  </Link>
-                  <Button type='submit' className='w-full '>
-                     {isPending ? <Loader /> : 'Войти'}
-                  </Button>
-               </form>
-            </Form>
-         </CardContent>
-      </Card>
-   )
+    } catch (e: any) {
+      toast.error(e.response?.errors[0].message ?? e.message);
+    }
+  };
+  const token = AuthServiceTokens.getAccessToken();
+  return (
+    <Card className="p-8 max-w-[350px]">
+      <CardHeader className="text-xl">Вход в аккаунт {token}</CardHeader>
+      <CardContent>
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="flex max-w-md w-full flex-col gap-4"
+          >
+            <FormField
+              name="email"
+              control={form.control}
+              render={({ field }) => (
+                <FormItem className="flex flex-col gap-2 ">
+                  <FormLabel>Ваш email</FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      type="email"
+                      placeholder="Введите email"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              name="password"
+              control={form.control}
+              render={({ field }) => (
+                <FormItem className="flex flex-col gap-2 ">
+                  <FormLabel>Пароль</FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      type="password"
+                      placeholder="Введите пароль"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <Link
+              href={"/auth/registration"}
+              className="hover:underline  cursor-pointer py-2"
+            >
+              Пройти регистрацию
+            </Link>
+            <Button type="submit" className="w-full ">
+              {isPending ? <Loader /> : "Войти"}
+            </Button>
+          </form>
+        </Form>
+      </CardContent>
+    </Card>
+  );
 }
