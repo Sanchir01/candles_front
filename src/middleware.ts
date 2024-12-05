@@ -61,7 +61,7 @@ export async function middleware(request: NextRequest) {
    }`
       const { auth } = (
          await fetch(
-            process.env.NEXT_PUBLIC_SERVER_URL
+            process.env.NODE_ENV === 'production'
                ? (process.env.NEXT_PUBLIC_SERVER_URL as string)
                : 'http://localhost:5000',
             {
@@ -116,7 +116,7 @@ export async function middleware(request: NextRequest) {
 `
    const data = await fetch(
       process.env.NODE_ENV === 'production'
-         ? (process.env.SERVER_URL as string)
+         ? (process.env.NEXT_PUBLIC_SERVER_URL as string)
          : 'http://localhost:5000',
       {
          credentials: 'include',
