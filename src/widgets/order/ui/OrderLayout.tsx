@@ -4,7 +4,7 @@ import { FC } from 'react'
 import useCartStore from '~/Providers/store/useCart'
 import { useStoreZustand } from '~/shared/hooks/useStoreZustand'
 import styles from '~/shared/styles/Order.module.scss'
-import { Button } from '~/shared/ui'
+import { Button, Container } from '~/shared/ui'
 import Content from './Content'
 import { OrderForm } from './OrderForm'
 import RecommendedSlider from './RecomendedSlider'
@@ -14,10 +14,12 @@ const OrderLayout: FC = () => {
       <section className={styles.order}>
          {cart !== undefined ? (
             <>
-               <div className={styles.order__wrapper}>
-                  <Content />
-                  <OrderForm />
-               </div>
+               <Container>
+                  <div className={styles.order__wrapper}>
+                     <Content />
+                     <OrderForm />
+                  </div>
+               </Container>
             </>
          ) : (
             <>

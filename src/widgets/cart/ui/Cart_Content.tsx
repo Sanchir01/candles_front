@@ -17,18 +17,14 @@ const CartContent: FC = () => {
       <div className={cn(styles.scroll, 'h-[84vh]')}>
          <div className='px-3' ref={parent}>
             {cartContent.map(cartItem => (
-               <CartItem
-                  key={cartItem.id}
-                  {...cartItem}
-                  children={
-                     <ChangeQuantityItem
-                        id={cartItem.id}
-                        colorId={cartItem.colorId}
-                        categoryId={cartItem.categoryId}
-                        quantity={cartItem.quantity}
-                     />
-                  }
-               />
+               <CartItem key={cartItem.id} {...cartItem}>
+                  <ChangeQuantityItem
+                     id={cartItem.id}
+                     colorId={cartItem.colorId}
+                     categoryId={cartItem.categoryId}
+                     quantity={cartItem.quantity}
+                  />
+               </CartItem>
             ))}
          </div>
       </div>

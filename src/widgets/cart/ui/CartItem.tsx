@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { ReactNode } from 'react'
 import useCartStore, { ICart } from '~/Providers/store/useCart'
 import { EntityProductCart } from '~/entities/entityProductCart'
+import AddToFavorites from '~/features/AddToFavorites'
 
 import { cn, priceFormat } from '~/shared/lib/utils'
 import { Button } from '~/shared/ui'
@@ -50,24 +51,35 @@ const CartItem = ({
             </div>
             <div className='flex gap-5 justify-between'>
                {children}
-               <Button
-                  className=''
-                  variant={'default'}
-                  onClick={() =>
-                     toggleItem({
-                        id,
-                        title,
-                        images,
-                        price,
-                        quantity,
-                        version,
-                        colorId,
-                        categoryId
-                     })
-                  }
-               >
-                  <Trash />
-               </Button>
+               <div className='flex gap-5'>
+                  <AddToFavorites
+                     images={images}
+                     id={id}
+                     title={title}
+                     price={price}
+                     version={version}
+                     colorId={colorId}
+                     categoryId={categoryId}
+                  />
+                  <Button
+                     className=''
+                     variant={'default'}
+                     onClick={() =>
+                        toggleItem({
+                           id,
+                           title,
+                           images,
+                           price,
+                           quantity,
+                           version,
+                           colorId,
+                           categoryId
+                        })
+                     }
+                  >
+                     <Trash />
+                  </Button>
+               </div>
             </div>
          </div>
       </EntityProductCart>

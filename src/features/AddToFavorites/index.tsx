@@ -51,7 +51,7 @@ const AddToFavorites = ({
    return (
       <Button
          aria-label='Add to favorites'
-         variant='secondary'
+         variant='default'
          onClick={() => toggle()}
          size='default'
       >

@@ -1,3 +1,4 @@
+import { Metadata } from 'next'
 import './globals.css'
 import { Arsenal } from 'next/font/google'
 import { Toaster } from 'react-hot-toast'
@@ -6,6 +7,11 @@ const ArsenalFont = Arsenal({
    subsets: ['latin'],
    weight: ['400', '700']
 })
+
+export const metadata: Metadata = {
+   title: 'Home'
+}
+
 export default function RootLayout({
    children
 }: Readonly<{

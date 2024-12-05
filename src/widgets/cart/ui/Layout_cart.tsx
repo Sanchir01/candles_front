@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation'
 import { FC, ReactNode } from 'react'
 import useCartStore from '~/Providers/store/useCart'
 import { useStoreZustand } from '~/shared/hooks/useStoreZustand'
+import { priceFormat } from '~/shared/lib/utils'
 import {
    Button,
    Sheet,
@@ -23,6 +24,9 @@ export interface ICartLayout {
 const LayoutCart: FC<ICartLayout> = ({ content }) => {
    const { push } = useRouter()
    const cart = useStoreZustand(useCartStore, state => state.cart)
+   const totalPrice = cart
+      ?.map(item => item.price)
+      .reduce((sum, a) => sum + a, 0)
    return (
       <Sheet>
          <SheetTrigger asChild>
@@ -55,15 +59,23 @@ const LayoutCart: FC<ICartLayout> = ({ content }) => {
                {cart?.length !== 0 ? (
                   <>
                      {content}
-                     <SheetFooter className='mt-5 px-3'>
-                        <SheetClose asChild>
-                           <Button
-                              className='w-full'
-                              onClick={() => push('/order')}
-                           >
-                              оформить заказ
-                           </Button>
-                        </SheetClose>
+                     <SheetFooter className='px-3'>
+                        <div className=' flex flex-col w-full'>
+                           <div className='flex justify-between p-3'>
+                              <p>Итого</p>
+                              <div className=''>
+                                 {totalPrice && priceFormat.format(totalPrice)}
+                              </div>
+                           </div>
+                           <SheetClose asChild>
+                              <Button
+                                 className='w-full'
+                                 onClick={() => push('/order')}
+                              >
+                                 оформить заказ
+                              </Button>
+                           </SheetClose>
+                        </div>
                      </SheetFooter>
                   </>
                ) : (

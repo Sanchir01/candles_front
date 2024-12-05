@@ -17,7 +17,13 @@ export async function middleware(request: NextRequest) {
    const registerPage = url.includes('/auth/register')
    const adminPanel = url.includes('/admin')
    const orderPage = url.includes('/order')
-   // console.log('refresh', refreshToken, 'access', accessToken)
+   console.log(
+      'middleware cookie',
+      'refresh',
+      refreshToken,
+      'access',
+      accessToken
+   )
 
    if (loginPage || registerPage) {
       if (accessToken && refreshToken) {
@@ -124,7 +130,6 @@ export async function middleware(request: NextRequest) {
          }
       }
    ).then(res => res.json())
-   // console.log(data)
 
    if (orderPage && data.user === null) {
       return NextResponse.redirect(new URL('/auth/login', url))
