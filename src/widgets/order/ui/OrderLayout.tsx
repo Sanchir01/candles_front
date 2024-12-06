@@ -5,7 +5,6 @@ import useCartStore from "~/Providers/store/useCart";
 import { useStoreZustand } from "~/shared/hooks/useStoreZustand";
 import { cn } from "~/shared/lib/utils";
 import styles from "~/shared/styles/Order.module.scss";
-import st from "~/shared/styles/Scrollbar.module.scss";
 import { Button, Container } from "~/shared/ui";
 import Content from "./Content";
 import { OrderForm } from "./OrderForm";
@@ -16,7 +15,7 @@ const OrderLayout: FC = () => {
   if (cart !== undefined && cart.length !== 0) {
     return (
       <Container>
-        <div className={cn(styles.order__wrapper, st.scroll)}>
+        <div className={cn(styles.order__wrapper)}>
           <Content />
           <OrderForm />
         </div>
