@@ -17,14 +17,6 @@ export async function middleware(request: NextRequest) {
    const registerPage = url.includes('/auth/register')
    const adminPanel = url.includes('/admin')
    const orderPage = url.includes('/order')
-   console.log(
-      'middleware cookie',
-      'refresh',
-      refreshToken,
-      'access',
-      accessToken
-   )
-
    if (loginPage || registerPage) {
       if (accessToken && refreshToken) {
          return NextResponse.redirect(new URL('/catalog', url))
@@ -126,7 +118,7 @@ export async function middleware(request: NextRequest) {
          method: 'POST',
          headers: {
             'Content-Type': 'application/json',
-            cookie: `${EnumTokens.ACCESS_TOKEN}=${accessToken}`
+            Cookie: `${EnumTokens.ACCESS_TOKEN}=${accessToken}`
          }
       }
    ).then(res => res.json())
