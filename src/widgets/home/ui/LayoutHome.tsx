@@ -18,11 +18,10 @@ export const HomeLayout = ({
    return (
       <>
          {heroSlider}
-         <div className='overflow-hidden'>
+         <div className='overflow-hidden flex flex-col gap-20'>
             <motion.section
                initial={{ opacity: 0.2, x: 100 }}
                whileInView={{ opacity: 1, x: 0 }}
-               className='mt-20'
                animate='visible'
                transition={{ duration: 0.4, delay: 0.1 }}
             >
@@ -31,7 +30,6 @@ export const HomeLayout = ({
             <motion.section
                initial={{ opacity: 0.2, x: -250 }}
                whileInView={{ opacity: 1, x: 0 }}
-               className='mt-20'
                animate='visible'
                transition={{ duration: 0.4, delay: 0.1 }}
             >
@@ -40,7 +38,6 @@ export const HomeLayout = ({
             <motion.section
                initial={{ opacity: 0.2, x: 100 }}
                whileInView={{ opacity: 1, x: 0 }}
-               className='mt-20'
                animate='visible'
                transition={{ duration: 0.4, delay: 0.1 }}
             >
@@ -49,7 +46,6 @@ export const HomeLayout = ({
             <motion.section
                initial={{ opacity: 0.2, x: -250 }}
                whileInView={{ opacity: 1, x: 0 }}
-               className='mt-20'
                animate='visible'
                transition={{ duration: 0.4, delay: 0.1 }}
             >
