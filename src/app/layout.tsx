@@ -1,4 +1,4 @@
-import { Metadata } from 'next'
+import { Metadata, Viewport } from 'next'
 import './globals.css'
 import { Arsenal } from 'next/font/google'
 import { Toaster } from 'react-hot-toast'
@@ -11,7 +11,9 @@ const ArsenalFont = Arsenal({
 export const metadata: Metadata = {
    title: 'Home'
 }
-
+export const viewport: Viewport = {
+   themeColor: '#FFFFFF'
+}
 export default function RootLayout({
    children
 }: Readonly<{
