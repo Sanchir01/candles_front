@@ -1,15 +1,12 @@
 'use client'
+import { useFilters } from '~/Providers/store/useFilters'
 import CategoryFilters from '~/features/Filters/CategoryFilters'
 import ColorFilters from '~/features/Filters/ColorFilters'
-import { useFilters } from '~/Providers/store/useFilters'
 import { Button } from '~/shared/ui/button'
-import { Input } from '~/shared/ui/input'
-import { Label } from '~/shared/ui/label'
 import {
    Sheet,
    SheetClose,
    SheetContent,
-   SheetDescription,
    SheetFooter,
    SheetHeader,
    SheetTitle,

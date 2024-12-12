@@ -7,9 +7,11 @@ import style from '~/shared/styles/Header.module.scss'
 import { Button } from '~/shared/ui'
 import { Separator } from '~/shared/ui/separator'
 import { SidebarTrigger } from '~/shared/ui/sidebar'
-export interface HeaderLayoutProps {
+import { ShoppingCart } from '~/widgets/cart/Cart'
+import HeaderBurger from './HeaderBurger'
+import FavoritesLogo from './HeaderFavorites'
+export type HeaderLayoutPropsType = {
    nav?: React.ReactNode
-   actions?: React.ReactNode
    logo?: React.ReactNode
    profile?: React.ReactNode
    admin?: React.ReactNode
@@ -20,14 +22,13 @@ export interface HeaderLayoutProps {
 
 export const HeaderLayout = ({
    nav,
-   actions,
    logo,
    profile,
    admin,
    variant,
    theme,
    breadcrumbs
-}: HeaderLayoutProps) => {
+}: HeaderLayoutPropsType) => {
    if (variant === HeaderVariant.ADMIN) {
       return (
          <header className={style.header}>
@@ -54,13 +55,34 @@ export const HeaderLayout = ({
       <header className={style.header}>
          <div className='container'>
             <div className={style.header_wrapper}>
-               {logo}
-               {nav}
+               <div className={'max-[998px]:hidden'}>{logo}</div>
+               <nav className={'max-[998px]:hidden'}>{nav}</nav>
                <div className='max-[998px]:hidden flex gap-2 items-center'>
-                  {actions}
+                  <>
+                     <FavoritesLogo />
+                     <ShoppingCart />
+                  </>
                   {profile}
                   {theme}
                   {admin}
+               </div>
+               <div className='min-[999px]:hidden'>
+                  <HeaderBurger
+                     logo={logo}
+                     nav={nav}
+                     actions={
+                        <>
+                           <FavoritesLogo />
+                           <ShoppingCart />
+                        </>
+                     }
+                     admin={admin}
+                     theme={theme}
+                     profile={profile}
+                  />
+               </div>
+               <div className='min-[999px]:hidden'>
+                  <ShoppingCart />
                </div>
             </div>
          </div>

@@ -36,7 +36,6 @@ export const HeaderProfile: FC = () => {
                      <></>
                   )}
                   <DropdownMenuItem>
-                     {' '}
                      <Button
                         size='lg'
                         onClick={() => (logout(), push('/catalog'))}
