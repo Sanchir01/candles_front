@@ -28,9 +28,13 @@ export const CatalogItem = ({
    return (
       <EntityProductCart key={id} border={true}>
          <Link href={`/catalog/${id}`}>
-            <ImageGallery focusImage={focusImage} images={images} />
+            <ImageGallery
+               focusImage={focusImage}
+               images={images}
+               className='max-[576px]:max-h-[175px]'
+            />
          </Link>
-         <div className='flex flex-col px-2  border-t border-black pt-5 text-myDestructive'>
+         <div className='flex flex-col px-2 border-t border-black pt-5 text-myDestructive'>
             <h5>{title}</h5>
             <div className='flex justify-between gap-2 border-t py-2 items-center'>
                <div className='font-bold'>{price} ₽</div>

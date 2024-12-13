@@ -11,6 +11,7 @@ import { Button } from '~/shared/ui'
 export interface IToggleFavoritesFeature
    extends Omit<ProductCardPropsType, 'images' | 'slug'> {
    images: string
+   className?: string
 }
 
 const AddToFavorites = ({
@@ -20,7 +21,8 @@ const AddToFavorites = ({
    title,
    price,
    version,
-   images
+   images,
+   className
 }: IToggleFavoritesFeature) => {
    const isMedia664 = useMediaQuery('(min-width: 640px)')
 
@@ -50,10 +52,11 @@ const AddToFavorites = ({
    }
    return (
       <Button
+         className={className}
          aria-label='Add to favorites'
          variant='default'
          onClick={() => toggle()}
-         size='default'
+         size={isMedia664 ? 'default' : 'icon'}
       >
          <Heart
             size={isMedia664 ? 20 : 15}

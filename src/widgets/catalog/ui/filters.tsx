@@ -18,7 +18,9 @@ export default function SheetFilters() {
    return (
       <Sheet modal={true}>
          <SheetTrigger asChild>
-            <Button variant='default'>Фильтры</Button>
+            <Button variant='default' className=''>
+               Фильтры
+            </Button>
          </SheetTrigger>
          <SheetContent side={'left'}>
             <SheetHeader>

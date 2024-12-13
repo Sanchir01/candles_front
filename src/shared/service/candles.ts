@@ -12,7 +12,7 @@ import {
 
 import { CandlesSortEnum } from '~/shared/graphql/gql/graphql'
 export type AllCandlesQueryType = {
-   sort: CandlesSortEnum
+   sort: CandlesSortEnum | null
    categoryId: string | null
    colorId: string | null
    pageNumber: number
@@ -112,6 +112,7 @@ export const candlesService = {
             return hasMoreItems ? allCandles.nextPage : null
          },
          initialPageParam: 1,
+         placeholderData: keepPreviousData,
          select: data =>
             data.pages.flatMap(data =>
                data.candles?.allCandles.__typename === 'AllCandlesOk'

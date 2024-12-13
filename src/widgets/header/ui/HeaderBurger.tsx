@@ -1,6 +1,5 @@
 'use client'
 import { Menu } from 'lucide-react'
-import { ReactNode } from 'react'
 import {
    Sheet,
    SheetClose,
@@ -10,20 +9,12 @@ import {
    SheetTitle,
    SheetTrigger
 } from '~/shared/ui/sheet'
-
+import { ShoppingCart } from '~/widgets/cart/Cart'
+import FavoritesLogo from './HeaderFavorites'
 import { HeaderLayoutPropsType } from './HeaderLayout'
 import { HeaderNav } from './HeaderNav'
-export type HeaderBurgerType = { actions: ReactNode } & Omit<
-   HeaderLayoutPropsType,
-   'breadcrumbs'
->
-const HeaderBurger = ({
-   logo,
-   admin,
-   actions,
-   profile,
-   theme
-}: HeaderBurgerType) => {
+export type HeaderBurgerType = {} & Omit<HeaderLayoutPropsType, 'breadcrumbs'>
+const HeaderBurger = ({ logo, admin, profile, theme }: HeaderBurgerType) => {
    return (
       <Sheet modal>
          <SheetTrigger asChild>
@@ -37,14 +28,17 @@ const HeaderBurger = ({
                <HeaderNav />
             </div>
             <SheetFooter>
-               <SheetClose className='w-full' asChild>
-                  <div className='flex items-center justify-between '>
-                     {admin}
-                     {actions}
-                     {profile}
-                     {theme}
-                  </div>
-               </SheetClose>
+               <div className='flex items-center justify-between'>
+                  <SheetClose asChild>{admin}</SheetClose>
+                  <SheetClose asChild>
+                     <ShoppingCart />
+                  </SheetClose>
+                  <SheetClose asChild>
+                     <FavoritesLogo />
+                  </SheetClose>
+                  <SheetClose asChild>{profile}</SheetClose>
+                  <SheetClose asChild>{theme}</SheetClose>
+               </div>
             </SheetFooter>
          </SheetContent>
       </Sheet>

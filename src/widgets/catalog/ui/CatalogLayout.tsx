@@ -18,11 +18,10 @@ const CatalogLayout = ({
    pagination
 }: ICatalogLayout) => {
    const [parent] = useAutoAnimate({ easing: 'ease-in-out', duration: 500 })
-
    return (
-      <div className='flex flex-col '>
-         <div className=''>{title}</div>
-         <div className='flex justify-between items-center'>
+      <>
+         {title}
+         <div className={st.catalog__filters}>
             {filters}
             {sorting}
          </div>
@@ -30,7 +29,7 @@ const CatalogLayout = ({
             {grid}
          </div>
          <div className='mt-5'>{pagination}</div>
-      </div>
+      </>
    )
 }
 

@@ -12,11 +12,12 @@ const config = {
 	theme: {
 		container: {
 			center: true,
-			padding: '2rem',
+			padding: '1.2rem',
 			screens: {
 				'2xl': '1400px'
 			}
 		},
+		
 		extend: {
 			colors: {
 				skeleton: '#858585',

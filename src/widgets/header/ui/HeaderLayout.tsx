@@ -70,12 +70,6 @@ export const HeaderLayout = ({
                   <HeaderBurger
                      logo={logo}
                      nav={nav}
-                     actions={
-                        <>
-                           <FavoritesLogo />
-                           <ShoppingCart />
-                        </>
-                     }
                      admin={admin}
                      theme={theme}
                      profile={profile}

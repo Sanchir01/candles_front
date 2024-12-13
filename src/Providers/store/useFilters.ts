@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { CandlesSortEnum } from '~/shared/graphql/gql/graphql'
 export interface IFiltersStore {
-   sorting: CandlesSortEnum
+   sorting: CandlesSortEnum | null
    category: string | null
    color: string | null
    pagination: string
@@ -13,7 +13,7 @@ export interface IFiltersStore {
 }
 
 export const useFilters = create<IFiltersStore>(set => ({
-   sorting: CandlesSortEnum.PriceAsc,
+   sorting: null,
    category: null,
    color: null,
    pagination: '1',
