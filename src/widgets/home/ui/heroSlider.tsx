@@ -20,7 +20,10 @@ const HeroSlider: FC = () => (
             <SwiperSlide key={content.id} className={styles.hero__slide}>
                <Link
                   href={content.href}
-                  className={cn(styles.hero__slide__link, 'text-myWhite')}
+                  className={cn(
+                     styles.hero__slide__link,
+                     'text-myWhite line-clamp-2'
+                  )}
                >
                   <h1 className={styles.hero__slide__title}>{content.title}</h1>
                   <span className={styles.hero__slide__subtitle}>

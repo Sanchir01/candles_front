@@ -49,7 +49,6 @@ const Items = ({ initialdata }: { initialdata: AllCandlesQuery }) => {
    if (isError) {
       return <div className=''>ошибка во время загрузки данных</div>
    }
-   console.log(data?.length, 'error', isError)
    return (
       <>
          {isSuccess && data.length !== 0 ? (

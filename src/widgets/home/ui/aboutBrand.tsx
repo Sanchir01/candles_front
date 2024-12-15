@@ -1,14 +1,23 @@
 import Image from 'next/image'
+import { cn } from '~/shared/lib/utils'
 import candle from '~/shared/public/images/candle.webp'
+import st from '~/shared/styles/home/hero.module.scss'
 import { Container } from '~/shared/ui'
 const AboutBrand = () => {
    return (
       <Container>
-         <div className='flex justify-between'>
-            <div className='max-w-[700px]'>
-               <h2 className='text-mySecondary text-4xl'>О бренде</h2>
-               <div className='flex flex-col gap-5 text-myDestructive mt-5 text-lg dark:text-black'>
-                  <span className=''>
+         <div className={st.hero}>
+            <div className={st.hero__text}>
+               <h2 className={cn('text-mySecondary', st.hero__title)}>
+                  О бренде
+               </h2>
+               <div
+                  className={cn(
+                     'flex flex-col gap-5 text-myDestructive mt-5  dark:text-white',
+                     st.hero__description
+                  )}
+               >
+                  <span>
                      CANDLES- магазин свечей, где каждый момент наполняется
                      теплом и уютом! Мы предлагаем широкий ассортимент свечей
                      ручной работы, созданных с любовью и вниманием к деталям. В
@@ -19,7 +28,7 @@ const AboutBrand = () => {
                      экологически чистые материалы, мы заботимся о вашем
                      комфорте и окружающей среде
                   </span>
-                  <span className=''>
+                  <span>
                      Наши свечи — это не просто источник света, а настоящий
                      символ уюта и гармонии. Будь то романтический вечер,
                      расслабляющая ванна или особый подарок близким, мы поможем
@@ -30,12 +39,12 @@ const AboutBrand = () => {
                   </span>
                </div>
             </div>
-            <div className='overflow-hidden rounded-t-full max-h-[400px] max-w-[350px]'>
+            <div className={st.hero__image}>
                <Image
                   src={candle}
                   height={0}
                   width={0}
-                  alt='canlde'
+                  alt='candle'
                   className='w-full h-full object-cover'
                />
             </div>
