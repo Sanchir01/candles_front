@@ -1,0 +1,69 @@
+.feedback {
+	background-image: url('../../public/images/bgCandle3.webp');
+	background-repeat: no-repeat;
+	background-position: top center;
+	background-size: cover;
+	min-height: 100svh;
+	&__wrapper {
+		padding-top: 100px;
+		gap: 10px;
+		display: flex;
+		justify-content: space-between;
+	}
+	&__form {
+		display: flex;
+		flex-direction: column;
+		gap: 1.25rem;
+		max-width: 500px;
+		width: 100%;
+	}
+	&__text {
+		max-width: 800px;
+		font-size: 40px;
+	}
+	
+}
+
+@media (max-width: 998px) {
+	.feedback {
+		&__wrapper {
+			padding-top: 90px;
+		}
+		&__text {
+			max-width: 800px;
+			font-size: 32px;
+		}
+	}
+}
+
+@media (max-width: 768px) {
+	.feedback {
+		&__wrapper {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 30px;
+			padding-top: 70px;
+		}
+		&__text {
+			max-width: 800px;
+			font-size: 26px;
+		}
+	}
+}
+
+@media (max-width: 576px) {
+	.feedback {
+		&__wrapper {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 30px;
+			padding-top: 70px;
+		}
+		&__text {
+			max-width: 800px;
+			font-size: 22px;
+		}
+	}
+}

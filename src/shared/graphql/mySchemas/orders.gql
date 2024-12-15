@@ -43,10 +43,9 @@ query AllUserOrders {
    }
 }
 
-mutation Mutation($input: CreateOrderInput!) {
+mutation CreateOrder($input: CreateOrderInput!) {
    orders {
       createOrder(input: $input) {
-         __typename
          ... on InternalErrorProblem {
             message
          }

@@ -2,7 +2,8 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { FC } from 'react'
 import { useForm } from 'react-hook-form'
-import styles from '~/shared/styles/Home.module.scss'
+import { cn } from '~/shared/lib/utils'
+import st from '~/shared/styles/home/feedback.module.scss'
 import { FeedbackFormType, FeedbackSchema } from '~/shared/types/fedbackform'
 import {
    Button,
@@ -10,7 +11,6 @@ import {
    FormControl,
    FormField,
    FormItem,
-   FormLabel,
    FormMessage,
    Input
 } from '~/shared/ui'
@@ -28,47 +28,58 @@ const FeedbackSection: FC = () => {
       alert('feedback')
    }
    return (
-      <div className={styles.feedback}>
+      <div className={st.feedback}>
          <Container>
-            <Form {...form}>
-               <form onSubmit={form.handleSubmit(onSubmit)}>
-                  <FormField
-                     name='email'
-                     control={form.control}
-                     render={({ field }) => (
-                        <FormItem className='flex flex-col gap-2 '>
-                           <FormLabel>Ваш email</FormLabel>
-                           <FormControl>
-                              <Input
-                                 {...field}
-                                 type='email'
-                                 placeholder='Введите email'
-                              />
-                           </FormControl>
-                           <FormMessage />
-                        </FormItem>
-                     )}
-                  />
-                  <FormField
-                     name='title'
-                     control={form.control}
-                     render={({ field }) => (
-                        <FormItem className='flex flex-col gap-2 '>
-                           <FormLabel>Ваш email</FormLabel>
-                           <FormControl>
-                              <Input
-                                 {...field}
-                                 type='email'
-                                 placeholder='Введите name'
-                              />
-                           </FormControl>
-                           <FormMessage />
-                        </FormItem>
-                     )}
-                  />
-                  <Button type='submit'>Отправить</Button>
-               </form>
-            </Form>
+            <div className={cn(st.feedback__wrapper, 'text-mySecondary')}>
+               <div className={cn(st.feedback__text, 'line-clamp-3 ')}>
+                  Не упусти возможность быть в курсе наших новинок и специальных
+                  предложений
+               </div>
+               <Form {...form}>
+                  <form
+                     onSubmit={form.handleSubmit(onSubmit)}
+                     className={st.feedback__form}
+                  >
+                     <FormField
+                        name='email'
+                        control={form.control}
+                        render={({ field }) => (
+                           <FormItem className='flex flex-col gap-2 '>
+                              <FormControl>
+                                 <Input
+                                    {...field}
+                                    type='email'
+                                    placeholder='Введите email'
+                                    className='p-6'
+                                 />
+                              </FormControl>
+                              <FormMessage />
+                           </FormItem>
+                        )}
+                     />
+                     <FormField
+                        name='title'
+                        control={form.control}
+                        render={({ field }) => (
+                           <FormItem className='flex flex-col gap-2 '>
+                              <FormControl>
+                                 <Input
+                                    {...field}
+                                    type='text'
+                                    placeholder='Введите name'
+                                    className='p-6'
+                                 />
+                              </FormControl>
+                              <FormMessage />
+                           </FormItem>
+                        )}
+                     />
+                     <Button type='submit' className='p-6'>
+                        Отправить
+                     </Button>
+                  </form>
+               </Form>
+            </div>
          </Container>
       </div>
    )

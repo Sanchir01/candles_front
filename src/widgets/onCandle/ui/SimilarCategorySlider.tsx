@@ -1,14 +1,13 @@
 'use client'
 import { useQuery } from '@tanstack/react-query'
-import { SwiperSlide } from 'swiper/react'
 import { CandlesSortEnum } from '~/shared/graphql/gql/graphql'
 import { candlesService } from '~/shared/service/candles'
-import ImagesGallery from '~/shared/ui/ImageGallery'
-import SliderDesktop from '~/shared/ui/sliders'
 import 'swiper/scss'
-import Link from 'next/link'
 import { SkeletonCart } from '~/entities/entitycandles/ui/SkeletenCart'
+import st from '~/shared/styles/slider/index.module.scss'
 import { Title } from '~/shared/ui'
+import EmblaCarousel from '~/shared/ui/sliders/emblaSlider'
+import SliderItem from '~/widgets/catalog/ui/item'
 
 const SimilarColorSlider = ({ categoryId }: { categoryId: string }) => {
    const { data, isLoading, isSuccess } = useQuery({
@@ -18,32 +17,53 @@ const SimilarColorSlider = ({ categoryId }: { categoryId: string }) => {
          colorId: null
       })
    })
-
+   if (isLoading) {
+      return (
+         <EmblaCarousel>
+            {Array.from({ length: 8 }).map((_, index) => (
+               <div className={st.embla__slide} key={index}>
+                  <SkeletonCart />
+               </div>
+            ))}
+         </EmblaCarousel>
+      )
+   }
    return (
       <div className=''>
          {isSuccess && data?.__typename === 'AllCandlesOk' && (
             <Title text={'Товары с похожей категорией'} size='lg' />
          )}
-         <div className='w-full overflow-hidden pt-5'>
-            <SliderDesktop navigation={false} pagination={false}>
-               {isLoading ? (
-                  Array.from({ length: 8 }).map((_, index) => (
-                     <SwiperSlide key={index}>
-                        <SkeletonCart />
-                     </SwiperSlide>
-                  ))
-               ) : isSuccess && data?.__typename === 'AllCandlesOk' ? (
-                  data?.candles?.map(candle => (
-                     <SwiperSlide key={candle.id}>
-                        <Link href={`/catalog/${candle.id}`}>
-                           <ImagesGallery images={candle.images} focusImage />
-                        </Link>
-                     </SwiperSlide>
-                  ))
+         <div className='w-full pt-5'>
+            <EmblaCarousel>
+               {isSuccess && data?.__typename === 'AllCandlesOk' ? (
+                  data?.candles?.map(
+                     ({
+                        id,
+                        title,
+                        images,
+                        price,
+                        version,
+                        color_id,
+                        category_id
+                     }) => (
+                        <div className={st.embla__slide} key={id}>
+                           <SliderItem
+                              id={id}
+                              title={title}
+                              images={images}
+                              price={price}
+                              version={version}
+                              color_id={color_id}
+                              category_id={category_id}
+                              focusImage={true}
+                           />
+                        </div>
+                     )
+                  )
                ) : (
                   <></>
                )}
-            </SliderDesktop>
+            </EmblaCarousel>
          </div>
       </div>
    )

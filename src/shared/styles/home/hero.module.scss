@@ -1,36 +1,28 @@
 .hero {
-	display: flex;
-	justify-content: space-between;
-	&__text {
-		max-width: 700px;
-	}
-	&__title {
-		font-size: clamp(1.9rem, 0.9393rem + 0.2589vw, 2.25rem);
-	}
-	&__description {
-		font-size: clamp(1rem, 0.9393rem + 0.2589vw, 1.1rem);
-	}
-	&__image {
-		max-width: 350px;
-		max-height: 400px;
-		overflow: hidden;
-		border-top-left-radius: 9999px;
-		border-top-right-radius: 9999px;
-	}
-}
+	&__slide {
+		background-image: url('../../public/images/bgCandle1.webp');
+		background-repeat: no-repeat;
+		background-position: top center;
+		background-size: cover;
+		min-height: 100svh;
 
-@media (max-width: 998px) {
-	.hero {
-		display: flex;
-		justify-content: space-between;
-		flex-direction: column-reverse;
-		align-items: center;
-		gap: 30px;
+		&__link {
+			min-height: 100svh;
+			padding-top: 50svh;
+			@apply flex flex-col items-center;
+		}
+		&__title {
+			font-size: clamp(1.625rem, 0.517rem + 2.955vw, 4.063rem);
+		}
+		&__subtitle {
+			font-size: clamp(1.25rem, 0.852rem + 1.061vw, 2.125rem);
+		}
 	}
-}
-
-@media (max-width: 768px) {
-}
-
-@media (max-width: 576px) {
+	&__button {
+		height: 2.5rem;
+		min-width: 200px;
+		padding: 0.75rem;
+		font-size: 1.25rem;
+		line-height: 1.75rem;
+	}
 }

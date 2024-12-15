@@ -8,9 +8,9 @@ import FooterColumn from './ui/footerColumn'
 
 const Footer = () => {
    return (
-      <footer className='p-10 bg-myPrimary mt-10'>
+      <footer className='bg-myPrimary py-5 '>
          <Container>
-            <div className='flex justify-between'>
+            <div className='flex justify-between flex-wrap'>
                {FooterColumnContent.map((item, i) => (
                   <FooterColumn
                      key={i}

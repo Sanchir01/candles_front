@@ -1,23 +1,19 @@
 import Link from 'next/link'
 import { FC } from 'react'
-import styles from '~/shared/styles/Home.module.scss'
+import styles from '~/shared/styles/home/hero.module.scss'
 import 'swiper/scss'
-import { Autoplay, Navigation } from 'swiper/modules'
-import { Swiper, SwiperSlide } from 'swiper/react'
 import { HeroSliderContent } from '~/shared/constants/header_content'
 import { cn } from '~/shared/lib/utils'
 import { Button } from '~/shared/ui'
-
+import EmblaCarousel from '~/shared/ui/sliders/emblaSlider'
 const HeroSlider: FC = () => (
    <section className={styles.hero}>
-      <Swiper
-         modules={[Navigation, Autoplay]}
-         autoplay={{
-            delay: 2500
-         }}
-      >
+      <EmblaCarousel>
          {HeroSliderContent.map(content => (
-            <SwiperSlide key={content.id} className={styles.hero__slide}>
+            <div
+               key={content.id}
+               className={cn(styles.hero__slide, 'min-w-[100%]')}
+            >
                <Link
                   href={content.href}
                   className={cn(
@@ -30,14 +26,14 @@ const HeroSlider: FC = () => (
                      {content.subtitle}
                   </span>
                   <div className='mt-5'>
-                     <Button className='h-10  min-w-[200px] p-3 text-xl'>
+                     <Button className={styles.hero__button}>
                         {content.buttonText}
                      </Button>
                   </div>
                </Link>
-            </SwiperSlide>
+            </div>
          ))}
-      </Swiper>
+      </EmblaCarousel>
    </section>
 )
 export default HeroSlider

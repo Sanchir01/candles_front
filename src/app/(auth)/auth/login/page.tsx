@@ -18,7 +18,6 @@ import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 
 import { useLogin } from '~/shared/hooks/userLogin'
-import { AuthServiceTokens } from '~/shared/lib/Tokens.service'
 import { type IInputLogin, loginSchema } from '~/shared/types/Auth.types'
 
 export default function LoginPage() {
@@ -47,10 +46,10 @@ export default function LoginPage() {
          toast.error(e.response?.errors[0].message ?? e.message)
       }
    }
-   const token = AuthServiceTokens.getAccessToken()
+
    return (
       <Card className='p-8 max-w-[350px]'>
-         <CardHeader className='text-xl'>Вход в аккаунт {token}</CardHeader>
+         <CardHeader className='text-xl'>Вход в аккаунт </CardHeader>
          <CardContent>
             <Form {...form}>
                <form

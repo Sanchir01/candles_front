@@ -31,5 +31,21 @@ export const HeroSliderContent = [
       href: '/catalog',
       image: 'https://i.ibb.co/qmRhkzv/photo-2023-10-30-19-14-46-2.png',
       buttonText: 'В каталог'
+   },
+   {
+      id: 5,
+      title: 'Зажги уют',
+      subtitle: 'Свечи созданы с любовью для твоего настроения',
+      href: '/catalog',
+      image: 'https://i.ibb.co/qmRhkzv/photo-2023-10-30-19-14-46-2.png',
+      buttonText: 'В каталог'
+   },
+   {
+      id: 6,
+      title: 'Зажги уют',
+      subtitle: 'Свечи созданы с любовью для твоего настроения',
+      href: '/catalog',
+      image: 'https://i.ibb.co/qmRhkzv/photo-2023-10-30-19-14-46-2.png',
+      buttonText: 'В каталог'
    }
 ]

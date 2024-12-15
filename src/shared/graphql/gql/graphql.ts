@@ -976,18 +976,18 @@ export type AllUserOrdersQuery = {
    }
 }
 
-export type MutationMutationVariables = Exact<{
+export type CreateOrderMutationVariables = Exact<{
    input: CreateOrderInput
 }>
 
-export type MutationMutation = {
+export type CreateOrderMutation = {
    __typename?: 'Mutation'
    orders: {
       __typename?: 'OrderMutations'
       createOrder:
-         | { __typename: 'CreateOrderOk'; ok: string }
-         | { __typename: 'InternalErrorProblem'; message: string }
-         | { __typename: 'UnauthorizedProblem'; message: string }
+         | { __typename?: 'CreateOrderOk'; ok: string }
+         | { __typename?: 'InternalErrorProblem'; message: string }
+         | { __typename?: 'UnauthorizedProblem'; message: string }
    }
 }
 
@@ -3376,13 +3376,13 @@ export const AllUserOrdersDocument = {
       }
    ]
 } as unknown as DocumentNode<AllUserOrdersQuery, AllUserOrdersQueryVariables>
-export const MutationDocument = {
+export const CreateOrderDocument = {
    kind: 'Document',
    definitions: [
       {
          kind: 'OperationDefinition',
          operation: 'mutation',
-         name: { kind: 'Name', value: 'Mutation' },
+         name: { kind: 'Name', value: 'CreateOrder' },
          variableDefinitions: [
             {
                kind: 'VariableDefinition',
@@ -3424,10 +3424,6 @@ export const MutationDocument = {
                            selectionSet: {
                               kind: 'SelectionSet',
                               selections: [
-                                 {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: '__typename' }
-                                 },
                                  {
                                     kind: 'InlineFragment',
                                     typeCondition: {
@@ -3501,7 +3497,7 @@ export const MutationDocument = {
          }
       }
    ]
-} as unknown as DocumentNode<MutationMutation, MutationMutationVariables>
+} as unknown as DocumentNode<CreateOrderMutation, CreateOrderMutationVariables>
 export const UserByIdDocument = {
    kind: 'Document',
    definitions: [

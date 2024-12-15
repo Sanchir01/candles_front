@@ -1,20 +1,20 @@
 import Image from 'next/image'
 import { cn } from '~/shared/lib/utils'
 import candle from '~/shared/public/images/candle.webp'
-import st from '~/shared/styles/home/hero.module.scss'
+import st from '~/shared/styles/home/about.module.scss'
 import { Container } from '~/shared/ui'
 const AboutBrand = () => {
    return (
       <Container>
-         <div className={st.hero}>
-            <div className={st.hero__text}>
-               <h2 className={cn('text-mySecondary', st.hero__title)}>
+         <div className={st.about}>
+            <div className={st.about__text}>
+               <h2 className={cn('text-mySecondary', st.about__title)}>
                   О бренде
                </h2>
                <div
                   className={cn(
                      'flex flex-col gap-5 text-myDestructive mt-5  dark:text-white',
-                     st.hero__description
+                     st.about__description
                   )}
                >
                   <span>
@@ -39,7 +39,7 @@ const AboutBrand = () => {
                   </span>
                </div>
             </div>
-            <div className={st.hero__image}>
+            <div className={st.about__image}>
                <Image
                   src={candle}
                   height={0}
