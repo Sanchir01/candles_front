@@ -15,3 +15,38 @@ query allCategory {
       }
    }
 }
+query CategoryById($input: CategoryByIdInput!) {
+   category {
+      categoryById(input: $input) {
+         ... on CategoryByIdOk {
+            category {
+               title
+               version
+               id
+            }
+         }
+         ... on InternalErrorProblem {
+            message
+         }
+         ... on VersionMismatchProblem {
+            message
+         }
+      }
+   }
+}
+mutation AddCategory($input: CreateCategoryInput) {
+   category {
+      createCategory(input: $input) {
+         __typename
+         ... on CategoryCreateOk {
+            id
+         }
+         ... on InternalErrorProblem {
+            message
+         }
+         ... on UnauthorizedProblem {
+            message
+         }
+      }
+   }
+}

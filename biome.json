@@ -6,7 +6,6 @@
       "enabled": true,
       "useEditorconfig": true,
       "formatWithErrors": true,
-      
       "indentStyle": "space",
       "indentWidth": 3,
       "lineEnding": "lf",
@@ -20,7 +19,7 @@
       "rules": {
          "style": {
             "noCommaOperator": "off",
-            "noVar": "warn"
+            "noVar": "off"
          }
       }
    },

@@ -1,5 +1,5 @@
 import { Button } from '~/shared/ui/button'
-import styles from '../../shared/styles/NotFound.module.scss'
+import styles from '~/shared/styles/NotFound.module.scss'
 
 import Link from 'next/link'
 export default function Custom404() {

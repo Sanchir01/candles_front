@@ -1,14 +1,16 @@
-import { gqlRequest } from '~/shared/api/api-instance'
-import {
-   AllCandlesDocument,
-   CandlesSortEnum
-} from '~/shared/graphql/gql/graphql'
-
+import { CandlesSortEnum } from '~/shared/graphql/gql/graphql'
 import { candlesService } from '~/shared/service/candles'
+import OneCandle from '~/widgets/onCandle'
+
+export const revalidate = 600
 
 export async function generateStaticParams() {
-   const candles = await gqlRequest.request(AllCandlesDocument, {
-      sort: CandlesSortEnum.PriceDesc
+   const candles = await candlesService.allCandles({
+      sort: CandlesSortEnum.PriceDesc,
+      categoryId: null,
+      colorId: null,
+      pageNumber: 1,
+      pageSize: 20
    })
 
    return candles.candles?.allCandles.__typename == 'AllCandlesOk'
@@ -20,25 +22,39 @@ export async function generateStaticParams() {
 export async function generateMetadata(props: {
    params: Promise<{ id: string }>
 }) {
-   const params = await props.params
-   const { candles } = await candlesService.candleById(params.id)
-   if (candles?.candleById.__typename == 'CandlesByIdOk') {
+   try {
+      const params = await props.params
+      const { candles } = await candlesService.candleById({ id: params.id })
+      if (candles?.candleById.__typename == 'CandlesByIdOk') {
+         return {
+            title: candles.candleById.candle.id,
+            description: candles.candleById.candle.description,
+            keywords: candles.candleById.candle.title,
+            robots: 'index, follow'
+         }
+      }
+   } catch (error) {
       return {
-         title: candles.candleById.candle.id
+         title: 'Product Not Found'
       }
    }
-   return
 }
 export default async function Page(props: { params: Promise<{ id: string }> }) {
    const params = await props.params
-   const { candles } = await candlesService.candleById(params.id)
+
+   const { candles } = await candlesService.candleById({ id: params.id })
 
    return (
-      <div>
-         My Post{' '}
-         {candles?.candleById.__typename === 'CandlesByIdOk'
-            ? candles.candleById.candle.id
-            : 'no data'}
+      <div className='mt-10'>
+         <div className='container'>
+            <div className='flex flex-col gap-10'>
+               {candles?.candleById.__typename === 'CandlesByIdOk' ? (
+                  <OneCandle {...candles.candleById.candle} />
+               ) : (
+                  <div className=''>no data</div>
+               )}
+            </div>
+         </div>
       </div>
    )
 }

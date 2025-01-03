@@ -21,16 +21,23 @@ export const HeaderProfile: FC = () => {
    return (
       <DropdownMenu>
          <DropdownMenuTrigger asChild>
-            <UsersRound className='cursor-pointer' />
+            <Button variant={'ghost'} size={'sm'}>
+               <UsersRound className='cursor-pointer' />
+            </Button>
          </DropdownMenuTrigger>
          {userProfile ? (
             <DropdownMenuContent className='mt-3'>
                <DropdownMenuLabel>{userProfile.title}</DropdownMenuLabel>
                <DropdownMenuGroup>
                   <DropdownMenuItem>{userProfile.email}</DropdownMenuItem>
+                  {userProfile.role === 'admin' ? (
+                     <DropdownMenuItem>Администратор</DropdownMenuItem>
+                  ) : (
+                     <></>
+                  )}
                   <DropdownMenuItem>
-                     {userProfile.role === 'admin' && 'Администратор'}
                      <Button
+                        size='lg'
                         onClick={() => (logout(), push('/catalog'))}
                         className='w-full'
                      >
@@ -42,7 +49,6 @@ export const HeaderProfile: FC = () => {
          ) : (
             <DropdownMenuContent className='w-full'>
                <DropdownMenuItem>
-                  {' '}
                   <Button
                      className='w-full'
                      onClick={() => push('/auth/login')}

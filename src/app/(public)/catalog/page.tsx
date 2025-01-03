@@ -5,18 +5,24 @@ import st from '~/shared/styles/Catalog.module.scss'
 import { Container } from '~/shared/ui'
 import Catalog from '~/widgets/catalog'
 
+export const revalidate = 600
+
 export const metadata: Metadata = {
-   title: 'Mahakala | Catalog'
+   title: 'Mahakala | Catalog',
+   robots: 'index, follow'
 }
 
 const SSGDataCandles = async () => {
    const data = await candlesService.allCandles({
-      sort: CandlesSortEnum.PriceDesc
+      sort: CandlesSortEnum.PriceDesc,
+      categoryId: null,
+      colorId: null,
+      pageNumber: 1,
+      pageSize: 20
    })
 
    return data
 }
-
 const CatalogPage: NextPage = async () => {
    const data = await SSGDataCandles()
 

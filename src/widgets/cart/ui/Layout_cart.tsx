@@ -1,12 +1,10 @@
 'use client'
-import { useAutoAnimate } from '@formkit/auto-animate/react'
 import { ShoppingCart } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { FC, ReactNode } from 'react'
 import useCartStore from '~/Providers/store/useCart'
 import { useStoreZustand } from '~/shared/hooks/useStoreZustand'
-import { cn } from '~/shared/lib/utils'
-import styles from '~/shared/styles/Scrollbar.module.scss'
+import { priceFormat } from '~/shared/lib/utils'
 import {
    Button,
    Sheet,
@@ -24,22 +22,24 @@ export interface ICartLayout {
 }
 
 const LayoutCart: FC<ICartLayout> = ({ content }) => {
-   const [parent] = useAutoAnimate({ easing: 'ease-in-out', duration: 400 })
    const { push } = useRouter()
    const cart = useStoreZustand(useCartStore, state => state.cart)
+   const totalPrice = cart
+      ?.map(item => item.price)
+      .reduce((sum, a) => sum + a, 0)
    return (
       <Sheet>
          <SheetTrigger asChild>
-            <div className='relative'>
+            <Button className='relative' variant={'ghost'} size={'icon'}>
                <ShoppingCart className='cursor-pointer' />
                {cart?.length === 0 ? (
                   <></>
                ) : (
-                  <span className='absolute top-1 left-[10px] text-[10px]'>
+                  <span className='absolute top-[10px] left-[18px] text-[10px]'>
                      {cart?.length}
                   </span>
                )}
-            </div>
+            </Button>
          </SheetTrigger>
          {
             <SheetContent
@@ -58,21 +58,24 @@ const LayoutCart: FC<ICartLayout> = ({ content }) => {
                </SheetHeader>
                {cart?.length !== 0 ? (
                   <>
-                     <div className={cn(styles.scroll, 'h-[84vh]')}>
-                        <div className='px-3' ref={parent}>
-                           {' '}
-                           {content}
+                     {content}
+                     <SheetFooter className='px-3'>
+                        <div className=' flex flex-col w-full'>
+                           <div className='flex justify-between p-3'>
+                              <p>Итого</p>
+                              <div className=''>
+                                 {totalPrice && priceFormat.format(totalPrice)}
+                              </div>
+                           </div>
+                           <SheetClose asChild>
+                              <Button
+                                 className='w-full'
+                                 onClick={() => push('/order')}
+                              >
+                                 оформить заказ
+                              </Button>
+                           </SheetClose>
                         </div>
-                     </div>
-                     <SheetFooter className='mt-5 px-3'>
-                        <SheetClose asChild>
-                           <Button
-                              className='w-full'
-                              onClick={() => push('/order')}
-                           >
-                              оформить заказ
-                           </Button>
-                        </SheetClose>
                      </SheetFooter>
                   </>
                ) : (

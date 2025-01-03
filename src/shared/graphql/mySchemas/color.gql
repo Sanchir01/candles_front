@@ -18,7 +18,29 @@ query AllColor {
       }
    }
 }
-mutation CreateColor($input: CreateColorInput!) {
+
+query ColorById($input: ColorByIdInput!) {
+   color {
+      colorById(input: $input) {
+         ... on InternalErrorProblem {
+            message
+         }
+         ... on VersionMismatchProblem {
+            message
+         }
+         ... on ColorByIdOk {
+            colors {
+               id
+               slug
+               title
+               version
+            }
+         }
+      }
+   }
+}
+
+mutation AddToColor($input: CreateColorInput!) {
    color {
       createColor(input: $input) {
          __typename

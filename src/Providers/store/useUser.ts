@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
 import type { Role } from '~/shared/graphql/gql/graphql'
-import { AuthServiceTokens } from '~/shared/lib/Tokens.service'
+import { authService } from '~/shared/service/auth'
 export interface IUser {
    phone: string
    email: string
@@ -19,7 +19,10 @@ export const useUser = create<IUserStore>()(
       set => ({
          user: null,
          setUser: (data: IUser) => set({ user: data }),
-         logout: () => set({ user: null })
+         logout: () => {
+            set({ user: null })
+            authService.deleteToken()
+         }
       }),
       {
          version: 0,

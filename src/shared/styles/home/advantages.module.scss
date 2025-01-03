@@ -1,0 +1,43 @@
+.advantages {
+	&__title {
+		font-size: clamp(1.9rem, 0.9393rem + 0.2589vw, 2.25rem);
+	}
+	&__icons {
+		display: flex;
+		justify-content: space-between;
+		padding-top: 2.5rem;
+	}
+	&__block {
+		display: flex;
+		gap: 20px;
+		align-items: center;
+		flex-direction: column;
+	}
+    &__text{
+        font-size: clamp(1.1rem, 0.9393rem + 0.2589vw, 1.1rem);
+    }
+}
+
+@media (max-width: 998px) {
+	.advantages {
+		&__icons {
+			display: grid;
+			align-items: center;
+
+			grid-template-columns: repeat(2, 1fr);
+			padding-top: 2.5rem;
+		}
+	}
+}
+
+@media (max-width: 576px) {
+	.advantages {
+		&__icons {
+			display: grid;
+			align-items: center;
+			grid-template-columns: repeat(2, 1fr);
+			gap: 20px;
+			padding-top: 2.5rem;
+		}
+	}
+}

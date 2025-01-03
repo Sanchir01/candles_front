@@ -1,6 +1,16 @@
-query AllCandles($sort: CandlesSortEnum) {
+query AllCandles(
+   $pageSize: PageSize!
+   $pageNumber: PageNumber!
+   $sort: CandlesSortEnum
+   $filter: CandlesFilterInput
+) {
    candles {
-      allCandles(sort: $sort) {
+      allCandles(
+         pageSize: $pageSize
+         pageNumber: $pageNumber
+         sort: $sort
+         filter: $filter
+      ) {
          __typename
          ... on VersionMismatchProblem {
             message
@@ -9,21 +19,71 @@ query AllCandles($sort: CandlesSortEnum) {
             message
          }
          ... on AllCandlesOk {
+            totalCount {
+               __typename
+               ... on TotalCountResolvingOk {
+                  totalCount
+               }
+               ... on VersionMismatchProblem {
+                  message
+               }
+               ... on InternalErrorProblem {
+                  message
+               }
+            }
             candles {
                id
-               title
-               version
-               color_id
                category_id
                images
                price
-               slug
+               title
+               version
+               color_id
+            }
+            nextPage
+
+            prevPage
+         }
+      }
+   }
+}
+query AllCandlesTotalCount(
+   $pageSize: PageSize!
+   $pageNumber: PageNumber!
+   $sort: CandlesSortEnum
+   $filter: CandlesFilterInput
+) {
+   candles {
+      allCandles(
+         pageSize: $pageSize
+         pageNumber: $pageNumber
+         sort: $sort
+         filter: $filter
+      ) {
+         __typename
+         ... on VersionMismatchProblem {
+            message
+         }
+         ... on InternalErrorProblem {
+            message
+         }
+         ... on AllCandlesOk {
+            totalCount {
+               __typename
+               ... on TotalCountResolvingOk {
+                  totalCount
+               }
+               ... on VersionMismatchProblem {
+                  message
+               }
+               ... on InternalErrorProblem {
+                  message
+               }
             }
          }
       }
    }
 }
-
 query CandleById($input: CandlesByIdInput!) {
    candles {
       candleById(input: $input) {
@@ -44,6 +104,8 @@ query CandleById($input: CandlesByIdInput!) {
                images
                price
                slug
+               description
+               weight
             }
          }
       }

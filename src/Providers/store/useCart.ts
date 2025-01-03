@@ -1,9 +1,8 @@
-import { UUID } from 'crypto'
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
 import { ProductCardPropsType } from '~/shared/types/Catalog.types'
 
-export interface ICart extends Omit<ProductCardPropsType, 'images'> {
+export interface ICart extends Omit<ProductCardPropsType, 'images' | 'slug'> {
    images: string
    quantity: number
 }
@@ -12,8 +11,16 @@ export interface IUseCartStore {
    cart: ICart[]
    totalPrice: number
    toggleCartItem: (item: ICart) => void
-   minus: (id: UUID, colorId: UUID, categoryId: UUID) => void
-   plus: (id: UUID, colorId: UUID, categoryId: UUID) => void
+   minus: ({
+      id,
+      colorId,
+      categoryId
+   }: { id: string; categoryId: string; colorId: string }) => void
+   plus: ({
+      id,
+      colorId,
+      categoryId
+   }: { id: string; categoryId: string; colorId: string }) => void
    resetCart: () => void
 }
 
@@ -39,9 +46,13 @@ const useCartStore = create<IUseCartStore>()(
                   state.totalPrice -= item.price
                }
 
-               return { cart: state.cart, totalPrice: state.totalPrice }
+               return { cart: [...state.cart], totalPrice: state.totalPrice }
             }),
-         plus: (id: UUID, categoryId: UUID, colorId: UUID) => {
+         plus: ({
+            id,
+            colorId,
+            categoryId
+         }: { id: string; categoryId: string; colorId: string }) => {
             const cart = get().cart
             let allPrice = get().totalPrice
             const index = cart.findIndex(
@@ -54,7 +65,11 @@ const useCartStore = create<IUseCartStore>()(
             allPrice -= cart[index].price
             set({ cart: [...cart], totalPrice: allPrice })
          },
-         minus: (id: UUID, categoryId: UUID, colorId: UUID) => {
+         minus: ({
+            id,
+            colorId,
+            categoryId
+         }: { id: string; categoryId: string; colorId: string }) => {
             const cart = get().cart
             let allPrice = get().totalPrice
             const index = cart.findIndex(

@@ -1,4 +1,3 @@
-import validator from 'validator'
 import { z } from 'zod'
 export type IInputLogin = z.infer<typeof loginSchema>
 const phoneRegex = new RegExp(

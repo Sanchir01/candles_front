@@ -1,7 +1,5 @@
 'use client'
-
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useUser } from '~/Providers/store/useUser'
 import {
    Form,
    FormControl,
@@ -18,9 +16,7 @@ import { Input } from '~/shared/ui'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
-import toast from 'react-hot-toast'
 
-import type { FormEvent } from 'react'
 import { useLogin } from '~/shared/hooks/userLogin'
 import { type IInputLogin, loginSchema } from '~/shared/types/Auth.types'
 
@@ -34,21 +30,18 @@ export default function LoginPage() {
    })
    const { replace } = useRouter()
 
-   const userStorage = useUser(state => state.setUser)
    const { mutateAsync, isPending } = useLogin()
    const onSubmit = async (data: IInputLogin) => {
+      const { toast } = await import('react-hot-toast')
       try {
          const { auth } = await mutateAsync({
             email: data.email,
             password: data.password
          })
          if (auth.login.__typename === 'LoginOk') {
-            userStorage(auth.login)
-
-            replace('/catalog')
             toast.success('Вы вошли в аккаунт')
+            replace('/catalog')
          }
-         // biome-ignore lint/suspicious/noExplicitAny: <explanation>
       } catch (e: any) {
          toast.error(e.response?.errors[0].message ?? e.message)
       }
@@ -56,7 +49,7 @@ export default function LoginPage() {
 
    return (
       <Card className='p-8 max-w-[350px]'>
-         <CardHeader className='text-xl'>Вход в аккаунт</CardHeader>
+         <CardHeader className='text-xl'>Вход в аккаунт </CardHeader>
          <CardContent>
             <Form {...form}>
                <form
@@ -68,7 +61,7 @@ export default function LoginPage() {
                      control={form.control}
                      render={({ field }) => (
                         <FormItem className='flex flex-col gap-2 '>
-                           <FormLabel>Номер телефона</FormLabel>
+                           <FormLabel>Ваш email</FormLabel>
                            <FormControl>
                               <Input
                                  {...field}

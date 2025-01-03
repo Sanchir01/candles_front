@@ -1,18 +1,16 @@
 .header {
 	position: sticky;
 	top: 0;
-
 	height: 60px;
 	padding: 10px;
-	@apply shadow-lg shadow-black/5 z-10;
+	@apply shadow-lg shadow-black/10 z-20  border-b border-white backdrop-blur supports-[backdrop-filter]:bg-background/60;
 
 	&_wrapper {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 	}
-	&_logo{
-
+	&_logo {
 	}
 	&_nav {
 		display: flex;
@@ -38,3 +36,4 @@
 		}
 	}
 }
+

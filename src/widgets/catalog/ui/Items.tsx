@@ -1,73 +1,89 @@
 'use client'
-import Image from 'next/image'
-import Link from 'next/link'
-import { EntityProductCart } from '~/entities/entitycandles/Carts'
-import { SkeletonCart } from '~/entities/entitycandles/SkeletenCart'
-import { AddToCart } from '~/features/AddToCart/AddToItemCart'
-import { AddToFavorites } from '~/features/AddToFavorites/AddTofavorites'
-import { AllCandlesQuery, CandlesSortEnum } from '~/shared/graphql/gql/graphql'
-import { useAllCandles } from '~/shared/hooks/useAllCandles'
+import { useInfiniteQuery } from '@tanstack/react-query'
+import { useFilters } from '~/Providers/store/useFilters'
+import { SkeletonCart } from '~/entities/entitycandles/ui/SkeletenCart'
+import { AllCandlesQuery } from '~/shared/graphql/gql/graphql'
+import { useIntersections } from '~/shared/hooks/useIntersections'
+import { candlesService } from '~/shared/service/candles'
+import { Loader } from '~/shared/ui'
+import GridItem from './item'
+export type itemsGridType = {
+   title: string
+   images: string[]
+   id: string
+   slug: string
+   price: number
+   color_id: string
+   category_id: string
+   version: number
+}[]
 
 const Items = ({ initialdata }: { initialdata: AllCandlesQuery }) => {
-   const { data, isPending, isLoading, isSuccess, isFetching } = useAllCandles({
-      sort: CandlesSortEnum.PriceAsc,
-      initialdata
+   const sort = useFilters(state => state.sorting)
+   const colorId = useFilters(state => state.color)
+   const categoryId = useFilters(state => state.category)
+   const {
+      data,
+      isPlaceholderData,
+      isLoading,
+      isSuccess,
+      fetchNextPage,
+      isError,
+      hasNextPage,
+      isFetchingNextPage
+   } = useInfiniteQuery({
+      ...candlesService.InfiniteAllCandlesQueryOptions({
+         categoryId,
+         colorId,
+         sort
+      }),
+      enabled: !!initialdata
+   })
+   const cursorRef = useIntersections(() => {
+      fetchNextPage()
    })
 
-   return isFetching
-      ? [...Array(10)].map((_, i) => <SkeletonCart key={i} />)
-      : isSuccess && data?.__typename === 'AllCandlesOk'
-        ? data.candles.map(
-             ({
-                title,
-                images,
-                id,
-                slug,
-                price,
-                color_id,
-                category_id,
-                version
-             }) => (
-                <EntityProductCart key={id}>
-                   <Link href={`/catalog/${id}`}>
-                      <Image
-                         src={images[0]}
-                         alt={title}
-                         width={300}
-                         height={500}
-                      />
-                   </Link>
-                   <div className='flex flex-col px-2'>
-                      <h5>{title}</h5>
-                      <div className='flex justify-between gap-2 '>
-                         <AddToCart
-                            text={'добавить в корзину'}
-                            images={images[0]}
-                            quantity={1}
-                            title={title}
-                            id={id}
-                            slug={slug}
-                            price={price}
-                            version={version}
-                            colorId={color_id}
-                            categoryId={category_id}
-                         />
-                         <AddToFavorites
-                            images={images}
-                            title={title}
-                            id={id}
-                            slug={slug}
-                            price={price}
-                            version={version}
-                            colorId={color_id}
-                            categoryId={category_id}
-                         />
-                      </div>
-                   </div>
-                </EntityProductCart>
-             )
-          )
-        : 'ошибка при загрузке данных'
+   if (isPlaceholderData || isLoading) {
+      return [...Array(10)].map((_, i) => <SkeletonCart key={i} />)
+   }
+   if (isError) {
+      return <div className=''>ошибка во время загрузки данных</div>
+   }
+   return (
+      <>
+         {isSuccess && data.length !== 0 ? (
+            data.map(
+               ({
+                  title,
+                  images,
+                  id,
+                  price,
+                  color_id,
+                  category_id,
+                  version
+               }) => (
+                  <GridItem
+                     focusImage
+                     key={id}
+                     id={id}
+                     title={title}
+                     images={images}
+                     price={price}
+                     version={version}
+                     color_id={color_id}
+                     category_id={category_id}
+                  />
+               )
+            )
+         ) : (
+            <></>
+         )}
+         <div className='flex gap-2 mt-10' ref={cursorRef}>
+            {!hasNextPage && <div>Нет данных для загрузки </div>}
+            {isFetchingNextPage && <Loader />}
+         </div>
+      </>
+   )
 }
 
 export default Items
