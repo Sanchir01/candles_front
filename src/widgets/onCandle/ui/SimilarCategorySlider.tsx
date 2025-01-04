@@ -8,6 +8,7 @@ import st from '~/shared/styles/slider/index.module.scss'
 import { Title } from '~/shared/ui'
 import EmblaCarousel from '~/shared/ui/sliders/emblaSlider'
 import SliderItem from '~/widgets/catalog/ui/item'
+import styles from '~/shared/styles/oneCandle/index.module.scss'
 
 const SimilarColorSlider = ({ categoryId }: { categoryId: string }) => {
    const { data, isLoading, isSuccess } = useQuery({
@@ -29,9 +30,13 @@ const SimilarColorSlider = ({ categoryId }: { categoryId: string }) => {
       )
    }
    return (
-      <div className=''>
+      <div className='mt-10'>
          {isSuccess && data?.__typename === 'AllCandlesOk' && (
-            <Title text={'Товары с похожей категорией'} size='lg' />
+            <Title
+               className={styles.candle__title}
+               text={'Товары с похожей категорией'}
+               size='lg'
+            />
          )}
          <div className='w-full pt-5'>
             <EmblaCarousel>

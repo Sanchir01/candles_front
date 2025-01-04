@@ -31,9 +31,6 @@ const HeaderBurger = ({ logo, admin, profile, theme }: HeaderBurgerType) => {
                <div className='flex items-center justify-between w-full'>
                   <SheetClose asChild>{admin}</SheetClose>
                   <SheetClose asChild>
-                     <ShoppingCart />
-                  </SheetClose>
-                  <SheetClose asChild>
                      <FavoritesLogo />
                   </SheetClose>
                   <SheetClose asChild>{profile}</SheetClose>

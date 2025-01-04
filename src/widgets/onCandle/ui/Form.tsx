@@ -3,7 +3,7 @@ import useCartStore from '~/Providers/store/useCart'
 import AddToCart from '~/features/AddToCart'
 import AddToFavorites from '~/features/AddToFavorites'
 import { priceFormat } from '~/shared/lib/utils'
-
+import styles from '~/shared/styles/oneCandle/index.module.scss'
 type OneCandleFormType = {
    title: string
    slug: string
@@ -18,7 +18,6 @@ type OneCandleFormType = {
 
 const Form = ({
    title,
-   slug,
    price,
    images,
    category_id,
@@ -35,8 +34,8 @@ const Form = ({
          cartItem.colorId === color_id
    )
    return (
-      <div className='mt-5'>
-         <h1 className='text-4xl'>{title}</h1>
+      <div className='mt-5 max-[768px]:mt-0 max-[768px]:pb-10'>
+         <h1 className={styles.candle__title}>{title}</h1>
          <div className='text-xl flex gap-2 pt-5'>
             <span className=''>{priceFormat.format(price)} </span>
             <span className='line-through text-gray-500'>

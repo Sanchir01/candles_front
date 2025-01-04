@@ -45,15 +45,13 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
    const { candles } = await candlesService.candleById({ id: params.id })
 
    return (
-      <div className='mt-10'>
+      <div className='mt-10 max-[768px]:mt-4'>
          <div className='container'>
-            <div className='flex flex-col gap-10'>
-               {candles?.candleById.__typename === 'CandlesByIdOk' ? (
-                  <OneCandle {...candles.candleById.candle} />
-               ) : (
-                  <div className=''>no data</div>
-               )}
-            </div>
+            {candles?.candleById.__typename === 'CandlesByIdOk' ? (
+               <OneCandle {...candles.candleById.candle} />
+            ) : (
+               <div className=''>no data</div>
+            )}
          </div>
       </div>
    )

@@ -29,7 +29,7 @@ const SimilarColorSlider = ({ colorId }: { colorId: string }) => {
       )
    }
    return (
-      <div className=''>
+      <div className='mt-10'>
          {isSuccess && data?.__typename === 'AllCandlesOk' && (
             <Title text={'Товары c похожим цветом'} size='lg' />
          )}

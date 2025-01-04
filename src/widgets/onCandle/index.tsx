@@ -3,6 +3,7 @@ import dynamic from 'next/dynamic'
 import Form from './ui/Form'
 import OndeCandleImageGallery from './ui/OndeCandleImageGallery'
 import OneCandleLayout from './ui/OneCandleLayout'
+import ProductsSlider from './ui/ProductsSlider'
 
 const SimilarCategorySlider = dynamic(
    () => import('./ui/SimilarCategorySlider'),
@@ -51,6 +52,7 @@ const OneCandle = ({
                id={id}
             />
          }
+         productsSlider={<ProductsSlider images={images} />}
          similarCategorySlider={
             <SimilarCategorySlider categoryId={category_id} />
          }
