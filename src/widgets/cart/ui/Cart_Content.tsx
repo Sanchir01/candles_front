@@ -14,7 +14,7 @@ const CartContent: FC = () => {
       return 'Корзина пуста'
    }
    return (
-      <div className={cn(styles.scroll, 'h-[84vh]')}>
+      <div className={cn(styles.scroll, 'h-[84dvh] max-[768px]:h-[75dvh]')}>
          <div className='px-3' ref={parent}>
             {cartContent.map(cartItem => (
                <CartItem key={cartItem.id} {...cartItem}>

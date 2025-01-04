@@ -8,6 +8,6 @@ export default function Robots(): MetadataRoute.Robots {
          disallow: ['/admin', '/auth/*', '/order']
       },
       host: 'mahakala.ru',
-      sitemap: 'https://sandjma.ru/sitemap.xml'
+      sitemap: 'https://mahakala.ru/sitemap.xml'
    }
 }

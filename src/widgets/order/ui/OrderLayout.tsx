@@ -15,7 +15,7 @@ const OrderLayout: FC = () => {
    if (cart !== undefined && cart.length !== 0) {
       return (
          <Container>
-            <div className={cn(styles.order__wrapper)}>
+            <div className={cn(styles.order__wrapper, 'max-[768px]:pb-5')}>
                <Content />
                <OrderForm />
             </div>

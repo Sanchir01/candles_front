@@ -6,9 +6,7 @@ import { CreateOrderInput } from '~/shared/graphql/gql/graphql'
 import { orderService } from '~/shared/service/orders'
 import { Button, Loader } from '~/shared/ui'
 
-type Props = {}
-
-const PushOrder = (props: Props) => {
+const PushOrder = () => {
    const { mutateAsync, isPending } = useMutation({
       mutationKey: [orderService.createUserOrderKey],
       mutationFn: ({ items }: { items: CreateOrderInput }) =>
@@ -29,14 +27,12 @@ const PushOrder = (props: Props) => {
       try {
          await mutateAsync({ items })
          console.log(items)
-         await toast.success('Заказ оформлен')
+         toast.success('Заказ оформлен')
       } catch (e) {
          console.log(e)
       }
-
-      // await resetCart()
-
-      // replace('/catalog')
+      resetCart()
+      replace('/thanks')
    }
 
    return (

@@ -15,12 +15,20 @@ export interface IUseCartStore {
       id,
       colorId,
       categoryId
-   }: { id: string; categoryId: string; colorId: string }) => void
+   }: {
+      id: string
+      categoryId: string
+      colorId: string
+   }) => void
    plus: ({
       id,
       colorId,
       categoryId
-   }: { id: string; categoryId: string; colorId: string }) => void
+   }: {
+      id: string
+      categoryId: string
+      colorId: string
+   }) => void
    resetCart: () => void
 }
 
@@ -52,7 +60,11 @@ const useCartStore = create<IUseCartStore>()(
             id,
             colorId,
             categoryId
-         }: { id: string; categoryId: string; colorId: string }) => {
+         }: {
+            id: string
+            categoryId: string
+            colorId: string
+         }) => {
             const cart = get().cart
             let allPrice = get().totalPrice
             const index = cart.findIndex(
@@ -69,7 +81,11 @@ const useCartStore = create<IUseCartStore>()(
             id,
             colorId,
             categoryId
-         }: { id: string; categoryId: string; colorId: string }) => {
+         }: {
+            id: string
+            categoryId: string
+            colorId: string
+         }) => {
             const cart = get().cart
             let allPrice = get().totalPrice
             const index = cart.findIndex(
@@ -83,7 +99,7 @@ const useCartStore = create<IUseCartStore>()(
             set({ cart: [...cart], totalPrice: allPrice })
          },
 
-         resetCart: () => set({ cart: [], totalPrice: 0 })
+         resetCart: async () => set({ cart: [], totalPrice: 0 })
       }),
       {
          version: 0,

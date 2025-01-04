@@ -12,10 +12,10 @@ export const HeaderNav = () => {
             <Link href='/catalog'>Каталог</Link>
          </li>
          <li className={style.header_nav_left_newsession}>
-            <Link href='/'>Сезонные новинки</Link>
+            <Link href='/seasons'>Сезонные новинки</Link>
          </li>
          <li className={style.header_nav_left_contacts}>
-            <Link href='/'>Контакты</Link>
+            <Link href='/contacts'>Контакты</Link>
          </li>
       </ul>
    )

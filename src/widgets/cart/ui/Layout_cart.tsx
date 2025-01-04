@@ -59,7 +59,7 @@ const LayoutCart: FC<ICartLayout> = ({ content }) => {
                {cart?.length !== 0 ? (
                   <>
                      {content}
-                     <SheetFooter className='px-3'>
+                     <SheetFooter className='lg:px-3'>
                         <div className=' flex flex-col w-full'>
                            <div className='flex justify-between p-3'>
                               <p>Итого</p>
@@ -70,6 +70,7 @@ const LayoutCart: FC<ICartLayout> = ({ content }) => {
                            <SheetClose asChild>
                               <Button
                                  className='w-full'
+                                 type='submit'
                                  onClick={() => push('/order')}
                               >
                                  оформить заказ
