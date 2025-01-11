@@ -1,15 +1,9 @@
 'use client'
 import { Router } from 'next/router'
-import { ReactNode, useCallback, useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 import ym, { YMInitializer } from 'react-yandex-metrika'
 const account = Number(process.env.YANDEX_METRIKA)
-const YandexMetrika = ({
-   children,
-   enabled
-}: {
-   children?: ReactNode
-   enabled: boolean
-}) => {
+const YandexMetrika = ({ enabled }: { enabled: boolean }) => {
    const hit = useCallback(
       (url: string) => {
          if (enabled) {

@@ -3,6 +3,7 @@ import './globals.css'
 import { Arsenal } from 'next/font/google'
 import { Toaster } from 'react-hot-toast'
 import { Provider } from '~/Providers/Provider'
+import YandexMetrika from '~/Providers/YMetrika'
 const ArsenalFont = Arsenal({
    subsets: ['latin'],
    weight: ['400', '700']
@@ -36,6 +37,7 @@ export default function RootLayout({
                <div className='wrapper'>{children}</div>
             </Provider>
          </body>
+         <YandexMetrika enabled={!!(process.env.NODE_ENV === 'production')} />
       </html>
    )
 }
