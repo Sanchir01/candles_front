@@ -2,7 +2,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { CandlesSortEnum } from '~/shared/graphql/gql/graphql'
 import { candlesService } from '~/shared/service/candles'
-import 'swiper/scss'
 import { SkeletonCart } from '~/entities/entitycandles/ui/SkeletenCart'
 import st from '~/shared/styles/slider/index.module.scss'
 import { Title } from '~/shared/ui'

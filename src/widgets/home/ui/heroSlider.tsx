@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import { FC } from 'react'
 import styles from '~/shared/styles/home/hero.module.scss'
-import 'swiper/scss'
 import { HeroSliderContent } from '~/shared/constants/header_content'
 import { cn } from '~/shared/lib/utils'
 import { Button } from '~/shared/ui'

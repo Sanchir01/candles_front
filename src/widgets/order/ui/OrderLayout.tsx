@@ -5,7 +5,7 @@ import useCartStore from '~/Providers/store/useCart'
 import { useStoreZustand } from '~/shared/hooks/useStoreZustand'
 import { cn } from '~/shared/lib/utils'
 import styles from '~/shared/styles/Order.module.scss'
-import { Button, Container } from '~/shared/ui'
+import { Button, Container, Title } from '~/shared/ui'
 import Content from './Content'
 import { OrderForm } from './OrderForm'
 import RecommendedSlider from './RecomendedSlider'
@@ -30,8 +30,11 @@ const OrderLayout: FC = () => {
                <Button>Перейти в каталог</Button>
             </Link>
          </div>
-         <div className=''>
-            <RecommendedSlider />
+         <div className='mt-10'>
+            <Title text='Реккомендуем' size='xl' className='pl-2' />
+            <div className='mt-7'>
+               <RecommendedSlider />
+            </div>
          </div>
       </section>
    )
