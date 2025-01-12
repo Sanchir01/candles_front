@@ -6,7 +6,7 @@ import {
 const nextConfig: NextConfig = {
 	reactStrictMode: process.env.NODE_ENV === 'development',
 	compiler: {
-		removeConsole: process.env.NODE_ENV !== 'development'
+		removeConsole: process.env.NODE_ENV === 'production'
 	},
 	images: {
 		remotePatterns: [
@@ -26,6 +26,9 @@ const nextConfig: NextConfig = {
 	},
 	sassOptions: {
 		silenceDeprecations: ['legacy-js-api']
+	},
+	experimental: {
+		swcTraceProfiling: true
 	},
 	compress: true,
 	async headers() {
