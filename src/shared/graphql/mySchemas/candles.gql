@@ -111,3 +111,18 @@ query CandleById($input: CandlesByIdInput!) {
       }
    }
 }
+mutation DeleteCategoryById($input: DeleteCategoryInput) {
+   category {
+      delete(input: $input) {
+         ... on DeleteCategoryOk {
+            ok
+         }
+         ... on InternalErrorProblem {
+            message
+         }
+         ... on VersionMismatchProblem {
+            message
+         }
+      }
+   }
+}

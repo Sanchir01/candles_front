@@ -810,6 +810,22 @@ export type CandleByIdQuery = {
    } | null
 }
 
+export type DeleteCategoryByIdMutationVariables = Exact<{
+   input?: InputMaybe<DeleteCategoryInput>
+}>
+
+export type DeleteCategoryByIdMutation = {
+   __typename?: 'Mutation'
+   category: {
+      __typename?: 'CategoryMutation'
+      delete?:
+         | { __typename?: 'DeleteCategoryOk'; ok: any }
+         | { __typename?: 'InternalErrorProblem'; message: string }
+         | { __typename?: 'VersionMismatchProblem'; message: string }
+         | null
+   }
+}
+
 export type AllCategoryQueryVariables = Exact<{ [key: string]: never }>
 
 export type AllCategoryQuery = {
@@ -840,7 +856,7 @@ export type CategoryByIdQuery = {
       __typename?: 'CategoryQuery'
       categoryById:
          | {
-              __typename?: 'CategoryByIdOk'
+              __typename: 'CategoryByIdOk'
               category?: {
                  __typename?: 'Category'
                  title: string
@@ -848,8 +864,8 @@ export type CategoryByIdQuery = {
                  id: any
               } | null
            }
-         | { __typename?: 'InternalErrorProblem'; message: string }
-         | { __typename?: 'VersionMismatchProblem'; message: string }
+         | { __typename: 'InternalErrorProblem'; message: string }
+         | { __typename: 'VersionMismatchProblem'; message: string }
    } | null
 }
 
@@ -2278,6 +2294,128 @@ export const CandleByIdDocument = {
       }
    ]
 } as unknown as DocumentNode<CandleByIdQuery, CandleByIdQueryVariables>
+export const DeleteCategoryByIdDocument = {
+   kind: 'Document',
+   definitions: [
+      {
+         kind: 'OperationDefinition',
+         operation: 'mutation',
+         name: { kind: 'Name', value: 'DeleteCategoryById' },
+         variableDefinitions: [
+            {
+               kind: 'VariableDefinition',
+               variable: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'input' }
+               },
+               type: {
+                  kind: 'NamedType',
+                  name: { kind: 'Name', value: 'DeleteCategoryInput' }
+               }
+            }
+         ],
+         selectionSet: {
+            kind: 'SelectionSet',
+            selections: [
+               {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'category' },
+                  selectionSet: {
+                     kind: 'SelectionSet',
+                     selections: [
+                        {
+                           kind: 'Field',
+                           name: { kind: 'Name', value: 'delete' },
+                           arguments: [
+                              {
+                                 kind: 'Argument',
+                                 name: { kind: 'Name', value: 'input' },
+                                 value: {
+                                    kind: 'Variable',
+                                    name: { kind: 'Name', value: 'input' }
+                                 }
+                              }
+                           ],
+                           selectionSet: {
+                              kind: 'SelectionSet',
+                              selections: [
+                                 {
+                                    kind: 'InlineFragment',
+                                    typeCondition: {
+                                       kind: 'NamedType',
+                                       name: {
+                                          kind: 'Name',
+                                          value: 'DeleteCategoryOk'
+                                       }
+                                    },
+                                    selectionSet: {
+                                       kind: 'SelectionSet',
+                                       selections: [
+                                          {
+                                             kind: 'Field',
+                                             name: { kind: 'Name', value: 'ok' }
+                                          }
+                                       ]
+                                    }
+                                 },
+                                 {
+                                    kind: 'InlineFragment',
+                                    typeCondition: {
+                                       kind: 'NamedType',
+                                       name: {
+                                          kind: 'Name',
+                                          value: 'InternalErrorProblem'
+                                       }
+                                    },
+                                    selectionSet: {
+                                       kind: 'SelectionSet',
+                                       selections: [
+                                          {
+                                             kind: 'Field',
+                                             name: {
+                                                kind: 'Name',
+                                                value: 'message'
+                                             }
+                                          }
+                                       ]
+                                    }
+                                 },
+                                 {
+                                    kind: 'InlineFragment',
+                                    typeCondition: {
+                                       kind: 'NamedType',
+                                       name: {
+                                          kind: 'Name',
+                                          value: 'VersionMismatchProblem'
+                                       }
+                                    },
+                                    selectionSet: {
+                                       kind: 'SelectionSet',
+                                       selections: [
+                                          {
+                                             kind: 'Field',
+                                             name: {
+                                                kind: 'Name',
+                                                value: 'message'
+                                             }
+                                          }
+                                       ]
+                                    }
+                                 }
+                              ]
+                           }
+                        }
+                     ]
+                  }
+               }
+            ]
+         }
+      }
+   ]
+} as unknown as DocumentNode<
+   DeleteCategoryByIdMutation,
+   DeleteCategoryByIdMutationVariables
+>
 export const AllCategoryDocument = {
    kind: 'Document',
    definitions: [
@@ -2433,6 +2571,10 @@ export const CategoryByIdDocument = {
                            selectionSet: {
                               kind: 'SelectionSet',
                               selections: [
+                                 {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: '__typename' }
+                                 },
                                  {
                                     kind: 'InlineFragment',
                                     typeCondition: {

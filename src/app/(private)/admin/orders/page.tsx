@@ -1,5 +1,6 @@
 'use client'
 import { useQuery } from '@tanstack/react-query'
+import { Delete } from 'lucide-react'
 import { NextPage } from 'next'
 import { orderService } from '~/shared/service/orders'
 import { Skeleton } from '~/shared/ui'
@@ -23,9 +24,9 @@ const AdminOrdersPage: NextPage = () => {
             data.orders.map(({ id, status, userId, total_amount }) => (
                <AdminItemLine
                   key={id}
-                  id={id}
+                  View={<>view</>}
+                  Update={<>update</>}
                   title={status}
-                  href={'/admin'}
                   Delete={<div>{total_amount}</div>}
                />
             ))

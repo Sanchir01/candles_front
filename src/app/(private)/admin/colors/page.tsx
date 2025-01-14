@@ -20,10 +20,10 @@ const ColorsAdminPage: NextPage = () => {
             : isSuccess && data?.__typename === 'AllColorOk'
               ? data.colors.map(({ id, title }) => (
                    <AdminItemLine
-                      id={id}
                       title={title}
                       key={id}
-                      href={`/admin/${id}`}
+                      View={<>view</>}
+                      Update={<>update</>}
                       Delete={<div>delete</div>}
                    />
                 ))

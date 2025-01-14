@@ -3,13 +3,15 @@ import { gqlRequest } from '~/shared/api/api-instance'
 import {
    AddCategoryDocument,
    AllCategoryDocument,
-   CategoryByIdDocument
+   CategoryByIdDocument,
+   DeleteCategoryByIdDocument
 } from '~/shared/graphql/gql/graphql'
 
 export const categoryService = {
    addToCategoryKey: 'addToCategory',
    categoryByIdKey: 'categoryById',
    allCategoryKey: 'allCategory',
+   deleCategoryKey: 'deleteCategory',
    addToCategory({ title }: { title: string }) {
       return gqlRequest.request({
          document: AddCategoryDocument,
@@ -19,10 +21,15 @@ export const categoryService = {
    async categoryById({ id }: { id: string }) {
       return gqlRequest.request({
          document: CategoryByIdDocument,
-         variables: { input: { id: id } }
+         variables: { input: { id } }
       })
    },
-
+   async deleteCategoryById({ id }: { id: string }) {
+      return gqlRequest.request({
+         document: DeleteCategoryByIdDocument,
+         variables: { input: { id } }
+      })
+   },
    async allCategory() {
       return gqlRequest.request({ document: AllCategoryDocument })
    },

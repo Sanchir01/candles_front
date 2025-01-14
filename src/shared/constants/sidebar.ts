@@ -1,4 +1,4 @@
-import { AirplayIcon, CandlestickChart, Wallet2 } from 'lucide-react'
+import { AirplayIcon, CandlestickChart, Pipette, Wallet2 } from 'lucide-react'
 const baseUrl = '/admin'
 
 export const dataSideBar = {
@@ -7,59 +7,23 @@ export const dataSideBar = {
       {
          title: 'Свечи',
          Icon: CandlestickChart,
-         items: [
-            {
-               title: 'Все свечи',
-               url: `${baseUrl}/candles`
-            },
-            {
-               title: 'Создать свечу',
-               url: `${baseUrl}/candles/create`
-            }
-         ]
+         url: `${baseUrl}/candles`
       },
       {
          title: 'Категории',
          Icon: AirplayIcon,
-         items: [
-            {
-               title: 'Все категории',
-               url: `${baseUrl}/category`
-            },
-            {
-               title: 'Создать категорию',
-               url: `${baseUrl}/category/create`
-            }
-         ]
+         url: `${baseUrl}/category`
       },
       {
          title: 'Цвета',
-         Icon: CandlestickChart,
-         items: [
-            {
-               title: 'Все цвета',
-               url: `${baseUrl}/colors`
-            },
-            {
-               title: 'Создать цвет',
-               url: `${baseUrl}/colors/create`
-            }
-         ]
+         Icon: Pipette,
+         url: `${baseUrl}/colors`
       },
 
       {
          title: 'Заказы',
          Icon: Wallet2,
-         items: [
-            {
-               title: 'Все заказы',
-               url: `${baseUrl}/orders`
-            },
-            {
-               title: 'Создать заказ',
-               url: `${baseUrl}/orders/create`
-            }
-         ]
+         url: `${baseUrl}/orders`
       }
    ]
 }

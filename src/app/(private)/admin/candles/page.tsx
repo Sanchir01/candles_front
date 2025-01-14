@@ -27,10 +27,10 @@ const AdminPage = () => {
                  ? data.candles.map(({ id, title }) => (
                       <Link href={`/admin/candles/${id}`} key={id}>
                          <AdminItemLine
-                            id={id}
                             title={title}
-                            href={`/admin/candles/${id}`}
                             Delete={<div>delete</div>}
+                            View={<>create</>}
+                            Update={<>delete</>}
                          />
                       </Link>
                    ))

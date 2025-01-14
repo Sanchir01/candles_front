@@ -18,6 +18,7 @@ query allCategory {
 query CategoryById($input: CategoryByIdInput!) {
    category {
       categoryById(input: $input) {
+         __typename
          ... on CategoryByIdOk {
             category {
                title
