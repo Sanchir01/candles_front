@@ -25,6 +25,7 @@ export const colorService = {
          variables: { input: { id } }
       })
    },
+
    allColorQueryOptions: () => {
       return queryOptions({
          queryKey: [colorService.allColorKey],

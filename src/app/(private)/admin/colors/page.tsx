@@ -1,7 +1,9 @@
 'use client'
 import { useQuery } from '@tanstack/react-query'
 import { NextPage } from 'next'
+import { DeleteItem } from '~/features/Admin/deleteItem'
 import { colorService } from '~/shared/service/color'
+import { Button } from '~/shared/ui'
 import AdminItemLine from '~/shared/ui/adminItem'
 
 const ColorsAdminPage: NextPage = () => {
@@ -10,6 +12,9 @@ const ColorsAdminPage: NextPage = () => {
    })
    return (
       <div className='flex flex-1 flex-col gap-4 p-4'>
+         <Button href={'/admin/colors/create-color'} className='max-w-[400px]'>
+            Создать цвет
+         </Button>
          {isLoading
             ? Array.from({ length: 20 }).map((_, index) => (
                  <div
@@ -24,7 +29,14 @@ const ColorsAdminPage: NextPage = () => {
                       key={id}
                       View={<>view</>}
                       Update={<>update</>}
-                      Delete={<div>delete</div>}
+                      Delete={
+                         <DeleteItem
+                            id={id}
+                            mutateFn={() => colorService.addToColor(id)}
+                            mutateKey={colorService.addToColorKey}
+                            invalidateKey={colorService.allColorKey}
+                         />
+                      }
                    />
                 ))
               : 'нету категорий'}

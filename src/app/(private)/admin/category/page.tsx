@@ -18,7 +18,7 @@ const CategoryAdminPage: NextPage = () => {
             className='max-w-[400px]'
             href={`/admin/category/create-category`}
          >
-            Create Category
+            Создать категорию
          </Button>
          {isLoading
             ? Array.from({ length: 20 }).map((_, index) => (

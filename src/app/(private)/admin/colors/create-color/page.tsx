@@ -3,38 +3,46 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'
 import { NextPage } from 'next'
 import { useForm } from 'react-hook-form'
-import { categoryService } from '~/shared/service/category'
+import { colorService } from '~/shared/service/color'
 import {
-   createCategorySchema,
-   createCategorySchemaType
+   createColorSchemaType,
+   createColorSchema
 } from '~/shared/types/admin/category.types'
 import {
-   Button,
    Form,
-   FormControl,
    FormField,
+   FormControl,
    FormItem,
    FormLabel,
-   Input
+   Input,
+   Button
 } from '~/shared/ui'
 
-const CreateCategoryPage: NextPage = () => {
-   const form = useForm<createCategorySchemaType>({
-      resolver: zodResolver(createCategorySchema),
+const AdminColorsPage: NextPage = () => {
+   const { mutateAsync } = useMutation({
+      mutationFn: (title: string) => colorService.addToColor({ title }),
+      mutationKey: [colorService.addToColorKey],
+      onSuccess: () => {}
+   })
+
+   const form = useForm<createColorSchemaType>({
+      resolver: zodResolver(createColorSchema),
       defaultValues: {
          title: ''
       }
    })
-   const { mutateAsync } = useMutation({
-      mutationFn: (title: string) => categoryService.addToCategory({ title }),
-      mutationKey: [categoryService.addToCategoryKey],
-      onSuccess: () => {}
-   })
 
-   const onSubmit = async (data: createCategorySchemaType) => {
+   const onSubmit = async (data: createColorSchemaType) => {
       const { toast } = await import('react-hot-toast')
-      await mutateAsync(data.title)
-      toast.success('уачное создание категории')
+      try {
+         await mutateAsync(data.title)
+      } catch (e) {
+         toast.error('ошибка во время создания цвета')
+         console.log(e)
+         return
+      }
+      toast.success('удачное создание цвета')
+      form.reset()
    }
    return (
       <div className='px-5'>
@@ -46,7 +54,7 @@ const CreateCategoryPage: NextPage = () => {
                   render={({ field }) => (
                      <FormItem className='max-w-[500px]'>
                         <FormLabel className='text-xl pl-2'>
-                           category name
+                           название цвета
                         </FormLabel>
                         <FormControl>
                            <Input
@@ -67,4 +75,4 @@ const CreateCategoryPage: NextPage = () => {
    )
 }
 
-export default CreateCategoryPage
+export default AdminColorsPage
