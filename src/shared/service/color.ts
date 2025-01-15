@@ -3,7 +3,8 @@ import { gqlRequest } from '~/shared/api/api-instance'
 import {
    AddToColorDocument,
    AllColorDocument,
-   ColorByIdDocument
+   ColorByIdDocument,
+   DeleteColorByIdDocument
 } from '~/shared/graphql/gql/graphql'
 
 export const colorService = {
@@ -22,6 +23,12 @@ export const colorService = {
    async colorById({ id }: { id: string }) {
       return gqlRequest.request({
          document: ColorByIdDocument,
+         variables: { input: { id } }
+      })
+   },
+   async deleteColorById({ id }: { id: string }) {
+      return gqlRequest.request({
+         document: DeleteColorByIdDocument,
          variables: { input: { id } }
       })
    },

@@ -946,6 +946,22 @@ export type AddToColorMutation = {
    }
 }
 
+export type DeleteColorByIdMutationVariables = Exact<{
+   input?: InputMaybe<DeleteColorInput>
+}>
+
+export type DeleteColorByIdMutation = {
+   __typename?: 'Mutation'
+   color: {
+      __typename?: 'ColorMutation'
+      delete?:
+         | { __typename: 'DeleteColorOk'; ok: any }
+         | { __typename: 'InternalErrorProblem'; message: string }
+         | { __typename: 'VersionMismatchProblem'; message: string }
+         | null
+   }
+}
+
 export type AllOrdersQueryVariables = Exact<{ [key: string]: never }>
 
 export type AllOrdersQuery = {
@@ -3236,6 +3252,132 @@ export const AddToColorDocument = {
       }
    ]
 } as unknown as DocumentNode<AddToColorMutation, AddToColorMutationVariables>
+export const DeleteColorByIdDocument = {
+   kind: 'Document',
+   definitions: [
+      {
+         kind: 'OperationDefinition',
+         operation: 'mutation',
+         name: { kind: 'Name', value: 'DeleteColorById' },
+         variableDefinitions: [
+            {
+               kind: 'VariableDefinition',
+               variable: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'input' }
+               },
+               type: {
+                  kind: 'NamedType',
+                  name: { kind: 'Name', value: 'DeleteColorInput' }
+               }
+            }
+         ],
+         selectionSet: {
+            kind: 'SelectionSet',
+            selections: [
+               {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'color' },
+                  selectionSet: {
+                     kind: 'SelectionSet',
+                     selections: [
+                        {
+                           kind: 'Field',
+                           name: { kind: 'Name', value: 'delete' },
+                           arguments: [
+                              {
+                                 kind: 'Argument',
+                                 name: { kind: 'Name', value: 'input' },
+                                 value: {
+                                    kind: 'Variable',
+                                    name: { kind: 'Name', value: 'input' }
+                                 }
+                              }
+                           ],
+                           selectionSet: {
+                              kind: 'SelectionSet',
+                              selections: [
+                                 {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: '__typename' }
+                                 },
+                                 {
+                                    kind: 'InlineFragment',
+                                    typeCondition: {
+                                       kind: 'NamedType',
+                                       name: {
+                                          kind: 'Name',
+                                          value: 'DeleteColorOk'
+                                       }
+                                    },
+                                    selectionSet: {
+                                       kind: 'SelectionSet',
+                                       selections: [
+                                          {
+                                             kind: 'Field',
+                                             name: { kind: 'Name', value: 'ok' }
+                                          }
+                                       ]
+                                    }
+                                 },
+                                 {
+                                    kind: 'InlineFragment',
+                                    typeCondition: {
+                                       kind: 'NamedType',
+                                       name: {
+                                          kind: 'Name',
+                                          value: 'InternalErrorProblem'
+                                       }
+                                    },
+                                    selectionSet: {
+                                       kind: 'SelectionSet',
+                                       selections: [
+                                          {
+                                             kind: 'Field',
+                                             name: {
+                                                kind: 'Name',
+                                                value: 'message'
+                                             }
+                                          }
+                                       ]
+                                    }
+                                 },
+                                 {
+                                    kind: 'InlineFragment',
+                                    typeCondition: {
+                                       kind: 'NamedType',
+                                       name: {
+                                          kind: 'Name',
+                                          value: 'VersionMismatchProblem'
+                                       }
+                                    },
+                                    selectionSet: {
+                                       kind: 'SelectionSet',
+                                       selections: [
+                                          {
+                                             kind: 'Field',
+                                             name: {
+                                                kind: 'Name',
+                                                value: 'message'
+                                             }
+                                          }
+                                       ]
+                                    }
+                                 }
+                              ]
+                           }
+                        }
+                     ]
+                  }
+               }
+            ]
+         }
+      }
+   ]
+} as unknown as DocumentNode<
+   DeleteColorByIdMutation,
+   DeleteColorByIdMutationVariables
+>
 export const AllOrdersDocument = {
    kind: 'Document',
    definitions: [

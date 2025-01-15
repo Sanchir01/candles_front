@@ -33,8 +33,15 @@ const CreateCategoryPage: NextPage = () => {
 
    const onSubmit = async (data: createCategorySchemaType) => {
       const { toast } = await import('react-hot-toast')
-      await mutateAsync(data.title)
+
+      try {
+         await mutateAsync(data.title)
+      } catch (e) {
+         console.log(e)
+         return
+      }
       toast.success('уачное создание категории')
+      form.reset()
    }
    return (
       <div className='px-5'>

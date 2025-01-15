@@ -1,4 +1,5 @@
 'use client'
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 import { useQuery } from '@tanstack/react-query'
 import { NextPage } from 'next'
 import { DeleteItem } from '~/features/Admin/deleteItem'
@@ -9,11 +10,12 @@ import AdminItemLine from '~/shared/ui/adminItem'
 import AdminItemView from '~/shared/ui/adminItemView'
 
 const CategoryAdminPage: NextPage = () => {
+   const [animateRef] = useAutoAnimate({ duration: 300 })
    const { data, isLoading, isSuccess } = useQuery({
       ...categoryService.allCategoryQueryOptions()
    })
    return (
-      <div className='flex flex-1 flex-col gap-4 p-4'>
+      <div ref={animateRef} className='flex flex-1 flex-col gap-4 p-4'>
          <Button
             className='max-w-[400px]'
             href={`/admin/category/create-category`}

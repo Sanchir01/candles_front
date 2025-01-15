@@ -1,4 +1,5 @@
 'use client'
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 import { useQuery } from '@tanstack/react-query'
 import { NextPage } from 'next'
 import { DeleteItem } from '~/features/Admin/deleteItem'
@@ -7,11 +8,12 @@ import { Button } from '~/shared/ui'
 import AdminItemLine from '~/shared/ui/adminItem'
 
 const ColorsAdminPage: NextPage = () => {
+   const [animateRef] = useAutoAnimate({ duration: 300 })
    const { data, isLoading, isSuccess } = useQuery({
       ...colorService.allColorQueryOptions()
    })
    return (
-      <div className='flex flex-1 flex-col gap-4 p-4'>
+      <div ref={animateRef} className='flex flex-1 flex-col gap-4 p-4'>
          <Button href={'/admin/colors/create-color'} className='max-w-[400px]'>
             Создать цвет
          </Button>
@@ -32,7 +34,9 @@ const ColorsAdminPage: NextPage = () => {
                       Delete={
                          <DeleteItem
                             id={id}
-                            mutateFn={() => colorService.addToColor(id)}
+                            mutateFn={() =>
+                               colorService.deleteColorById({ id })
+                            }
                             mutateKey={colorService.addToColorKey}
                             invalidateKey={colorService.allColorKey}
                          />

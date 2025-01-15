@@ -1,6 +1,5 @@
 'use client'
 import { useQuery } from '@tanstack/react-query'
-import { Delete } from 'lucide-react'
 import { NextPage } from 'next'
 import { orderService } from '~/shared/service/orders'
 import { Skeleton } from '~/shared/ui'
@@ -21,7 +20,7 @@ const AdminOrdersPage: NextPage = () => {
          ) : isSuccess &&
            data?.__typename === 'AllOrdersOk' &&
            data.orders.length !== 0 ? (
-            data.orders.map(({ id, status, userId, total_amount }) => (
+            data.orders.map(({ id, status, total_amount }) => (
                <AdminItemLine
                   key={id}
                   View={<>view</>}

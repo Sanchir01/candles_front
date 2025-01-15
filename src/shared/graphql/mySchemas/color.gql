@@ -59,3 +59,19 @@ mutation AddToColor($input: CreateColorInput!) {
       }
    }
 }
+mutation DeleteColorById($input: DeleteColorInput) {
+   color {
+      delete(input: $input) {
+         __typename
+         ... on DeleteColorOk {
+            ok
+         }
+         ... on InternalErrorProblem {
+            message
+         }
+         ... on VersionMismatchProblem {
+            message
+         }
+      }
+   }
+}
