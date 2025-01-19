@@ -1,6 +1,4 @@
-import { useAutoAnimate } from '@formkit/auto-animate/react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import * as React from 'react'
 import { dataSideBar } from '~/shared/constants/sidebar'
 
@@ -19,9 +17,6 @@ import { VersionSwitcher } from '~/shared/ui/version-switcher'
 export default function AppSidebar({
    ...props
 }: React.ComponentProps<typeof Sidebar>) {
-   const [parent] = useAutoAnimate({ duration: 200, easing: 'ease-in' })
-   const pathname = usePathname()
-   console.log('this pathname', pathname)
    return (
       <Sidebar {...props}>
          <SidebarHeader>

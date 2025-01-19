@@ -156,10 +156,15 @@ export type CandlesFilterInput = {
 export type CandlesMutation = {
    __typename?: 'CandlesMutation'
    createCandle: CandlesMutationResult
+   deleteCandle: DeleteCandleResult
 }
 
 export type CandlesMutationCreateCandleArgs = {
    input: CreateCandleInput
+}
+
+export type CandlesMutationDeleteCandleArgs = {
+   input: DeleteCandleInput
 }
 
 export type CandlesMutationResult =
@@ -197,6 +202,11 @@ export enum CandlesSortEnum {
    PriceDesc = 'PRICE_DESC',
    SortRankAsc = 'SORT_RANK_ASC',
    SortRankDesc = 'SORT_RANK_DESC'
+}
+
+export type CanldesDeleteOk = {
+   __typename?: 'CanldesDeleteOk'
+   id: Scalars['Uuid']['output']
 }
 
 export type Category = VersionInterface & {
@@ -410,6 +420,16 @@ export type CreateOrderResult =
    | InternalErrorProblem
    | UnauthorizedProblem
 
+export type DeleteCandleInput = {
+   id: Scalars['Uuid']['input']
+}
+
+export type DeleteCandleResult =
+   | CanldesDeleteOk
+   | InternalErrorProblem
+   | UnauthorizedProblem
+   | VersionMismatchProblem
+
 export type DeleteCategoryInput = {
    id: Scalars['Uuid']['input']
 }
@@ -589,6 +609,7 @@ export type UnauthorizedProblem = ProblemInterface & {
 }
 
 export type UpdateCategoryInput = {
+   id: Scalars['Uuid']['input']
    title: Scalars['String']['input']
 }
 
@@ -603,6 +624,7 @@ export type UpdateCategoryResult =
    | VersionMismatchProblem
 
 export type UpdateColorInput = {
+   id: Scalars['Uuid']['input']
    title: Scalars['String']['input']
 }
 

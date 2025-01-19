@@ -1,22 +1,37 @@
+'use client'
 import Link from 'next/link'
+import { useBurger } from '~/Providers/store/useBurger'
+import { headerNavContent } from '~/shared/constants/header'
 import { cn } from '~/shared/lib/utils'
 import style from '~/shared/styles/Header.module.scss'
 
-export const HeaderNav = () => {
+export const HeaderNav = ({ burgerNav = false }: { burgerNav?: boolean }) => {
+   const toggleBurger = useBurger(state => state.setToggleBurger)
+   if (burgerNav) {
+      return (
+         <div
+            className={style.menu__content}
+            onClick={e => e.stopPropagation()}
+         >
+            <nav>
+               <ul className={style.menu__text}>
+                  {headerNavContent.map((content, id) => (
+                     <li onClick={toggleBurger} key={id}>
+                        <Link href={content.href}>{content.title}</Link>
+                     </li>
+                  ))}
+               </ul>
+            </nav>
+         </div>
+      )
+   }
    return (
       <ul className={cn(style.header_nav, 'max-[998px]:flex-col')}>
-         <li className={style.header_nav_left_home}>
-            <Link href='/'>Главная</Link>
-         </li>
-         <li className={style.header_nav_left_catalog}>
-            <Link href='/catalog'>Каталог</Link>
-         </li>
-         <li className={style.header_nav_left_newsession}>
-            <Link href='/seasons'>Сезонные новинки</Link>
-         </li>
-         <li className={style.header_nav_left_contacts}>
-            <Link href='/contacts'>Контакты</Link>
-         </li>
+         {headerNavContent.map((item, i) => (
+            <li key={i}>
+               <Link href={item.href}>{item.title}</Link>
+            </li>
+         ))}
       </ul>
    )
 }

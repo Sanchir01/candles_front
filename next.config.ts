@@ -3,6 +3,7 @@ import {
 	PHASE_DEVELOPMENT_SERVER,
 	PHASE_PRODUCTION_BUILD
 } from 'next/constants.js'
+
 const nextConfig: NextConfig = {
 	reactStrictMode: process.env.NODE_ENV === 'development',
 	compiler: {

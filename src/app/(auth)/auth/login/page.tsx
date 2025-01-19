@@ -28,7 +28,7 @@ export default function LoginPage() {
          password: ''
       }
    })
-   const { replace } = useRouter()
+   const { back } = useRouter()
 
    const { mutateAsync, isPending } = useLogin()
    const onSubmit = async (data: IInputLogin) => {
@@ -40,7 +40,7 @@ export default function LoginPage() {
          })
          if (auth.login.__typename === 'LoginOk') {
             toast.success('Вы вошли в аккаунт')
-            replace('/catalog')
+            back()
          }
       } catch (e: any) {
          toast.error(e.response?.errors[0].message ?? e.message)

@@ -34,7 +34,7 @@ export default function RegisterPage() {
          phone: '+7'
       }
    })
-   const { replace } = useRouter()
+   const { back } = useRouter()
    const userStore = useUser(state => state.setUser)
    const onSubmit = async (data: IInputRegister) => {
       try {
@@ -47,12 +47,11 @@ export default function RegisterPage() {
 
          if (auth.registrations.__typename === 'RegistrationsOk') {
             userStore(auth.registrations)
-            replace('/catalog')
             toast.success('Удачная регистрация')
+            back()
          }
-         auth.registrations.__typename === 'InternalErrorProblem' &&
-            toast.error('не удалось зарегистрироваться')
       } catch (e: any) {
+         toast.error('не удалось зарегистрироваться')
          toast.error(e.target?.elements[0]?.value ?? e.message)
       }
    }

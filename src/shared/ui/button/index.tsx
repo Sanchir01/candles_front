@@ -42,9 +42,12 @@ export interface ButtonProps
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-   ({ className, variant, size, href, asChild = false, ...props }, ref) => {
+   (
+      { className, variant, size, href = '', asChild = false, ...props },
+      ref
+   ) => {
       const Comp = asChild ? Slot : 'button'
-      if (href !== undefined) {
+      if (href !== '') {
          return (
             <Link href={href}>
                <Comp
