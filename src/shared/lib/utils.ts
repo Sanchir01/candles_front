@@ -15,3 +15,16 @@ export const allItems = (item: ICart[]) => {
    const totalQuantity = item.reduce((total, item) => total + item.quantity, 0)
    return totalQuantity
 }
+
+export const tryThrow = async <T>({
+   fn
+}: {
+   fn: () => Promise<T>
+}): Promise<T | undefined> => {
+   try {
+      return await fn()
+   } catch (e) {
+      console.error(e)
+      return undefined
+   }
+}
