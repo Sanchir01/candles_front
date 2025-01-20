@@ -3,15 +3,15 @@ import Footer from '~/widgets/footer'
 import Header from '~/widgets/header'
 
 export default function RootLayout({
-   children
+	children
 }: {
-   children: React.ReactNode
+	children: React.ReactNode
 }) {
-   return (
-      <>
-         <Header isAuth={HeaderProfileEnum.PUBLIC} />
-         <main>{children}</main>
-         <Footer />
-      </>
-   )
+	return (
+		<>
+			<Header isAuth={HeaderProfileEnum.PUBLIC} />
+			<main>{children}</main>
+			<Footer />
+		</>
+	)
 }

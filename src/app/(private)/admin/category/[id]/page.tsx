@@ -6,25 +6,25 @@ import { categoryService } from '~/shared/service/category'
 import { Loader } from '~/shared/ui'
 
 const AdminOneCategoryPage: NextPage = () => {
-   const { id } = useParams<{ id: string }>()
-   const { data, isLoading, isError } = useQuery({
-      ...categoryService.categoryByIdQueryOptions({ id })
-   })
-   if (isLoading) {
-      return <Loader />
-   }
-   if (isError) {
-      return <div>Ошибка</div>
-   }
-   const category = data?.category?.categoryById
+	const { id } = useParams<{ id: string }>()
+	const { data, isLoading, isError } = useQuery({
+		...categoryService.categoryByIdQueryOptions({ id })
+	})
+	if (isLoading) {
+		return <Loader />
+	}
+	if (isError) {
+		return <div>Ошибка</div>
+	}
+	const category = data?.category?.categoryById
 
-   return (
-      category?.__typename === 'CategoryByIdOk' && (
-         <div className='px-5'>
-            <div className=''>Категория: {category.category?.title}</div>
-         </div>
-      )
-   )
+	return (
+		category?.__typename === 'CategoryByIdOk' && (
+			<div className='px-5'>
+				<div className=''>Категория: {category.category?.title}</div>
+			</div>
+		)
+	)
 }
 
 export default AdminOneCategoryPage

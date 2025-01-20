@@ -1,39 +1,39 @@
 .embla {
-  overflow: hidden;
+	overflow: hidden;
 
-  &__container {
-    display: flex;
-  }
+	&__container {
+		display: flex;
+	}
 
-  &__slide {
-    flex: 0 0 25%;
-    min-width: 0;
-  }
+	&__slide {
+		flex: 0 0 25%;
+		min-width: 0;
+	}
 }
 
 @media (max-width: 998px) {
-  .embla {
-    &__slide {
-      flex: 0 0 40%;
-      min-width: 0;
-    }
-  }
+	.embla {
+		&__slide {
+			flex: 0 0 40%;
+			min-width: 0;
+		}
+	}
 }
 
 @media (max-width: 768px) {
-  .embla {
-    &__slide {
-      flex: 0 0 50%;
-      min-width: 0;
-    }
-  }
+	.embla {
+		&__slide {
+			flex: 0 0 50%;
+			min-width: 0;
+		}
+	}
 }
 
 @media (max-width: 576px) {
-  .embla {
-    &__slide {
-      flex: 0 0 80%;
-      min-width: 0;
-    }
-  }
+	.embla {
+		&__slide {
+			flex: 0 0 80%;
+			min-width: 0;
+		}
+	}
 }

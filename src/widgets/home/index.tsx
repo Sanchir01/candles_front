@@ -10,12 +10,12 @@ export { default as SliderHero } from './ui/heroSlider'
 export { default as PopularItemsSlider } from './ui/popularSlider'
 
 const HomeContentComponent = () => (
-   <HomeLayout
-      aboutBrand={<AboutBrand />}
-      heroSlider={<HeroSlider />}
-      popularSlider={<PopularItemsSlider />}
-      advantages={<Advantages />}
-      feedbackForm={<FeedbackSection />}
-   />
+	<HomeLayout
+		aboutBrand={<AboutBrand />}
+		heroSlider={<HeroSlider />}
+		popularSlider={<PopularItemsSlider />}
+		advantages={<Advantages />}
+		feedbackForm={<FeedbackSection />}
+	/>
 )
 export default HomeContentComponent

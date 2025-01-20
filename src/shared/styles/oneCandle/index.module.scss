@@ -1,8 +1,5 @@
 .candle {
-
-  &__title {
-    font-size: clamp(1.3rem, -0.0563rem + 4.5070vw, 2.25rem);
-  }
-
-
+	&__title {
+		font-size: clamp(1.3rem, -0.0563rem + 4.507vw, 2.25rem);
+	}
 }

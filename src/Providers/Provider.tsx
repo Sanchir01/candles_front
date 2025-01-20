@@ -4,12 +4,12 @@ import { ThemeProvider } from '~/Providers/theme/theme-provider'
 import { ComposeChildren } from '~/shared/lib/react-utils'
 
 export const Provider = ({ children }: { children: ReactNode }) => {
-   return (
-      <ComposeChildren>
-         <ThemeProvider />
-         <ReactQueryProvider />
+	return (
+		<ComposeChildren>
+			<ThemeProvider />
+			<ReactQueryProvider />
 
-         {children}
-      </ComposeChildren>
-   )
+			{children}
+		</ComposeChildren>
+	)
 }

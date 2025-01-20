@@ -13,9 +13,9 @@
 		align-items: center;
 		flex-direction: column;
 	}
-    &__text{
-        font-size: clamp(1.1rem, 0.9393rem + 0.2589vw, 1.1rem);
-    }
+	&__text {
+		font-size: clamp(1.1rem, 0.9393rem + 0.2589vw, 1.1rem);
+	}
 }
 
 @media (max-width: 998px) {

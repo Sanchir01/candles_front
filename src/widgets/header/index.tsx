@@ -11,30 +11,30 @@ import { ShoppingCart } from '../cart/Cart'
 import { BurgerMenu } from './ui/Burger'
 
 const Header = ({
-   isAuth,
-   variant
+	isAuth,
+	variant
 }: {
-   isAuth: HeaderProfileEnum
-   variant?: HeaderVariant
+	isAuth: HeaderProfileEnum
+	variant?: HeaderVariant
 }) => (
-   <HeaderLayout
-      variant={variant}
-      nav={<HeaderNav />}
-      favorite={<FavoritesLogo />}
-      profile={isAuth === HeaderProfileEnum.AUTH ? <></> : <HeaderProfile />}
-      theme={<ToggleTheme />}
-      logo={<HeaderLogo />}
-      admin={<HeaderAdmin />}
-      shoppingCart={<ShoppingCart />}
-      breadcrumbs={<HeaderBreadcrumbs />}
-      burger={
-         <BurgerMenu
-            admin={<HeaderAdmin />}
-            theme={<ToggleTheme />}
-            nav={<HeaderNav burgerNav />}
-            favorite={<FavoritesLogo />}
-         />
-      }
-   />
+	<HeaderLayout
+		variant={variant}
+		nav={<HeaderNav />}
+		favorite={<FavoritesLogo />}
+		profile={isAuth === HeaderProfileEnum.AUTH ? <></> : <HeaderProfile />}
+		theme={<ToggleTheme />}
+		logo={<HeaderLogo />}
+		admin={<HeaderAdmin />}
+		shoppingCart={<ShoppingCart />}
+		breadcrumbs={<HeaderBreadcrumbs />}
+		burger={
+			<BurgerMenu
+				admin={<HeaderAdmin />}
+				theme={<ToggleTheme />}
+				nav={<HeaderNav burgerNav />}
+				favorite={<FavoritesLogo />}
+			/>
+		}
+	/>
 )
 export default Header

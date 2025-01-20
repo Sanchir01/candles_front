@@ -7,49 +7,41 @@ import SliderItem from '~/widgets/catalog/ui/item'
 import EmblaCarousel from '~/shared/ui/sliders/emblaSlider'
 import st from '~/shared/styles/slider/index.module.scss'
 const RecommendedSlider: FC = () => {
-   const { data, isLoading } = useQuery({
-      ...candlesService.AllCandlesQueryOptions({
-         sort: CandlesSortEnum.CreatedAtAsc,
-         categoryId: null,
-         colorId: null
-      })
-   })
-   return isLoading ? (
-      <></>
-   ) : (
-      data && (
-         <EmblaCarousel>
-            {data.__typename === 'AllCandlesOk' ? (
-               data.candles.map(
-                  ({
-                     id,
-                     title,
-                     images,
-                     price,
-                     version,
-                     color_id,
-                     category_id
-                  }) => (
-                     <div className={st.embla__slide} key={id}>
-                        <SliderItem
-                           id={id}
-                           title={title}
-                           images={images}
-                           price={price}
-                           version={version}
-                           color_id={color_id}
-                           category_id={category_id}
-                           focusImage={true}
-                        />
-                     </div>
-                  )
-               )
-            ) : (
-               <></>
-            )}
-         </EmblaCarousel>
-      )
-   )
+	const { data, isLoading } = useQuery({
+		...candlesService.AllCandlesQueryOptions({
+			sort: CandlesSortEnum.CreatedAtAsc,
+			categoryId: null,
+			colorId: null
+		})
+	})
+	return isLoading ? (
+		<></>
+	) : (
+		data && (
+			<EmblaCarousel>
+				{data.__typename === 'AllCandlesOk' ? (
+					data.candles.map(
+						({ id, title, images, price, version, color_id, category_id }) => (
+							<div className={st.embla__slide} key={id}>
+								<SliderItem
+									id={id}
+									title={title}
+									images={images}
+									price={price}
+									version={version}
+									color_id={color_id}
+									category_id={category_id}
+									focusImage={true}
+								/>
+							</div>
+						)
+					)
+				) : (
+					<></>
+				)}
+			</EmblaCarousel>
+		)
+	)
 }
 
 export default RecommendedSlider
