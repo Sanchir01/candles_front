@@ -16,7 +16,6 @@ export async function middleware(request: NextRequest) {
 	const loginPage = url.includes('/auth/login')
 	const registerPage = url.includes('/auth/register')
 	const adminPanel = url.includes('/admin')
-	const orderPage = url.includes('/order')
 	if (loginPage || registerPage) {
 		if (accessToken && refreshToken) {
 			return NextResponse.redirect(new URL('/catalog', url))
@@ -123,12 +122,7 @@ export async function middleware(request: NextRequest) {
 		}
 	).then(res => res.json())
 
-	if (orderPage && data.user === null) {
-		return NextResponse.redirect(new URL('/auth/login', url))
-	}
 	if (adminPanel && data === null)
-		return NextResponse.redirect(new URL('/auth/login', url))
-	if (orderPage && data === null)
 		return NextResponse.redirect(new URL('/auth/login', url))
 	if (
 		data?.user?.profile.__typename === 'UserProfileOk' &&
@@ -139,5 +133,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-	matcher: ['/auth/:path*', '/admin/:path*']
+	matcher: ['/admin/:path*']
 }

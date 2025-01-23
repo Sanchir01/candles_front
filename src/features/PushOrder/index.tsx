@@ -12,7 +12,7 @@ const PushOrder = () => {
 		mutationFn: ({ items }: { items: CreateOrderInput }) =>
 			orderService.crateOrder({ items })
 	})
-	const { replace } = useRouter()
+	const { replace, push } = useRouter()
 	const cart = useCartStore(state => state.cart)
 	const resetCart = useCartStore(state => state.resetCart)
 	const orderValue: CreateOrderInput = {
@@ -23,13 +23,16 @@ const PushOrder = () => {
 		}))
 	}
 	const createOrder = async ({ items }: { items: CreateOrderInput }) => {
-		const { toast } = await import('react-hot-toast')
 		try {
 			await mutateAsync({ items })
 			console.log(items)
+			const { toast } = await import('react-hot-toast')
 			toast.success('Заказ оформлен')
 		} catch (e) {
+			//@ts-ignore
 			console.log(e)
+			// push('/auth/login')
+			return
 		}
 		resetCart()
 		replace('/thanks')
